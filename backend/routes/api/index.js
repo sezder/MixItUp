@@ -2,8 +2,11 @@
 const router = require("express").Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const asyncHandler = require('express-async-handler');
+
 
 const { User } = require("../../db/models");
+const {setTokenCookie, restoreUser, requireAuth} = require('../../utils/auth')
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
@@ -11,7 +14,6 @@ router.use('/users', usersRouter);
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
 });
-
 
 
 // TESTING MIDDLEWARE REMOVE LATER
