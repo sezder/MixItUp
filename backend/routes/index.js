@@ -6,14 +6,7 @@ const apiRouter = require('./api');
 
 router.use('/api', apiRouter);
 
-// only used for setup
-router.get('/hello/world', function(req, res) {
-  res.cookie('XSRF-TOKEN', req.csrfToken());
-  res.send('Hello World!');
-});
-
-
-//NTS: IS THIS IN THE RIGHT PLACE??
+//NTS: IS THIS IN THE RIGHT PLACE?? Or under the other one at 25?
 if (process.env.NODE_ENV !== 'production') {
   router.get('/api/csrf/restore', (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());
