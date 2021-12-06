@@ -44,7 +44,8 @@ router.post(
       imageUrl,
       recipeUrl,
     });
-    return res.redirect(`${req.baseUrl}/${cocktail.id}`);
+    res.json(cocktail);
+    // return res.redirect(`${req.baseUrl}/${cocktail.id}`);
   })
 );
 
