@@ -14,7 +14,7 @@ const validateCocktail = [
   check("name")
     .exists({ checkFalsy: true })
     .withMessage("Provide a name.")
-    .length({ max: 100 })
+    .isLength({ max: 100 })
     .withMessage("Name must be less than 100 characters"),
   check("description")
     .exists({ checkFalsy: true })
