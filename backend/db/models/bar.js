@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
   Bar.associate = function(models) {
     const columnMapping = {
       through: 'Bars_Cocktails',
-      otherKey: 'cocktail_id',
-      foreignKey: 'bar_id'
+      otherKey: 'cocktailId',
+      foreignKey: 'barId'
     }
     Bar.belongsToMany(models.Cocktail, columnMapping);
 

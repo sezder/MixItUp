@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-// const { Cocktail } = require("../../db/models/Cocktail");
+const { Cocktail } = require("../../db/models/cocktail");
 
 const router = express.Router();
 
@@ -36,7 +36,7 @@ router.post(
   "/",
   validateCocktail,
   requireAuth,
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (req, res) => {
     const { name, description, imageUrl, recipeUrl } = req.body;
     const cocktail = await Cocktail.create({
       name,
@@ -44,7 +44,7 @@ router.post(
       imageUrl,
       recipeUrl,
     });
-    return res.redirect(`${req.baseUrl}/${id}`);
+    return res.redirect(`${req.baseUrl}/${cocktail.id}`);
   })
 );
 

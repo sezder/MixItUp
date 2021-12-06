@@ -16,11 +16,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      image_url: {
+      imageUrl: {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      recipe_url: {
+      recipeUrl: {
         type: Sequelize.TEXT
       },
       createdAt: {

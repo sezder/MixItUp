@@ -8,12 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      cocktail_id: {
+      cocktailId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "Cocktails" },
       },
-      bar_id: {
+      barId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "Bars" },

@@ -3,15 +3,15 @@ module.exports = (sequelize, DataTypes) => {
   const Cocktail = sequelize.define('Cocktail', {
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
-    image_url: DataTypes.TEXT,
-    recipe_url: DataTypes.TEXT
+    imageUrl: DataTypes.TEXT,
+    recipeUrl: DataTypes.TEXT
   }, {});
   Cocktail.associate = function(models) {
-    Cocktail.hasMany(models.Cocktail_Review, { foreignKey: "cocktail_id" });
+    Cocktail.hasMany(models.Cocktail_Review, { foreignKey: "cocktailId" });
     const columnMapping = {
       through: 'Bars_Cocktails',
-      otherKey: 'bar_id',
-      foreignKey: 'cocktail_id'
+      otherKey: 'barId',
+      foreignKey: 'cocktailId'
     }
     Cocktail.belongsToMany(models.Bar, columnMapping);
   };
