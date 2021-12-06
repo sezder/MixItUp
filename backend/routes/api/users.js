@@ -21,11 +21,14 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
     .withMessage("Password must be 6 characters or more."),
-  check("confirmedPassword")
-    .exists({ checkFalsey: true })
+  check("confirmPassword")
+    .exists({ checkFalsy: true })
+    .withMessage("Confirm password")
+    .isLength({ max: 50 })
+    .withMessage("Confirmed password must not be more than 50 characters long")
     .custom((value, { req }) => {
       if (value !== req.body.password) {
-        throw new Error("Provide matching passwords");
+        throw new Error("Confirmed password does not match password");
       }
       return true;
     }),
