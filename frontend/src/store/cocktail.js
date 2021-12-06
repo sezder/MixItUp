@@ -27,10 +27,10 @@ export const createCocktail =
       },
       body: JSON.stringify({ name, description, imageUrl, recipeUrl }),
     });
-    const response = await res.json();
-    if(response.ok) {
-    dispatch(getCocktails(response));
-    }
+    // const response = await res.json();
+    // if(response.ok) {
+    // dispatch(getCocktails(response)); //???
+    // }
   };
 
 // export const editCocktail =

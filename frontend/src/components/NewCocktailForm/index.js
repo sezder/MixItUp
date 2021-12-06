@@ -27,14 +27,14 @@ function NewCocktailForm() {
     e.preventDefault();
     if (errors.length > 0) return;
 
-    const payload = {
+    const newCocktail = { //payload
       name,
       description,
       imageUrl,
       recipeUrl,
     };
 
-    let createdCocktail = dispatch(createCocktail(payload));
+    let createdCocktail = dispatch(createCocktail(newCocktail));
 
     if (createdCocktail) {
       history.push(`/cocktails/${createdCocktail.id}`);

@@ -8,20 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      review_rating: {
+      reviewRating: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      review_body: {
+      reviewBody: {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      cocktail_id: {
+      cocktailId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: "Cocktails"}
       },
-      user_id: {
+      userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: "Users"}
