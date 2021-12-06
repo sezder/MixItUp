@@ -11,19 +11,16 @@ module.exports = {
           email: "demo@user.io",
           username: "Demo-lition",
           hashedPassword: bcrypt.hashSync("password"),
-          birthday: "1970-01-01",
         },
         {
           email: faker.internet.email(),
           username: "FakeUser1",
           hashedPassword: bcrypt.hashSync(faker.internet.password()),
-          birthday: "1970-01-01",
         },
         {
           email: faker.internet.email(),
           username: "FakeUser2",
           hashedPassword: bcrypt.hashSync(faker.internet.password()),
-          birthday: "1970-01-01",
         },
       ],
       {}

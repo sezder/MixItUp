@@ -22,10 +22,6 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false
       },
-      birthday: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
