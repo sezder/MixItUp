@@ -19,8 +19,6 @@ function SignupFormPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      console.log(password, 'pass');
-      console.log(confirmPassword, 'conf');
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password, confirmPassword }))
         .catch(async (res) => {
