@@ -8,6 +8,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Cocktail.associate = function(models) {
     Cocktail.hasMany(models.Cocktail_Review, { foreignKey: "cocktail_id" });
+    const columnMapping = {
+      through: 'Bars_Cocktails',
+      otherKey: 'bar_id',
+      foreignKey: 'cocktail_id'
+    }
+    Cocktail.belongsToMany(models.Bar, columnMapping);
   };
   return Cocktail;
 };
