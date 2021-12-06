@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     recipe_url: DataTypes.TEXT
   }, {});
   Cocktail.associate = function(models) {
-    // associations can be defined here
+    Cocktail.hasMany(models.Cocktail_Review, { foreignKey: "cocktail_id" });
   };
   return Cocktail;
 };
