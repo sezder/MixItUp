@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { createCocktail } from "../../store/cocktail";
+import { useHistory, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  updateCocktail,
+  destroyCocktail,
+  getCocktails,
+} from "../../store/cocktail";
 import "./EditCocktailForm.css";
 
 function EditCocktailForm() {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [recipeUrl, setRecipeUrl] = useState("");
+  const { cocktailId } = useParams();
+  console.log(cocktailId);
+  useEffect(() => {
+    dispatch(getCocktails());
+  }, [dispatch]);
+
+  const cocktail = useSelector((state) => state.cocktail[cocktailId]);
+
+  const [name, setName] = useState(cocktail?.name);
+  const [description, setDescription] = useState(cocktail?.description);
+  const [imageUrl, setImageUrl] = useState(cocktail?.imageUrl);
+  const [recipeUrl, setRecipeUrl] = useState(cocktail?.recipeUrl);
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
@@ -36,11 +47,17 @@ function EditCocktailForm() {
       recipeUrl,
     };
 
-    let editedCocktail = dispatch(createCocktail(editedCocktailPayload));
+    let editedCocktail = dispatch(updateCocktail(editedCocktailPayload));
 
     if (editedCocktail) {
-      history.push(`/cocktails/${editedCocktail.id}`);
+      history.push(`/cocktails/${cocktailId}`);
     }
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(destroyCocktail(cocktailId));
+    history.push("/");
   };
 
   return (
@@ -94,7 +111,7 @@ function EditCocktailForm() {
           Update Cocktail
         </button>
       </form>
-      <button>Delete</button>
+      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 }
