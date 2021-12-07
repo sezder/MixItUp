@@ -9,10 +9,10 @@ import {
 import "./EditCocktailForm.css";
 
 function EditCocktailForm() {
-  const history = useHistory();
+  const history = useHistory(); 
   const dispatch = useDispatch();
   const { cocktailId } = useParams();
-  console.log(cocktailId);
+  // console.log(cocktailId);
   useEffect(() => {
     dispatch(getCocktails());
   }, [dispatch]);
@@ -48,8 +48,9 @@ function EditCocktailForm() {
     };
 
     let editedCocktail = dispatch(updateCocktail(editedCocktailPayload));
+    console.log(editedCocktail, 'edited')
 
-    if (editedCocktail) {
+    if (editedCocktail.ok) {
       history.push(`/cocktails/${cocktailId}`);
     }
   };
