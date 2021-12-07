@@ -3,7 +3,8 @@ import { csrfFetch } from "./csrf";
 // variable creation to avoid typos: action
 const ADD_COCKTAIL = "cocktails/ADD_COCKTAIL";
 const GET_COCKTAILS = "cocktails/GET_COCKTAILS";
-const CLEAR_COCKTAILS = "cocktails/CLEAR_COCKTAILS";
+const DELETE_COCKTAIL = "cocktails/DELETE_COCKTAIL";
+const UPDATE_COCKTAIL = "cocktails/UPDATE_COCKTAIL";
 
 //full action creator
 const addCocktail = (cocktail) => ({
@@ -16,14 +17,14 @@ const getCocktails = (cocktails) => ({
   cocktails,
 });
 
-// const clearCocktails = () => ({
-//   type: CLEAR_COCKTAILS,
-//   payload: null,
-// });
+const deleteCocktails = () => ({
+  type: DELETE_COCKTAIL,
+  payload: null,
+});
 
-// export const clearCocktails = () => async (dispatch) => {
-//   dispatch(clearCocktails());
-// };
+export const deleteCocktails = () => async (dispatch) => {
+  dispatch(deleteCocktails());
+};
 
 export const createCocktail =
   ({ name, description, imageUrl, recipeUrl }) =>
@@ -85,16 +86,17 @@ const cocktailsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COCKTAILS:
       const allCocktails = {};
-      action.list.forEach((cocktail) => {
+      action.cocktails.forEach((cocktail) => {
         allCocktails[cocktail.id] = cocktail;
       });
-      // normalize with key as id, obj as val
-      return {...allCocktails, ...state, userCocktails: action.payload };
-    case CLEAR_COCKTAILS:
-      return { ...state, userCocktails: null };
+      return { ...state, ...allCocktails,};
+    case DELETE_COCKTAIL:
+      const newState = {...state};
+      delete newState[action.cocktailId];
+      return newState;
     case ADD_COCKTAIL:
-      return {...state, }; // need to normalize data prior becuase pushing a new cocktail into the array wouldn't really work
-      // instead, normalization will help in setting new k:val pair with one indiv
+    // case UPDATE_COCKTAIL:
+      return {...state, [action.cocktail.id]: action.cocktail};
     default:
       return state;
   }
