@@ -12,7 +12,7 @@ function EditCocktailForm() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { cocktailId } = useParams();
-  console.log(cocktailId);
+  // console.log(cocktailId);
   useEffect(() => {
     dispatch(getCocktails());
   }, [dispatch]);

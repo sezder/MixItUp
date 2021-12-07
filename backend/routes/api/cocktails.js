@@ -8,17 +8,23 @@ const { Cocktail } = require("../../db/models");
 
 const router = express.Router();
 
-router.get('/', asyncHandler(async function(req, res) {
-  const cocktails = await Cocktail.findAll();
-  return res.json({cocktails});
-}));
+router.get(
+  "/",
+  asyncHandler(async function (req, res) {
+    const cocktails = await Cocktail.findAll();
+    return res.json({ cocktails });
+  })
+);
 
-router.get('/:cocktailId', asyncHandler(async (req, res) => {
-  const cocktailId = parseInt(req.params.cocktailId);
-  const cocktail = await Cocktail.findByPk(cocktailId);
-  return res.json({cocktail});
-}))
-   
+router.get(
+  "/:cocktailId",
+  asyncHandler(async (req, res) => {
+    const cocktailId = parseInt(req.params.cocktailId);
+    const cocktail = await Cocktail.findByPk(cocktailId);
+    return res.json({ cocktail });
+  })
+);
+
 const validateCocktail = [
   check("name")
     .exists({ checkFalsy: true })
@@ -53,9 +59,33 @@ router.post(
       imageUrl,
       recipeUrl,
     });
-   return res.json(cocktail);
+    return res.json(cocktail);
     // return res.redirect(`${req.baseUrl}/${cocktail.id}`);
   })
 );
 
+// need a router for delete function
+// router.delete('/:cocktailId(\\d+)/', requireAuth)
+
+router.put(
+  `/api/:cocktailId/edit`, csrfProtection,
+  requireAuth,
+  validateCocktail,
+  asyncHandler(async (req, res, next) => {
+    const cocktailId = parseInt(req.params.cocktailId);
+    const { name, description, imageUrl, recipeUrl } = req.body;
+
+    const cocktail = await Cocktail.findByPk(cocktailId);
+    if (!cocktail) {
+      const err = new Error("Cocktail not found");
+      err.status = 404;
+      err.title = "cocktail not found";
+      err.errors = ["Could not find cocktail."];
+      return next(err);
+    } else {
+      const updatedCocktail = await cocktail.update({name, description, imageUrl, recipeUrl});
+      return res.json({updatedCocktail});
+    }
+  })
+);
 module.exports = router;
