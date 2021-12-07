@@ -63,14 +63,14 @@ export const createCocktail = (newCocktail) => async (dispatch) => {
 const UPDATE_COCKTAIL = "cocktails/UPDATE_COCKTAIL";
 
 const editCocktailPayload = (cocktail) => ({
-  type: ADD_COCKTAIL,
+  type: UPDATE_COCKTAIL,
   cocktail,
 });
 
 export const updateCocktail =
   ({ cocktailId, name, description, imageUrl, recipeUrl }) =>
   async (dispatch) => {
-    const res = await csrfFetch(`/api/cocktails/${cocktailId}`, {
+    const res = await csrfFetch(`/api/cocktails/${cocktailId}/edit`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -130,9 +130,8 @@ const cocktailReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState[action.cocktailId];
       return newState;
-
-    // case UPDATE_COCKTAIL:
-
+    case UPDATE_COCKTAIL:
+      return {...state, [action.cocktail.id]: action.cocktail}
     default:
       return state;
   }
