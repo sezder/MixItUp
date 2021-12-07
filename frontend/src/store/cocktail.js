@@ -43,53 +43,31 @@ const addCocktail = (cocktail) => ({
   cocktail,
 });
 
-export const updateCocktail =
-  (newCocktail) =>
-  async (dispatch) => {
-    const res = await csrfFetch(`/api/cocktails`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newCocktail),
-    });
-
-    if (res.ok) {
-      const response = await res.json();
-      dispatch(addCocktail(response));
-      return response;
-    }
-  };
-
-// DELETE COCKTAILS
-const DELETE_COCKTAIL = "cocktails/DELETE_COCKTAIL";
-
-const deleteCocktail = () => ({
-  type: DELETE_COCKTAIL,
-  payload: null,
-});
-
-// export const destroyCocktail = () => async (dispatch) => {
-//   dispatch(deleteCocktail());
-// };
-
-export const destroyCocktail = (userId, cocktailId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/cocktails/${cocktailId}`, {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userId, cocktailId }),
+export const createCocktail = (newCocktail) => async (dispatch) => {
+  const res = await csrfFetch(`/api/cocktails`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newCocktail),
   });
 
-  const response = await res.json();
-  if (response.ok) {
-    dispatch(getCocktails(response));
+  if (res.ok) {
+    const response = await res.json();
+    dispatch(addCocktail(response));
+    return response;
   }
 };
 
 // EDIT COCKTAIL
 const UPDATE_COCKTAIL = "cocktails/UPDATE_COCKTAIL";
 
-export const editCocktail =
+const editCocktailPayload = (cocktail) => ({
+  type: ADD_COCKTAIL,
+  cocktail,
+});
+
+export const updateCocktail =
   ({ cocktailId, name, description, imageUrl, recipeUrl }) =>
   async (dispatch) => {
     const res = await csrfFetch(`/api/cocktails/${cocktailId}`, {
@@ -108,28 +86,53 @@ export const editCocktail =
 
     const response = await res.json();
     if (response.ok) {
-      dispatch(getCocktails(response));
+      dispatch(editCocktailPayload(response));
     }
   };
+
+// DELETE COCKTAILS
+const DELETE_COCKTAIL = "cocktails/DELETE_COCKTAIL";
+
+const deleteCocktail = () => ({
+  type: DELETE_COCKTAIL,
+  payload: null,
+});
+
+export const destroyCocktail = (userId, cocktailId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/cocktails/${cocktailId}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userId, cocktailId }),
+  });
+
+  const response = await res.json();
+  if (response.ok) {
+    dispatch(destroyCocktail(response));
+  }
+};
 
 const initialState = {};
 
 const cocktailReducer = (state = initialState, action) => {
   switch (action.type) {
+    // case GET_COCKTAIL:
+
     case GET_COCKTAILS:
       const allCocktails = {};
       action.cocktails.forEach((cocktail) => {
         allCocktails[cocktail.id] = cocktail;
       });
       return { ...state, ...allCocktails };
+    case ADD_COCKTAIL:
+      return { ...state, [action.cocktail.id]: action.cocktail };
+
     case DELETE_COCKTAIL:
       const newState = { ...state };
       delete newState[action.cocktailId];
       return newState;
 
-    case UPDATE_COCKTAIL:
-    case ADD_COCKTAIL:
-      return { ...state, [action.cocktail.id]: action.cocktail };
+    // case UPDATE_COCKTAIL:
+
     default:
       return state;
   }
