@@ -84,13 +84,17 @@ const initialState = { userCocktails: null };
 const cocktailsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COCKTAILS:
+      const allCocktails = {};
+      action.list.forEach((cocktail) => {
+        allCocktails[cocktail.id] = cocktail;
+      });
       // normalize with key as id, obj as val
-      return { ...state, userCocktails: action.payload };
+      return {...allCocktails, ...state, userCocktails: action.payload };
     case CLEAR_COCKTAILS:
       return { ...state, userCocktails: null };
     case ADD_COCKTAIL:
       return {...state, }; // need to normalize data prior becuase pushing a new cocktail into the array wouldn't really work
-      // instead, normalization will help in setting new k:val pair
+      // instead, normalization will help in setting new k:val pair with one indiv
     default:
       return state;
   }
