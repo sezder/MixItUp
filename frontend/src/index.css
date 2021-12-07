@@ -1,1 +1,29 @@
-/* TODO Add site wide styles */
+/* links in capital letters on menu, any heder-type stuff */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap'); 
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #DFDBD8;
+}
+
+button {
+  color: #F9F7F7;
+  font-weight: bolder;
+  padding: 10px 25px;
+  background-color: #232E2B;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition:  all 0.5s ease 0s;
+
+}
+
+button:hover {
+  background-color: #090C0B;
+  box-shadow: -2px 2px rgba(0, 0, 0, 0.142);
+}
