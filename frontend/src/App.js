@@ -6,7 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation"
 import NewCocktailForm from "./components/NewCocktailForm";
-
+import EditCocktailForm from "./components/EditCocktailForm";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,6 +27,9 @@ function App() {
           </Route>
           <Route path="/cocktails/new">
             <NewCocktailForm />
+          </Route>
+          <Route path="/cocktails/:cocktailId">
+            <EditCocktailForm />
           </Route>
         </Switch>
       )}

@@ -16,7 +16,7 @@ function NewCocktailForm() {
   useEffect(() => {
     const errors = [];
     if (!name.length) errors.push("Provide a name.");
-    if (name.length > 100) errors.push("Name must be less than 100 characters");
+    if (name.length > 255) errors.push("Name must be less than 255 characters");
     if (!description.length) errors.push("Provide a description.");
     // error handling for an imageUrl actually beign a link?
     if (!imageUrl.length) errors.push("Provide an image url.");
