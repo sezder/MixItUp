@@ -4,12 +4,12 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Cocktail } = require("../../db/models/cocktail");
+const { Cocktail } = require("../../db/models");
 
 const router = express.Router();
 
 // router.get('/')
-
+   
 const validateCocktail = [
   check("name")
     .exists({ checkFalsy: true })
@@ -44,7 +44,7 @@ router.post(
       imageUrl,
       recipeUrl,
     });
-    res.json(cocktail);
+   return res.json(cocktail);
     // return res.redirect(`${req.baseUrl}/${cocktail.id}`);
   })
 );
