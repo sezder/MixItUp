@@ -3,8 +3,8 @@ import { csrfFetch } from "./csrf";
 // variable creation to avoid typos: action
 const ADD_COCKTAIL = "cocktails/ADD_COCKTAIL";
 const GET_COCKTAILS = "cocktails/GET_COCKTAILS";
-const DELETE_COCKTAIL = "cocktails/DELETE_COCKTAIL";
-const UPDATE_COCKTAIL = "cocktails/UPDATE_COCKTAIL";
+// const DELETE_COCKTAIL = "cocktails/DELETE_COCKTAIL";
+// const UPDATE_COCKTAIL = "cocktails/UPDATE_COCKTAIL";
 
 //full action creator
 const addCocktail = (cocktail) => ({
@@ -17,14 +17,14 @@ const getCocktails = (cocktails) => ({
   cocktails,
 });
 
-const deleteCocktails = () => ({
-  type: DELETE_COCKTAIL,
-  payload: null,
-});
+// const deleteCocktails = () => ({
+//   type: DELETE_COCKTAIL,
+//   payload: null,
+// });
 
-export const deleteCocktails = () => async (dispatch) => {
-  dispatch(deleteCocktails());
-};
+// export const deleteCocktails = () => async (dispatch) => {
+//   dispatch(deleteCocktails());
+// };
 
 export const createCocktail =
   ({ name, description, imageUrl, recipeUrl }) =>
@@ -80,9 +80,9 @@ export const createCocktail =
 //   }
 // };
 
-const initialState = { userCocktails: null };
+// const initialState = { };
 
-const cocktailsReducer = (state = initialState, action) => {
+const cocktailsReducer = (state = [], action) => {
   switch (action.type) {
     case GET_COCKTAILS:
       const allCocktails = {};
@@ -90,10 +90,10 @@ const cocktailsReducer = (state = initialState, action) => {
         allCocktails[cocktail.id] = cocktail;
       });
       return { ...state, ...allCocktails,};
-    case DELETE_COCKTAIL:
-      const newState = {...state};
-      delete newState[action.cocktailId];
-      return newState;
+    // case DELETE_COCKTAIL:
+    //   const newState = {...state};
+    //   delete newState[action.cocktailId];
+    //   return newState;
     case ADD_COCKTAIL:
     // case UPDATE_COCKTAIL:
       return {...state, [action.cocktail.id]: action.cocktail};
