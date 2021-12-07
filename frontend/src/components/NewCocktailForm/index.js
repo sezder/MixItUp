@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createCocktail } from '../../store/cocktail';
+import { updateCocktail } from '../../store/cocktail';
 import "./NewCocktailForm.css";
 
 function NewCocktailForm() {
@@ -34,10 +34,13 @@ function NewCocktailForm() {
       recipeUrl,
     };
 
-    let createdCocktail = dispatch(createCocktail(newCocktail));
+    // returns a promise, can't key into it to redirect to new cocktail page
+    let createdCocktail = dispatch(updateCocktail(newCocktail));
 
     if (createdCocktail) {
-      history.push(`/cocktails/${createdCocktail.id}`);
+      // how to pull cocktail.id out of state to push to the path?
+      console.log(createdCocktail, 'createdCocktail');
+      history.push(`/cocktails`);
     }
   };
 
