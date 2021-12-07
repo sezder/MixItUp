@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCocktail, destroyCocktail, getCocktails } from "../../store/cocktail";
+import {
+  updateCocktail,
+  destroyCocktail,
+  getCocktails,
+} from "../../store/cocktail";
 import "./EditCocktailForm.css";
 
 function EditCocktailForm() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { cocktailId } = useParams();
-  ;
+  console.log(cocktailId);
   useEffect(() => {
     dispatch(getCocktails());
   }, [dispatch]);
 
-const cocktail = useSelector((state) => state.cocktail[cocktailId]);
+  const cocktail = useSelector((state) => state.cocktail[cocktailId]);
 
   const [name, setName] = useState(cocktail?.name);
   const [description, setDescription] = useState(cocktail?.description);
@@ -46,7 +50,7 @@ const cocktail = useSelector((state) => state.cocktail[cocktailId]);
     let editedCocktail = dispatch(updateCocktail(editedCocktailPayload));
 
     if (editedCocktail) {
-      history.push(`/cocktails/${editedCocktail.id}`);
+      history.push(`/cocktails/${cocktailId}`);
     }
   };
 

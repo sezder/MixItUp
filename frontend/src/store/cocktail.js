@@ -82,7 +82,7 @@ export const destroyCocktail = (userId, cocktailId) => async (dispatch) => {
 
   const response = await res.json();
   if (response.ok) {
-    dispatch(deleteCocktail(response));
+    dispatch(getCocktails(response));
   }
 };
 
@@ -126,6 +126,8 @@ const cocktailReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState[action.cocktailId];
       return newState;
+
+    case UPDATE_COCKTAIL:
     case ADD_COCKTAIL:
       return { ...state, [action.cocktail.id]: action.cocktail };
     default:
