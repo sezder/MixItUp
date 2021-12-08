@@ -68,7 +68,7 @@ const editCocktailPayload = (cocktail) => ({
 });
 
 export const updateCocktail =
-  ({ cocktailId, name, description, imageUrl, recipeUrl }) =>
+  ({ cocktailId, name, description, imageUrl, recipeUrl, userId }) =>
   async (dispatch) => {
     const res = await csrfFetch(`/api/cocktails/${cocktailId}/edit`, {
       method: "PUT",
@@ -81,6 +81,7 @@ export const updateCocktail =
         description,
         imageUrl,
         recipeUrl,
+        userId
       }),
     });
 
@@ -90,7 +91,7 @@ export const updateCocktail =
     }
   };
 
-// DELETE COCKTAILS
+// DELETE COCKTAIL
 const DELETE_COCKTAIL = "cocktails/DELETE_COCKTAIL";
 
 const deleteCocktail = () => ({

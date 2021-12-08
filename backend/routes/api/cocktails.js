@@ -25,8 +25,7 @@ const validateCocktail = [
   check("recipeUrl")
     .isURL({ require_protocol: false, require_host: false })
     .withMessage("Must be a valid recipe url."),
-  check("userId")
-  .exists({ checkFalsy: true }),
+  check("userId").exists({ checkFalsy: true }),
   handleValidationErrors,
 ];
 
@@ -42,25 +41,27 @@ router.post(
       description,
       imageUrl,
       recipeUrl,
-      userId
+      userId,
     });
     return res.json(cocktail);
   })
 );
 
+// EDIT COCKTAIL
 router.put(
   `/:cocktailId(\\d+)/edit`,
   requireAuth,
   validateCocktail,
   asyncHandler(async (req, res, next) => {
     const cocktailId = parseInt(req.params.cocktailId);
-    const { name, description, imageUrl, recipeUrl } = req.body;
+    const { name, description, imageUrl, recipeUrl, userId } = req.body;
 
     const cocktail = await Cocktail.findByPk(cocktailId);
-    if (!cocktail) {
+    if (!cocktail || Number(userId) !== Number(cocktail.userId)) {
+
       const err = new Error("Cocktail not found");
       err.status = 404;
-      err.title = "cocktail not found";
+      err.title = "Cocktail not found";
       err.errors = ["Could not find cocktail."];
       return next(err);
     } else {
@@ -69,6 +70,7 @@ router.put(
         description,
         imageUrl,
         recipeUrl,
+        userId
       });
       return res.json({ updatedCocktail });
     }
@@ -94,13 +96,9 @@ router.delete(
       await cocktail.destroy();
 
       const cocktails = await Cocktail.findAll();
-      return res.json({cocktails});
+      return res.json({ cocktails });
     }
-
-   
   })
-
-  
 );
 
 router.get(
