@@ -19,10 +19,10 @@ function EditCocktailForm() {
 
   const cocktail = useSelector((state) => state.cocktail[cocktailId]);
 
-  const [name, setName] = useState(cocktail?.name);
-  const [description, setDescription] = useState(cocktail?.description);
-  const [imageUrl, setImageUrl] = useState(cocktail?.imageUrl);
-  const [recipeUrl, setRecipeUrl] = useState(cocktail?.recipeUrl);
+  const [name, setName] = useState(cocktail?.name || "");
+  const [description, setDescription] = useState(cocktail?.description || "");
+  const [imageUrl, setImageUrl] = useState(cocktail?.imageUrl || "");
+  const [recipeUrl, setRecipeUrl] = useState(cocktail?.recipeUrl || "");
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {

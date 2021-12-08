@@ -8,22 +8,7 @@ const { Cocktail } = require("../../db/models");
 
 const router = express.Router();
 
-router.get(
-  "/",
-  asyncHandler(async function (req, res) {
-    const cocktails = await Cocktail.findAll();
-    return res.json({ cocktails });
-  })
-);
 
-router.get(
-  "/:cocktailId",
-  asyncHandler(async (req, res) => {
-    const cocktailId = parseInt(req.params.cocktailId);
-    const cocktail = await Cocktail.findByPk(cocktailId);
-    return res.json({ cocktail });
-  })
-);
 
 const validateCocktail = [
   check("name")
@@ -95,4 +80,21 @@ router.put(
 //   const cocktail = await Cocktail.findByPk(cocktailId);
 
 // }))
+
+router.get(
+  "/",
+  asyncHandler(async function (req, res) {
+    const cocktails = await Cocktail.findAll();
+    return res.json({ cocktails });
+  })
+);
+
+router.get(
+  "/:cocktailId",
+  asyncHandler(async (req, res) => {
+    const cocktailId = parseInt(req.params.cocktailId);
+    const cocktail = await Cocktail.findByPk(cocktailId);
+    return res.json({ cocktail });
+  })
+);
 module.exports = router;
