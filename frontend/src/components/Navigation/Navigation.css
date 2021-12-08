@@ -1,0 +1,20 @@
+nav {
+background-color: #090C0B;
+height: 60px;
+
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  /* align-content: space-around; */
+  /* flex-direction: row; */
+  padding: 0 40px;
+}
+
+li .text_large {
+  font-size: 20px;
+  padding: 0 15px;
+}

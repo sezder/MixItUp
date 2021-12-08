@@ -1,0 +1,95 @@
+.login_div {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+.login_img_div {
+  background-image: url("https://source.unsplash.com/Sr3bhcYqftA");
+  width: 60%;
+  height: calc(100vh - 60px);
+  background-size: cover;
+  /* background-position: center;  */
+  background-position: bottom 0 left 0;
+  display: flex;
+  align-content: center;
+}
+
+.login_form_div {
+  /* width: 100%; */
+  /* padding-left: 10%; */
+  display: flex;
+  /* flex-direction: column; */
+  /* align-content: center; */
+}
+
+.login_form {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  background-color: #465d57;
+}
+.login_form input {
+  align-items: space-between;
+  height: 25px;
+  border: none;
+  border-radius: 60px;
+  font-size: 14px;
+  padding-left: 10px;
+  margin: 10px 0;
+}
+
+#sign_button {
+  margin-top: 5px;
+  width: fit-content;
+  align-self: center;
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 3000px) {
+}
+
+@media only screen and (min-width: 750px) and (max-width: 999px) {
+  .login_img_div {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@media only screen and (min-width: 502px) and (max-width: 750px) {
+  .login_img_div {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .login_form {
+    padding: 20px;
+  }
+}
+
+@media only screen and (max-width: 501px) {
+  .login_div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login_img_div {
+    width: 100vw;
+    height: 60vh;
+  }
+
+  .login_form {
+    width: 100vh;
+    height: 100%;
+    padding: 30px 60px 25px 60px;
+    
+  }
+/* 
+  .login_form input {
+    
+  }
+
+  #sign_up_button {
+  } */
+}
