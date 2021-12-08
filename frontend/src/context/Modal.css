@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-#modal-background {
+#modal_background {
   position: fixed;
   top: 0;
   right: 0;
@@ -18,7 +18,32 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-#modal-content {
+#modal_content {
   position: absolute;
-  background-color:white;
+  display: flex;
+  flex-direction: column;
+  background-color: #d1c1ae;
+  border-radius: 30px;
+}
+
+@media only screen and (min-width: 750px) and (max-width: 999px) {
+  #modal_content {
+    /* background-color: pink; */
+  }
+}
+
+@media only screen and (min-width: 502px) and (max-width: 750px) {
+  #modal_content {
+    /* background-color: blue; */
+  }
+}
+
+@media only screen and (max-width: 501px) {
+  #modal {
+    align-items: flex-end;
+  }
+  #modal_content {
+    /* background-color: green; */
+    border-radius: 0;
+  }
 }
