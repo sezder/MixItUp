@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
+import Logo from "../Logo/index";
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
@@ -24,6 +25,9 @@ function Navigation({ isLoaded }) {
   return (
     <nav>
       <ul>
+        <li>
+          <Logo/>
+        </li>
         <li>
           <NavLink className="text_large" exact to="/home">
             HOME
