@@ -12,12 +12,15 @@ function EditCocktailForm() {
   const history = useHistory(); 
   const dispatch = useDispatch();
   const { cocktailId } = useParams();
-  // console.log(cocktailId);
+  console.log(cocktailId, 'cocktailId')
+
+
   useEffect(() => {
     dispatch(getCocktails());
   }, [dispatch]);
 
   const cocktail = useSelector((state) => state.cocktail[cocktailId]);
+  console.log(cocktail, 'cocktail frontend');
 
   const [name, setName] = useState(cocktail?.name);
   const [description, setDescription] = useState(cocktail?.description);
@@ -27,11 +30,11 @@ function EditCocktailForm() {
 
   useEffect(() => {
     const errors = [];
-    if (!name.length) errors.push("Provide a name.");
-    if (name.length > 255) errors.push("Name must be less than 255 characters");
-    if (!description.length) errors.push("Provide a description.");
+    if (!name?.length) errors.push("Provide a name.");
+    if (name?.length > 255) errors.push("Name must be less than 255 characters");
+    if (!description?.length) errors.push("Provide a description.");
     // error handling for an imageUrl actually beign a link?
-    if (!imageUrl.length) errors.push("Provide an image url.");
+    if (!imageUrl?.length) errors.push("Provide an image url.");
     setErrors(errors);
   }, [name, description, imageUrl]);
 
@@ -40,7 +43,7 @@ function EditCocktailForm() {
     if (errors.length > 0) return;
 
     const editedCocktailPayload = {
-      //payload
+      cocktailId,
       name,
       description,
       imageUrl,
@@ -48,7 +51,7 @@ function EditCocktailForm() {
     };
 
     let editedCocktail = dispatch(updateCocktail(editedCocktailPayload));
-    console.log(editedCocktail, 'edited')
+    // console.log(editedCocktail, 'edited')
 
     if (editedCocktail.ok) {
       history.push(`/cocktails/${cocktailId}`);

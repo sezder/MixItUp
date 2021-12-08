@@ -64,16 +64,15 @@ router.post(
   })
 );
 
-// need a router for delete function
-// router.delete('/:cocktailId(\\d+)/', requireAuth)
+
 
 router.put(
-  `/api/:cocktailId/edit`, 
+  `/:cocktailId/edit`, 
   requireAuth,
   validateCocktail,
   asyncHandler(async (req, res, next) => {
     const cocktailId = parseInt(req.params.cocktailId);
-    console.log(cocktailId, 'backend cocktailId')
+    // console.log(cocktailId, 'backend cocktailId')
     const { name, description, imageUrl, recipeUrl } = req.body;
 
     const cocktail = await Cocktail.findByPk(cocktailId);
@@ -89,4 +88,9 @@ router.put(
     }
   })
 );
+
+
+// router.delete(`/:cocktailId(\\d+)/`, requireAuth, asyncHandler(async (req, res) => {
+// const 
+// }))
 module.exports = router;

@@ -107,7 +107,7 @@ export const destroyCocktail = (userId, cocktailId) => async (dispatch) => {
 
   const response = await res.json();
   if (response.ok) {
-    dispatch(destroyCocktail(response));
+    dispatch(deleteCocktail(response));
   }
 };
 
@@ -116,7 +116,6 @@ const initialState = {};
 const cocktailReducer = (state = initialState, action) => {
   switch (action.type) {
     // case GET_COCKTAIL:
-
     case GET_COCKTAILS:
       const allCocktails = {};
       action.cocktails.forEach((cocktail) => {
