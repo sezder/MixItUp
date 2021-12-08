@@ -3,24 +3,27 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCocktails } from "../../store/cocktail";
 import "./CocktailList.css";
+import CocktailDetail from "../CocktailDetail/index";
 
 const CocktailList = () => {
   const dispatch = useDispatch();
-  // const history = useHistory()
-  const cocktails = useSelector((state) => state.cocktails);
 
   useEffect(() => {
     dispatch(getCocktails());
   }, [dispatch]);
 
-  return (
-    <div>
-      <h1>Cocktails</h1>
-      {/* Iterate through the cocktails and render a CocktailDetail component for each */}
-      {/* <ol></ol> */}
-      <p>{cocktails, 'cocktails'}</p>
+  const cocktailsObj = useSelector((state) => state.cocktail);
+  const cocktails = Object.values(cocktailsObj);
 
-      {/* Switch */}
+
+  return (
+    <div className="cocktail_list_div">
+      <h1>Cocktails</h1>
+      <section className="cards">
+        {cocktails.map(({ id, name, description, imageUrl, recipeUrl }) => {
+          return <CocktailDetail key={id} id={id} name={name} description={description} imageUrl={imageUrl} recipeUrl={recipeUrl} />;
+        })}
+      </section>
     </div>
   );
 };
