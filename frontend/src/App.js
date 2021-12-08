@@ -33,11 +33,11 @@ function App() {
           <Route path="/cocktails/new">
             <NewCocktailForm />
           </Route>
-          <Route path="/cocktails/:id" >
-            <IndivCocktail />
-          </Route>
           <Route path="/cocktails/:cocktailId/edit">
             <EditCocktailForm />
+          </Route>
+          <Route path="/cocktails/:id">
+            <IndivCocktail />
           </Route>
         </Switch>
       )}
