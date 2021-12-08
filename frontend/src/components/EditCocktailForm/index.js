@@ -12,21 +12,27 @@ function EditCocktailForm() {
   const history = useHistory(); 
   const dispatch = useDispatch();
   const { cocktailId } = useParams();
-  console.log(cocktailId, 'cocktailId')
-
 
   useEffect(() => {
     dispatch(getCocktails());
   }, [dispatch]);
 
   const cocktail = useSelector((state) => state.cocktail[cocktailId]);
-  console.log(cocktail, 'cocktail frontend');
 
   const [name, setName] = useState(cocktail?.name);
   const [description, setDescription] = useState(cocktail?.description);
   const [imageUrl, setImageUrl] = useState(cocktail?.imageUrl);
   const [recipeUrl, setRecipeUrl] = useState(cocktail?.recipeUrl);
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    if (cocktail) {
+      setName(cocktail.name);
+      setDescription(cocktail.description);
+      setImageUrl(cocktail.imageUrl);
+      setRecipeUrl(cocktail.recipeUrl);
+    }
+  }, [cocktail]);
 
   useEffect(() => {
     const errors = [];
