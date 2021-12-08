@@ -4,8 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
-import Navigation from "./components/Navigation"
+import Navigation from "./components/Navigation";
 import CocktailList from "./components/CocktailList";
+import IndivCocktail from "./components/IndivCocktail";
 import NewCocktailForm from "./components/NewCocktailForm";
 import EditCocktailForm from "./components/EditCocktailForm";
 function App() {
@@ -29,6 +30,9 @@ function App() {
           <Route path="/cocktails" exact>
             <CocktailList />
           </Route>
+          {/* <Route path="/cocktails/:id">
+            <IndivCocktail />
+          </Route> */}
           <Route path="/cocktails/new">
             <NewCocktailForm />
           </Route>
