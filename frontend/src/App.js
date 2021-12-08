@@ -30,11 +30,11 @@ function App() {
           <Route path="/cocktails" exact>
             <CocktailList />
           </Route>
-          {/* <Route path="/cocktails/:id">
-            <IndivCocktail />
-          </Route> */}
           <Route path="/cocktails/new">
             <NewCocktailForm />
+          </Route>
+          <Route path="/cocktails/:id" >
+            <IndivCocktail />
           </Route>
           <Route path="/cocktails/:cocktailId/edit">
             <EditCocktailForm />
