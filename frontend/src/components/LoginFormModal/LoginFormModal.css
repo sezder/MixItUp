@@ -1,0 +1,60 @@
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 50vh;
+  width: 50vw;
+  padding: 40px 20px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.8);
+  border-radius: 30px;
+}
+
+form input {
+  align-items: space-between;
+  height: 25px;
+  border: none;
+  border-radius: 60px;
+  font-size: 14px;
+  padding-left: 10px;
+  margin: 10px 0;
+}
+
+form button {
+  margin-top: 5px;
+}
+
+@media only screen and (min-width: 750px) and (max-width: 999px) {
+  /* #modal_content {
+    background-color: pink;
+  } */
+  form {
+  }
+  form input {
+  }
+}
+
+@media only screen and (min-width: 502px) and (max-width: 750px) {
+  /* #modal_content {
+    background-color: blue;
+  } */
+  form {
+  }
+  form input {
+  }
+}
+
+@media only screen and (max-width: 501px) {
+  /* #modal_content {
+    background-color: green;
+  } */
+  form {
+    height: 40vh;
+    width: 100vw;
+    border-radius: 0;
+  }
+  form input, form button {
+    height: 35px;
+    margin: 10px 30px;
+  }
+
+}
