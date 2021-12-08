@@ -1,4 +1,4 @@
-form {
+.login_form_modal {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -9,7 +9,7 @@ form {
   border-radius: 30px;
 }
 
-form input {
+.login_form_modal input {
   align-items: space-between;
   height: 25px;
   border: none;
@@ -19,7 +19,7 @@ form input {
   margin: 10px 0;
 }
 
-form button {
+.login_form_modal button {
   margin-top: 5px;
 }
 
@@ -47,12 +47,12 @@ form button {
   /* #modal_content {
     background-color: green;
   } */
-  form {
+  .login_form_modal {
     height: 40vh;
     width: 100vw;
     border-radius: 0;
   }
-  form input, form button {
+  .login_form_modal input, .login_form_modal button {
     height: 35px;
     margin: 10px 30px;
   }
