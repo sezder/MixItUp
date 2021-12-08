@@ -18,11 +18,14 @@ function EditCocktailForm() {
   }, [dispatch]);
 
   const cocktail = useSelector((state) => state.cocktail[cocktailId]);
+  const user = useSelector((state) => state.session.user);
+  const userId = user.id; 
+  console.log(userId, 'user');
 
-  const [name, setName] = useState(cocktail?.name);
-  const [description, setDescription] = useState(cocktail?.description);
-  const [imageUrl, setImageUrl] = useState(cocktail?.imageUrl);
-  const [recipeUrl, setRecipeUrl] = useState(cocktail?.recipeUrl);
+  const [name, setName] = useState(cocktail?.name || "");
+  const [description, setDescription] = useState(cocktail?.description || "");
+  const [imageUrl, setImageUrl] = useState(cocktail?.imageUrl || "");
+  const [recipeUrl, setRecipeUrl] = useState(cocktail?.recipeUrl || "");
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
@@ -57,17 +60,21 @@ function EditCocktailForm() {
     };
 
     let editedCocktail = dispatch(updateCocktail(editedCocktailPayload));
-    // console.log(editedCocktail, 'edited')
 
-    if (editedCocktail.ok) {
+    if (editedCocktail) {
       history.push(`/cocktails/${cocktailId}`);
     }
   };
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(destroyCocktail(cocktailId));
-    history.push("/");
+    const destroyCocktailPayload = {userId, cocktailId};
+    // console.log(destroyCocktailPayload);
+    let destroyedCocktail = dispatch(destroyCocktail(destroyCocktailPayload));
+    if (destroyedCocktail) {
+      history.push("/");
+    }
+   
   };
 
   return (
