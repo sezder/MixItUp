@@ -98,8 +98,8 @@ const deleteCocktail = () => ({
   payload: null,
 });
 
-export const destroyCocktail = (userId, cocktailId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/cocktails/${cocktailId}`, {
+export const destroyCocktail = ({userId, cocktailId}) => async (dispatch) => {
+  const res = await csrfFetch(`/api/cocktails/${cocktailId}/edit`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userId, cocktailId }),
