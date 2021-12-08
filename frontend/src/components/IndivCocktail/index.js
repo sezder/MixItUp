@@ -8,6 +8,8 @@ import "../../index.css";
 const IndivCocktail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const user = useSelector((state) => state.session.user);
+  const userId = user.id;
 
   useEffect(() => {
     dispatch(getCocktails());

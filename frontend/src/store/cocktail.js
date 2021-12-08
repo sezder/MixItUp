@@ -107,7 +107,7 @@ export const destroyCocktail = ({userId, cocktailId}) => async (dispatch) => {
 
   const response = await res.json();
   if (response.ok) {
-    dispatch(deleteCocktail(response));
+    dispatch(deleteCocktail(response)); 
   }
 };
 

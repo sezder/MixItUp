@@ -25,7 +25,8 @@ const validateCocktail = [
   check("recipeUrl")
     .isURL({ require_protocol: false, require_host: false })
     .withMessage("Must be a valid recipe url."),
-
+  check("userId")
+  .exists({ checkFalsy: true }),
   handleValidationErrors,
 ];
 
@@ -35,15 +36,15 @@ router.post(
   validateCocktail,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const { name, description, imageUrl, recipeUrl } = req.body;
+    const { name, description, imageUrl, recipeUrl, userId } = req.body;
     const cocktail = await Cocktail.create({
       name,
       description,
       imageUrl,
       recipeUrl,
+      userId
     });
     return res.json(cocktail);
-    // return res.redirect(`${req.baseUrl}/${cocktail.id}`);
   })
 );
 
