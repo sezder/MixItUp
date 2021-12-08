@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createCocktail } from '../../store/cocktail';
+import { createCocktail } from "../../store/cocktail";
 import "./NewCocktailForm.css";
 
 function NewCocktailForm() {
@@ -27,7 +27,8 @@ function NewCocktailForm() {
     e.preventDefault();
     if (errors.length > 0) return;
 
-    const newCocktail = { //payload
+    const newCocktail = {
+      //payload
       name,
       description,
       imageUrl,
@@ -39,61 +40,72 @@ function NewCocktailForm() {
 
     if (createdCocktail) {
       // how to pull cocktail.id out of state to push to the path?
-      console.log(createdCocktail, 'createdCocktail');
+      console.log(createdCocktail, "createdCocktail");
       history.push(`/cocktails`);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Add a Cocktail</h2>
-      {/* ERRORS */}
-      <ul className="errors">
-        {errors.length > 0 &&
-          errors.map((error) => <ul key={error}>{error}</ul>)}
-      </ul>
+    <div className="cocktail_add_div">
+      <div className="cocktail_add_img_div">
+        <div className="background_image"></div>
+        <img src={imageUrl}></img>
+        <div className="bg_text">
+          <p>Provide a url to preview your photo</p>
+        </div>
+      </div>
+      <div className="add_cocktail_form_div">
+        <h2>Add a Cocktail</h2>
+        <form onSubmit={handleSubmit} className="add_cocktail_form">
+          {/* ERRORS */}
+          <ul className="errors">
+            {errors.length > 0 &&
+              errors.map((error) => <ul key={error}>{error}</ul>)}
+          </ul>
 
-      {/* NAME */}
-      <input
-        placeholder="Name"
-        type="text"
-        name="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+          {/* NAME */}
+          <input
+            placeholder="Name"
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-      {/* DESCRIPTION */}
-      <input
-        placeholder="Description"
-        type="text"
-        name="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+          {/* DESCRIPTION */}
+          <input
+            placeholder="Description"
+            type="text"
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
-      {/* IMAGE URL */}
+          {/* IMAGE URL */}
 
-      <input
-        placeholder="Image url"
-        type="text"
-        name="imageUrl"
-        value={imageUrl}
-        onChange={(e) => setImageUrl(e.target.value)}
-      />
+          <input
+            placeholder="Image url"
+            type="text"
+            name="imageUrl"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+          />
 
-      <input
-        placeholder="Recipe url"
-        type="text"
-        name="recipeUrl"
-        value={recipeUrl}
-        onChange={(e) => setRecipeUrl(e.target.value)}
-      />
+          <input
+            placeholder="Recipe url"
+            type="text"
+            name="recipeUrl"
+            value={recipeUrl}
+            onChange={(e) => setRecipeUrl(e.target.value)}
+          />
 
-      {/* SUBMIT */}
-      <button type="submit" disabled={errors.length > 0}>
-        Add Cocktail
-      </button>
-    </form>
+          {/* SUBMIT */}
+          <button type="submit" disabled={errors.length > 0} className="add_cocktail_button">
+            Add Cocktail
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
 

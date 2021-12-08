@@ -9,7 +9,7 @@ import {
 import "./EditCocktailForm.css";
 
 function EditCocktailForm() {
-  const history = useHistory(); 
+  const history = useHistory();
   const dispatch = useDispatch();
   const { cocktailId } = useParams();
 
@@ -19,8 +19,8 @@ function EditCocktailForm() {
 
   const cocktail = useSelector((state) => state.cocktail[cocktailId]);
   const user = useSelector((state) => state.session.user);
-  const userId = user.id; 
-  console.log(userId, 'user');
+  const userId = user.id;
+  console.log(userId, "user");
 
   const [name, setName] = useState(cocktail?.name || "");
   const [description, setDescription] = useState(cocktail?.description || "");
@@ -40,7 +40,8 @@ function EditCocktailForm() {
   useEffect(() => {
     const errors = [];
     if (!name?.length) errors.push("Provide a name.");
-    if (name?.length > 255) errors.push("Name must be less than 255 characters");
+    if (name?.length > 255)
+      errors.push("Name must be less than 255 characters");
     if (!description?.length) errors.push("Provide a description.");
     // error handling for an imageUrl actually beign a link?
     if (!imageUrl?.length) errors.push("Provide an image url.");
@@ -68,67 +69,82 @@ function EditCocktailForm() {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    const destroyCocktailPayload = {userId, cocktailId};
+    const destroyCocktailPayload = { userId, cocktailId };
     // console.log(destroyCocktailPayload);
     let destroyedCocktail = dispatch(destroyCocktail(destroyCocktailPayload));
     if (destroyedCocktail) {
       history.push("/");
     }
-   
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Edit a Cocktail</h2>
-        {/* ERRORS */}
-        <ul className="errors">
-          {errors.length > 0 &&
-            errors.map((error) => <ul key={error}>{error}</ul>)}
-        </ul>
+    <div className="cocktail_edit_div">
+      <div className="cocktail_edit_img_div">
+        <div className="background_image"></div>
+        <img src={imageUrl}></img>
+        <div className="bg_text">
+          <p>Provide a url to preview your photo</p>
+        </div>
+      </div>
+      <div className="edit_cocktail_form_div">
+      <h2>Edit a Cocktail</h2>
+        <form onSubmit={handleSubmit} className="edit_cocktail_form">
+          
+          {/* ERRORS */}
+          <ul className="errors">
+            {errors.length > 0 &&
+              errors.map((error) => <li key={error}>{error}</li>)}
+          </ul>
 
-        {/* NAME */}
-        <input
-          placeholder="Name"
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+          {/* NAME */}
+          <input
+            placeholder="Name"
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-        {/* DESCRIPTION */}
-        <input
-          placeholder="Description"
-          type="text"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+          {/* DESCRIPTION */}
+          <textarea
+            placeholder="Description"
+            type="text"
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
-        {/* IMAGE URL */}
-        <input
-          placeholder="Image url"
-          type="text"
-          name="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
+          {/* IMAGE URL */}
+          <input
+            placeholder="Image url"
+            type="text"
+            name="imageUrl"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+          />
 
-        {/* RECIPE URL */}
-        <input
-          placeholder="Recipe url"
-          type="text"
-          name="recipeUrl"
-          value={recipeUrl}
-          onChange={(e) => setRecipeUrl(e.target.value)}
-        />
+          {/* RECIPE URL */}
+          <input
+            placeholder="Recipe url"
+            type="text"
+            name="recipeUrl"
+            value={recipeUrl}
+            onChange={(e) => setRecipeUrl(e.target.value)}
+          />
 
-        {/* SUBMIT */}
-        <button type="submit" disabled={errors.length > 0}>
-          Update Cocktail
-        </button>
-      </form>
-      <button onClick={handleDelete}>Delete</button>
+          {/* SUBMIT */}
+          <button
+            type="submit"
+            disabled={errors.length > 0}
+            className="edit_cocktail_button"
+          >
+            Update Cocktail
+          </button>
+          <button onClick={handleDelete} className="edit_cocktail_button">
+            Delete
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
