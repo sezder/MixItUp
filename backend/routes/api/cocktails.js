@@ -79,9 +79,9 @@ router.delete(
   requireAuth,
   asyncHandler(async (req, res) => {
     const cocktailId = parseInt(req.params.cocktailId);
-    console.log(cocktailId, 'cocktailId');
+    // console.log(cocktailId, 'cocktailId');
     const cocktail = await Cocktail.findByPk(cocktailId);
-    console.log(cocktail, "cocktail");
+    // console.log(cocktail, "cocktail");
 
     if (!cocktail) {
       const err = new Error("Cocktail not found");

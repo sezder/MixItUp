@@ -47,3 +47,20 @@ a, p, h1, h2, h3 {
   font-family: 'Source Sans Pro', sans-serif;
   color: #c2a27c;
 }
+
+input {
+  align-items: space-between;
+  height: 25px;
+  border: none;
+  border-radius: 60px;
+  font-size: 14px;
+  padding-left: 10px;
+  margin: 10px 0;
+}
+
+textarea {
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+}
