@@ -27,20 +27,20 @@
   /* #modal_content {
     background-color: pink;
   } */
-  form {
+  /* form {
   }
   form input {
-  }
+  } */
 }
 
 @media only screen and (min-width: 502px) and (max-width: 750px) {
   /* #modal_content {
     background-color: blue;
   } */
-  form {
+  /* form {
   }
   form input {
-  }
+  } */
 }
 
 @media only screen and (max-width: 501px) {

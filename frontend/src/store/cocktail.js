@@ -124,7 +124,6 @@ const cocktailReducer = (state = initialState, action) => {
       return { ...state, ...allCocktails };
     case ADD_COCKTAIL:
       return { ...state, [action.cocktail.id]: action.cocktail };
-
     case DELETE_COCKTAIL:
       const newState = { ...state };
       delete newState[action.cocktailId];
