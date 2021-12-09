@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCocktails } from "../../store/cocktail";
 import "./IndivCocktail.css";
@@ -34,6 +34,13 @@ const IndivCocktail = () => {
           <a href={indivCocktail?.recipeUrl}>
             <button>Try It Out</button>
           </a>
+          {/* If userid matches cocktail.userId, render two buttons */}
+          {userId === indivCocktail?.userId && (
+           <NavLink to={`/cocktails/${id}/edit`}>
+              <button>Edit</button>
+              </NavLink>
+          )}
+          {}
         </div>
       </div>
       <div className="explore_cocktails_div">
@@ -42,9 +49,7 @@ const IndivCocktail = () => {
         <p>EXPLORE COMPONENT</p>
       </div>
 
-      <div className="review_container">
-        REVIEW COMPONENT
-      </div>
+      <div className="review_container">REVIEW COMPONENT</div>
     </div>
   );
 };
