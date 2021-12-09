@@ -74,8 +74,7 @@ router.delete(
       return next(err);
     } else {
       await cocktail.destroy();
-      const cocktails = await Cocktail.findAll();
-      return res.json(cocktails);
+      return res.json(cocktailId);
     }
   })
 );
