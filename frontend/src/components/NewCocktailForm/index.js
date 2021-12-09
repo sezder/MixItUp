@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createCocktail } from "../../store/cocktail";
 import "./NewCocktailForm.css";
 
@@ -12,6 +12,8 @@ function NewCocktailForm() {
   const [imageUrl, setImageUrl] = useState("");
   const [recipeUrl, setRecipeUrl] = useState("");
   const [errors, setErrors] = useState([]);
+  const user = useSelector((state) => state.session.user);
+  const userId = user?.id;
 
   useEffect(() => {
     const errors = [];
@@ -33,6 +35,7 @@ function NewCocktailForm() {
       description,
       imageUrl,
       recipeUrl,
+      userId
     };
 
     // returns a promise, can't key into it to redirect to new cocktail page
@@ -40,7 +43,6 @@ function NewCocktailForm() {
 
     if (createdCocktail) {
       // how to pull cocktail.id out of state to push to the path?
-      console.log(createdCocktail, "createdCocktail");
       history.push(`/cocktails`);
     }
   };

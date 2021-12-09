@@ -19,8 +19,7 @@ function EditCocktailForm() {
 
   const cocktail = useSelector((state) => state.cocktail[cocktailId]);
   const user = useSelector((state) => state.session.user);
-  const userId = user.id;
-  console.log(userId, "user");
+  const userId = user?.id;
 
   const [name, setName] = useState(cocktail?.name || "");
   const [description, setDescription] = useState(cocktail?.description || "");
@@ -58,6 +57,7 @@ function EditCocktailForm() {
       description,
       imageUrl,
       recipeUrl,
+      userId
     };
 
     let editedCocktail = dispatch(updateCocktail(editedCocktailPayload));

@@ -25,7 +25,7 @@ const validateCocktail = [
   check("recipeUrl")
     .isURL({ require_protocol: false, require_host: false })
     .withMessage("Must be a valid recipe url."),
-
+  check("userId").exists({ checkFalsy: true }),
   handleValidationErrors,
 ];
 
@@ -35,31 +35,32 @@ router.post(
   validateCocktail,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const { name, description, imageUrl, recipeUrl } = req.body;
+    const { name, description, imageUrl, recipeUrl, userId } = req.body;
     const cocktail = await Cocktail.create({
       name,
       description,
       imageUrl,
       recipeUrl,
+      userId,
     });
     return res.json(cocktail);
-    // return res.redirect(`${req.baseUrl}/${cocktail.id}`);
   })
 );
 
+// EDIT COCKTAIL
 router.put(
   `/:cocktailId(\\d+)/edit`,
   requireAuth,
   validateCocktail,
   asyncHandler(async (req, res, next) => {
     const cocktailId = parseInt(req.params.cocktailId);
-    const { name, description, imageUrl, recipeUrl } = req.body;
+    const { name, description, imageUrl, recipeUrl, userId } = req.body;
 
     const cocktail = await Cocktail.findByPk(cocktailId);
-    if (!cocktail) {
+    if (!cocktail || Number(userId) !== Number(cocktail.userId)) {
       const err = new Error("Cocktail not found");
       err.status = 404;
-      err.title = "cocktail not found";
+      err.title = "Cocktail not found";
       err.errors = ["Could not find cocktail."];
       return next(err);
     } else {
@@ -68,6 +69,7 @@ router.put(
         description,
         imageUrl,
         recipeUrl,
+        userId,
       });
       return res.json({ updatedCocktail });
     }
@@ -77,13 +79,14 @@ router.put(
 router.delete(
   `/:cocktailId(\\d+)/edit`,
   requireAuth,
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const cocktailId = parseInt(req.params.cocktailId);
-    // console.log(cocktailId, 'cocktailId');
+    const { userId } = req.body;
     const cocktail = await Cocktail.findByPk(cocktailId);
-    // console.log(cocktail, "cocktail");
+    console.log(userId, "userId");
+    console.log(cocktail.userId, ".userId");
 
-    if (!cocktail) {
+    if (!cocktail || Number(userId) !== Number(cocktail.userId)) {
       const err = new Error("Cocktail not found");
       err.status = 404;
       err.title = "cocktail not found";
@@ -91,15 +94,10 @@ router.delete(
       return next(err);
     } else {
       await cocktail.destroy();
-
       const cocktails = await Cocktail.findAll();
-      return res.json({cocktails});
+      return res.json({ cocktails });
     }
-
-   
   })
-
-  
 );
 
 router.get(
