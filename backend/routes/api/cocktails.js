@@ -83,7 +83,7 @@ router.post(
   "/:cocktailId/reviews",
   // validateReview,
   requireAuth,
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (req, res) => {
     const { reviewRating, reviewBody, cocktailId, userId } = req.body;
     const review = await Cocktail_Review.create({
       reviewRating,
@@ -97,12 +97,25 @@ router.post(
 
 router.get(
   "/:cocktailId/reviews",
-  // validateReview,
-  asyncHandler(async (req, res, next) => {
-    const reviews = await Cocktail_Review.findAll();
-    return res.json({ reviews });
+  asyncHandler(async (req, res) => {
+    const cocktailId = parseInt(req.params.cocktailId);
+    const reviews = await Cocktail_Review.findAll({
+      where: { cocktailId },
+    });
+    console.log(reviews, "backend db result");
+    return res.json(reviews);
   })
 );
+
+// REVIEW FEED ROUTER
+// router.get(
+//   "reviews",
+//   // validateReview,
+//   asyncHandler(async (req, res, next) => {
+//     const reviews = await Cocktail_Review.findAll();
+//     return res.json({ reviews });
+//   })
+// );
 
 //CREATE NEW COCKTAIL
 router.post(
