@@ -14,6 +14,7 @@ const IndivCocktail = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const { id } = useParams();
+
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
 
@@ -87,6 +88,7 @@ const IndivCocktail = () => {
               reviewBody={reviewBody}
               userId={userId}
               user={User}
+              cocktailId={indivCocktail?.id}
             />
           );
         })}
