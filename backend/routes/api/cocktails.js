@@ -58,7 +58,6 @@ router.put(
 
     const cocktail = await Cocktail.findByPk(cocktailId);
     if (!cocktail || Number(userId) !== Number(cocktail.userId)) {
-
       const err = new Error("Cocktail not found");
       err.status = 404;
       err.title = "Cocktail not found";
@@ -70,7 +69,7 @@ router.put(
         description,
         imageUrl,
         recipeUrl,
-        userId
+        userId,
       });
       return res.json({ updatedCocktail });
     }
@@ -80,13 +79,14 @@ router.put(
 router.delete(
   `/:cocktailId(\\d+)/edit`,
   requireAuth,
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const cocktailId = parseInt(req.params.cocktailId);
-    // console.log(cocktailId, 'cocktailId');
+    const { userId } = req.body;
     const cocktail = await Cocktail.findByPk(cocktailId);
-    // console.log(cocktail, "cocktail");
+    console.log(userId, "userId");
+    console.log(cocktail.userId, ".userId");
 
-    if (!cocktail) {
+    if (!cocktail || Number(userId) !== Number(cocktail.userId)) {
       const err = new Error("Cocktail not found");
       err.status = 404;
       err.title = "cocktail not found";
@@ -94,7 +94,6 @@ router.delete(
       return next(err);
     } else {
       await cocktail.destroy();
-
       const cocktails = await Cocktail.findAll();
       return res.json({ cocktails });
     }
