@@ -94,6 +94,16 @@ router.post(
   })
 );
 
+router.get(
+  "/:cocktailId/reviews",
+  // validateReview,
+  asyncHandler(async (req, res, next) => {
+    const reviews = await Cocktail_Review.findAll();
+    return res.json({ reviews });
+  })
+);
+
+
 //CREATE NEW COCKTAIL
 router.post(
   "/",
