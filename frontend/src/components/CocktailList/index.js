@@ -8,13 +8,14 @@ import CocktailDetail from "../CocktailDetail/index";
 const CocktailList = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCocktails());
-  }, [dispatch]);
+  
 
   const cocktailsObj = useSelector((state) => state.cocktail);
   const cocktails = Object.values(cocktailsObj);
-
+  
+  useEffect(() => {
+    dispatch(getCocktails());
+  }, [dispatch]);
 
   return (
     <div className="cocktail_list_div">

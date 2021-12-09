@@ -73,7 +73,7 @@ function EditCocktailForm() {
     // console.log(destroyCocktailPayload);
     let destroyedCocktail = dispatch(destroyCocktail(destroyCocktailPayload));
     if (destroyedCocktail) {
-      history.push("/");
+      history.push("/cocktails");
     }
   };
 
