@@ -11,7 +11,8 @@
 .rating_user_div {
   display: flex;
   justify-content: space-between;
-
+  align-items: center;
+  padding-bottom: 10px;
 }
 
 .profile_circle {
@@ -26,4 +27,23 @@
   align-items: center; 
   width: 100vw;
   background-color: #CAB499;
+}
+
+#username_review_card {
+  padding-right: 35%;
+}
+
+
+.edit_delete_review_div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit_delete_review_div a button{
+  margin-left: 10px;
+  padding: 8px;
+}
+
+.edit_delete_review_div a button i{
+  color: #d1c1ae;
 }

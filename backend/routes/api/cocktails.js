@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Cocktail, Cocktail_Review } = require("../../db/models");
+const { Cocktail, Cocktail_Review, User } = require("../../db/models");
 
 const router = express.Router();
 
@@ -101,6 +101,7 @@ router.get(
     const cocktailId = parseInt(req.params.cocktailId);
     const reviews = await Cocktail_Review.findAll({
       where: { cocktailId },
+      include: [User]
     });
     console.log(reviews, "backend db result");
     return res.json(reviews);

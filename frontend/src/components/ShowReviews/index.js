@@ -1,23 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCocktails } from "../../store/cocktail";
 import "./ShowReviews.css";
 import "../../index.css";
 
-const ShowReviews = ({ reviewRating, reviewBody, userId }) => {
-  //look up user by id. Get username and display. Display first name in circle as icon
-  // lay comments out on a grid, taking up as much space as is needed for the content?
+const ShowReviews = ({
+  reviewRating,
+  reviewBody,
+  userId,
+  user,
+  cocktailId,
+}) => {
+  const currUser = useSelector((state) => state.session.user);
+  const currUserId = currUser?.id;
+
   return (
     <div className="show_reviews_div">
       <div className="rating_user_div">
-      <div className="profile_circle">
-      <p>{userId}</p>
-      </div>
-      <p>USERNAME</p>
-      <p>Rating: {reviewRating}</p>
+        <div className="profile_circle">
+          <p>{user.username.slice(0, 1)}</p>
+        </div>
+        <p id="username_review_card">{user.username}</p>
+        <p>Rating: {reviewRating}</p>
       </div>
       <p>{reviewBody}</p>
+      {userId === currUserId && (
+        <div className="edit_delete_review_div">
+          <NavLink to={`/cocktails/${cocktailId}/reviews/edit`}>
+            <button><i className="fas fa-edit"></i></button>
+          </NavLink>
+          <NavLink to={`/cocktails/${cocktailId}/reviews/delete`}>
+            <button><i className="far fa-trash-alt"></i></button>
+          </NavLink>
+        </div>
+      )}
     </div>
   );
 };

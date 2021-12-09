@@ -7,12 +7,16 @@ import "./IndivCocktail.css";
 import "../../index.css";
 import NewCocktailReview from "../NewCocktailReview";
 import ShowReviews from "../ShowReviews";
+import { Modal } from "../../context/Modal";
+import LoginForm from "../LoginFormModal/LoginForm.js";
 
 const IndivCocktail = () => {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
   const { id } = useParams();
+
   const user = useSelector((state) => state.session.user);
-  const userId = user.id;
+  const userId = user?.id;
 
   useEffect(() => {
     dispatch(getCocktails());
@@ -23,9 +27,26 @@ const IndivCocktail = () => {
   const indivCocktail = cocktailsObj[id];
 
   const reviewsObj = useSelector((state) => state.review);
-
+  console.log(reviewsObj, 'reviews Obj')
+  const userObj = reviewsObj.User;
+  console.log(userObj, 'userobj')
   const reviews = Object.values(reviewsObj);
-  console.log(reviews, 'reviews');
+
+  let reviewRestriction;
+  if (userId) {
+    reviewRestriction = <NewCocktailReview />;
+  } else {
+    reviewRestriction = (
+      <>
+      <button onClick={() => setShowModal(true)}>Log in to leave a review.</button>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <LoginForm />
+        </Modal>
+      )}
+    </>
+    );
+  }
 
   return (
     <div className="indiv_container">
@@ -48,7 +69,6 @@ const IndivCocktail = () => {
               <button>Edit</button>
             </NavLink>
           )}
-          {}
         </div>
       </div>
       <div className="explore_cocktails_div">
@@ -57,18 +77,18 @@ const IndivCocktail = () => {
         <p>EXPLORE COMPONENT</p>
       </div>
 
-      <div className="review_container">
-        <NewCocktailReview />
-      </div>
+      <div className="review_container">{reviewRestriction}</div>
 
       <div className="reviews_container">
-        {reviews.map(({ id, reviewRating, reviewBody, userId }) => {
+        {reviews.map(({ id, reviewRating, reviewBody, userId, User }) => {
           return (
             <ShowReviews
               key={id}
               reviewRating={reviewRating}
               reviewBody={reviewBody}
               userId={userId}
+              user={User}
+              cocktailId={indivCocktail?.id}
             />
           );
         })}
