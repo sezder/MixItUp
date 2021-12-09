@@ -95,9 +95,9 @@ export const updateCocktail =
 // DELETE COCKTAIL
 const DELETE_COCKTAIL = "cocktails/DELETE_COCKTAIL";
 
-const deleteCocktail = () => ({
+const deleteCocktail = (cocktailId) => ({
   type: DELETE_COCKTAIL,
-  payload: null,
+  cocktailId
 });
 
 export const destroyCocktail = ({userId, cocktailId}) => async (dispatch) => {
