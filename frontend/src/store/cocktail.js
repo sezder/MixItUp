@@ -85,8 +85,9 @@ export const updateCocktail =
       }),
     });
 
-    const response = await res.json();
-    if (response.ok) {
+    
+    if (res.ok) {
+      const response = await res.json();
       dispatch(editCocktailPayload(response));
     }
   };
@@ -106,8 +107,9 @@ export const destroyCocktail = ({userId, cocktailId}) => async (dispatch) => {
     body: JSON.stringify({ userId, cocktailId }),
   });
 
-  const response = await res.json();
-  if (response.ok) {
+  
+  if (res.ok) {
+    const response = await res.json();
     dispatch(deleteCocktail(response)); 
   }
 };
@@ -128,7 +130,7 @@ const cocktailReducer = (state = initialState, action) => {
     case DELETE_COCKTAIL:
       const newState = { ...state };
       delete newState[action.cocktailId];
-      return newState;
+      return {...newState}
     case UPDATE_COCKTAIL:
       return {...state, [action.cocktail.id]: action.cocktail}
     default:

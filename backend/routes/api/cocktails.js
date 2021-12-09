@@ -6,7 +6,6 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
 const { Cocktail, Cocktail_Review } = require("../../db/models");
 
-
 const router = express.Router();
 
 const validateCocktail = [
@@ -29,8 +28,6 @@ const validateCocktail = [
   check("userId").exists({ checkFalsy: true }),
   handleValidationErrors,
 ];
-
-
 
 // EDIT COCKTAIL
 router.put(
@@ -56,7 +53,7 @@ router.put(
         recipeUrl,
         userId,
       });
-      return res.json({ updatedCocktail });
+      return res.json(updatedCocktail);
     }
   })
 );
@@ -78,7 +75,7 @@ router.delete(
     } else {
       await cocktail.destroy();
       const cocktails = await Cocktail.findAll();
-      return res.json({ cocktails });
+      return res.json(cocktails);
     }
   })
 );
@@ -88,8 +85,13 @@ router.post(
   // validateReview,
   requireAuth,
   asyncHandler(async (req, res, next) => {
-    const {reviewRating, reviewBody, cocktailId, userId} = req.body; 
-    const review = await Cocktail_Review.create({reviewRating, reviewBody, cocktailId, userId});
+    const { reviewRating, reviewBody, cocktailId, userId } = req.body;
+    const review = await Cocktail_Review.create({
+      reviewRating,
+      reviewBody,
+      cocktailId,
+      userId,
+    });
     return res.json(review);
   })
 );
@@ -102,7 +104,6 @@ router.get(
     return res.json({ reviews });
   })
 );
-
 
 //CREATE NEW COCKTAIL
 router.post(
@@ -135,15 +136,10 @@ router.get(
   asyncHandler(async (req, res) => {
     const cocktailId = parseInt(req.params.cocktailId);
     const cocktail = await Cocktail.findByPk(cocktailId);
-    return res.json({ cocktail });
+    return res.json(cocktail);
   })
 );
 
 // ----------------------- REVIEWS --------------------
-
-
-
-
-
 
 module.exports = router;
