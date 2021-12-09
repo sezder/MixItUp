@@ -1,38 +1,91 @@
-// // import necessary stuff
-// import React, { useState } from "react";
-// // import { useDispatch, useSelector } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
-// import "./NewCocktailReview.css";
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createReview } from "../../store/review";
+import "./NewCocktailReview.css";
 
-// // create a function component
-// function NewCocktailReview() {
-// // useStates
-// const [errors, setErrors] = useState([]);
+// {reviewRating, reviewBody, cocktailId, userId};
 
+function NewCocktailReview() {
+  const history = useHistory();
+  const paramsObj = useParams();
+  const cocktailId = Number(paramsObj?.id);
+  const dispatch = useDispatch();
 
-// useEffect(() => {
-//   const errors = [];
-//   if (!name.length) errors.push("Name field is required");
+  let [reviewRating, setReviewRating] = useState("");
+  const [reviewBody, setReviewBody] = useState("");
+  const [errors, setErrors] = useState([]);
+  const user = useSelector((state) => state.session.user);
+  const userId = user?.id;
 
+  useEffect(() => {
+    const errors = [];
+    if (reviewRating > 5 || reviewRating <= 0)
+      errors.push("Rate between 1 and 5 stars.");
+    if (!reviewBody.length) errors.push("Provide a comment with your review.");
+    setErrors(errors);
+  }, [reviewRating, reviewBody]);
 
-//   setValidationErrors(errors);
-// }, []);
+  const resetFields = () => {
+    setReviewRating("");
+    setReviewBody("");
+  };
 
-// // handleSubmit
-// const handleSubmit = (e) => {
-//   e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (errors.length > 0) return;
 
-// }
+    reviewRating = Number(reviewRating);
+    const newReview = {
+      reviewRating,
+      reviewBody,
+      cocktailId,
+      userId,
+    };
 
-// // return
-// // form
-// return (
-//   <form onSubmit={handleSubmit}>
-//     <h2>Review a Cocktail</h2>
+    dispatch(createReview(newReview));
+    resetFields();
+  };
 
+  return (
+    <div className="add_review_div">
+      <h2 className="text_large">Leave a Review</h2>
 
+      <form onSubmit={handleSubmit} className="add_review_form">
+        {/* ERRORS */}
+        <ul className="errors">
+          {errors.length > 0 &&
+            errors.map((error) => <li key={error}>{error}</li>)}
+        </ul>
 
+        {/* REVIEW RATING */}
+        <input
+          type="number"
+          name="reviewRating"
+          value={reviewRating}
+          onChange={(e) => setReviewRating(e.target.value)}
+        />
 
-//   </form>
-// )
-// }
+        {/* REVIEW BODY */}
+        <textarea
+          placeholder="Leave a comment..."
+          type="text"
+          name="reviewBody"
+          value={reviewBody}
+          onChange={(e) => setReviewBody(e.target.value)}
+        />
+
+        {/* SUBMIT */}
+        <button
+          type="submit"
+          disabled={errors.length > 0}
+          className="add_review_button"
+        >
+          Add
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default NewCocktailReview;

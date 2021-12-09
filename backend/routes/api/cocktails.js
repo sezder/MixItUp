@@ -4,7 +4,8 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Cocktail } = require("../../db/models");
+const { Cocktail, Cocktail_Review } = require("../../db/models");
+
 
 const router = express.Router();
 
@@ -29,23 +30,7 @@ const validateCocktail = [
   handleValidationErrors,
 ];
 
-//CREATE NEW COCKTAIL
-router.post(
-  "/",
-  validateCocktail,
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    const { name, description, imageUrl, recipeUrl, userId } = req.body;
-    const cocktail = await Cocktail.create({
-      name,
-      description,
-      imageUrl,
-      recipeUrl,
-      userId,
-    });
-    return res.json(cocktail);
-  })
-);
+
 
 // EDIT COCKTAIL
 router.put(
@@ -83,8 +68,6 @@ router.delete(
     const cocktailId = parseInt(req.params.cocktailId);
     const { userId } = req.body;
     const cocktail = await Cocktail.findByPk(cocktailId);
-    console.log(userId, "userId");
-    console.log(cocktail.userId, ".userId");
 
     if (!cocktail || Number(userId) !== Number(cocktail.userId)) {
       const err = new Error("Cocktail not found");
@@ -97,6 +80,35 @@ router.delete(
       const cocktails = await Cocktail.findAll();
       return res.json({ cocktails });
     }
+  })
+);
+
+router.post(
+  "/:cocktailId/reviews",
+  // validateReview,
+  requireAuth,
+  asyncHandler(async (req, res, next) => {
+    const {reviewRating, reviewBody, cocktailId, userId} = req.body; 
+    const review = await Cocktail_Review.create({reviewRating, reviewBody, cocktailId, userId});
+    return res.json(review);
+  })
+);
+
+//CREATE NEW COCKTAIL
+router.post(
+  "/",
+  validateCocktail,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const { name, description, imageUrl, recipeUrl, userId } = req.body;
+    const cocktail = await Cocktail.create({
+      name,
+      description,
+      imageUrl,
+      recipeUrl,
+      userId,
+    });
+    return res.json(cocktail);
   })
 );
 
@@ -116,4 +128,12 @@ router.get(
     return res.json({ cocktail });
   })
 );
+
+// ----------------------- REVIEWS --------------------
+
+
+
+
+
+
 module.exports = router;

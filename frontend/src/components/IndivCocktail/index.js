@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCocktails } from "../../store/cocktail";
 import "./IndivCocktail.css";
 import "../../index.css";
+import NewCocktailReview from "../NewCocktailReview";
 
 const IndivCocktail = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ const IndivCocktail = () => {
   }, [dispatch]);
 
   const cocktailsObj = useSelector((state) => state.cocktail);
-  console.log(cocktailsObj);
   const indivCocktail = cocktailsObj[id];
 
   return (
@@ -49,7 +49,9 @@ const IndivCocktail = () => {
         <p>EXPLORE COMPONENT</p>
       </div>
 
-      <div className="review_container">REVIEW COMPONENT</div>
+      <div className="review_container">
+        <NewCocktailReview/>
+        </div>
     </div>
   );
 };
