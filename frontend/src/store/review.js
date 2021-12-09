@@ -11,16 +11,22 @@ export const getReviews = (cocktailId) => async (dispatch) => {
   const res = await csrfFetch(`/api/cocktails/${cocktailId}/reviews`);
   if (res.ok) {
     const reviews = await res.json();
-    dispatch(loadReviews(reviews.reviews));
-    return reviews; // needed if want to use elsewhere outside of thunk
+    console.log(reviews, 'getREviews reviews');
+    console.log(reviews.reviews, 'reviews.revwis')
+    dispatch(loadReviews(reviews));
+    return reviews;
   }
 };
 
+//review feed on indivCocktail page 
+// const GET_REVIEWS_BY_COCKTAILID = "reviews/GET_REVIEWS_BY_COCKTAILID";
 
+// const loadParticularReviews = (reviews) => ({
+//   type: GET_REVIEWS_BY_COCKTAILID,
+//   reviews
+// })
 
-
-
-
+// export const getParticularReviews = ()
 
 
 
@@ -40,7 +46,7 @@ export const getOneReview =
 
     if (res.ok) {
       const response = await res.json();
-      dispatch(loadReview(response.review));
+      dispatch(loadReview(response.review)); //reviewId??
     }
   };
 
@@ -97,9 +103,10 @@ const reviewReducer = (state = initialState, action) => {
       action.reviews.forEach((review) => {
         oneReview[review.id] = review;
       });
+      // THIS NEEDS WORK:
       return { ...state, ...allReviews };
     case ADD_REVIEW:
-      const reviews = { ...state, [action.review.id]: action.review };
+      return { ...state, [action.review.id]: action.review };
     default:
       return state;
   }

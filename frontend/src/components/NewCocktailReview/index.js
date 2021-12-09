@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createReview } from "../../store/review";
 import "./NewCocktailReview.css";
+// import { getReviews } from "../../store/review";
 
 // {reviewRating, reviewBody, cocktailId, userId};
 
@@ -17,6 +18,10 @@ function NewCocktailReview() {
   const [errors, setErrors] = useState([]);
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
+
+  // useEffect(() => {
+  //   dispatch(getReviews(cocktailId));
+  // }, [dispatch]);
 
   useEffect(() => {
     const errors = [];
@@ -45,6 +50,7 @@ function NewCocktailReview() {
 
     dispatch(createReview(newReview));
     resetFields();
+
   };
 
   return (
