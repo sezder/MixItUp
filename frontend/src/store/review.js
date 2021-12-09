@@ -1,10 +1,29 @@
 import { csrfFetch } from "./csrf";
 
-//LABEL
-//ACTION VARIABLE
-//ACTION CREATOR
-//THUNK
-//STORE
+const GET_REVIEWS = "reviews/GET_REVIEWS";
+
+const loadReviews = (reviews) => ({
+  type: GET_REVIEWS,
+  reviews,
+});
+
+export const getReviews = (cocktailId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/cocktails/${cocktailId}/reviews`);
+  if (res.ok) {
+    const reviews = await res.json();
+    dispatch(loadReviews(reviews.reviews));
+    return reviews; // needed if want to use elsewhere outside of thunk
+  }
+};
+
+
+
+
+
+
+
+
+
 const GET_REVIEW = "reviews/GET_REVIEW";
 
 const loadReview = (review) => ({
@@ -67,10 +86,16 @@ const initialState = {};
 
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_REVIEW:
+    case GET_REVIEWS:
       const allReviews = {};
       action.reviews.forEach((review) => {
         allReviews[review.id] = review;
+      });
+      return { ...state, ...allReviews };
+    case GET_REVIEW:
+      const oneReview = {};
+      action.reviews.forEach((review) => {
+        oneReview[review.id] = review;
       });
       return { ...state, ...allReviews };
     case ADD_REVIEW:
@@ -81,7 +106,7 @@ const reviewReducer = (state = initialState, action) => {
 
   // switch (action.type) {
   //   // case GET_COCKTAIL:
-  // case GET_COCKTAILS:
+  // case GET_REVIEWS:
   // const allCocktails = {};
   // action.cocktails.forEach((cocktail) => {
   //   allCocktails[cocktail.id] = cocktail;

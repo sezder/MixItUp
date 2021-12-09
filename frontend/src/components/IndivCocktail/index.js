@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCocktails } from "../../store/cocktail";
+import { getReviews } from "../../store/review";
 import "./IndivCocktail.css";
 import "../../index.css";
 import NewCocktailReview from "../NewCocktailReview";
+import ShowReviews from "../ShowReviews";
 
 const IndivCocktail = () => {
   const dispatch = useDispatch();
@@ -14,10 +16,16 @@ const IndivCocktail = () => {
 
   useEffect(() => {
     dispatch(getCocktails());
+    dispatch(getReviews(id));
   }, [dispatch]);
 
   const cocktailsObj = useSelector((state) => state.cocktail);
   const indivCocktail = cocktailsObj[id];
+
+  const reviewsObj = useSelector((state) => state.review);
+
+  const reviews = Object.values(reviewsObj);
+  console.log(reviews, 'reviews');
 
   return (
     <div className="indiv_container">
@@ -36,9 +44,9 @@ const IndivCocktail = () => {
           </a>
           {/* If userid matches cocktail.userId, render two buttons */}
           {userId === indivCocktail?.userId && (
-           <NavLink to={`/cocktails/${id}/edit`}>
+            <NavLink to={`/cocktails/${id}/edit`}>
               <button>Edit</button>
-              </NavLink>
+            </NavLink>
           )}
           {}
         </div>
@@ -50,8 +58,21 @@ const IndivCocktail = () => {
       </div>
 
       <div className="review_container">
-        <NewCocktailReview/>
-        </div>
+        <NewCocktailReview />
+      </div>
+
+      <div className="reviews_container">
+        {reviews.map(({ id, reviewRating, reviewBody, userId }) => {
+          return (
+            <ShowReviews
+              key={id}
+              reviewRating={reviewRating}
+              reviewBody={reviewBody}
+              userId={userId}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
