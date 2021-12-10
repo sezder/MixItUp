@@ -5,8 +5,8 @@ import { destroyReview } from "../../store/review";
 import "./ShowReviews.css";
 import "../../index.css";
 
-
-const ShowReviews = ({id: reviewId,
+const ShowReviews = ({
+  id: reviewId,
   reviewRating,
   reviewBody,
   userId,
@@ -14,22 +14,16 @@ const ShowReviews = ({id: reviewId,
   cocktailId,
 }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const currUser = useSelector((state) => state.session.user);
   const currUserId = currUser?.id;
 
-  // <NavLink to={`/cocktails/${cocktailId}/reviews/delete`}>
-  //           <button><i className="far fa-trash-alt"></i></button>
-  //         </NavLink>
-
   const handleDelete = (e) => {
     e.preventDefault();
-    console.log(reviewId, 'checking aliasing')
     const destroyReviewPayload = { userId, cocktailId, reviewId };
-    // console.log(destroyCocktailPayload);
     let destroyedReview = dispatch(destroyReview(destroyReviewPayload));
     if (destroyedReview) {
-      // history.push("/cocktails");
-      console.log('destroyed review came back ok?')
+      history.push(`/cocktails/${cocktailId}`);
     }
   };
 
@@ -46,9 +40,13 @@ const ShowReviews = ({id: reviewId,
       {userId === currUserId && (
         <div className="edit_delete_review_div">
           <NavLink to={`/cocktails/${cocktailId}/reviews/${reviewId}/edit`}>
-            <button><i className="fas fa-edit"></i></button>
+            <button>
+              <i className="fas fa-edit"></i>
+            </button>
           </NavLink>
-            <button onClick={handleDelete}><i className="far fa-trash-alt"></i></button>
+          <button onClick={handleDelete}>
+            <i className="far fa-trash-alt"></i>
+          </button>
         </div>
       )}
     </div>
