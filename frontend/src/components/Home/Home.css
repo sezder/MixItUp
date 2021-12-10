@@ -2,3 +2,18 @@
   width: 70vw;
   border-right: 4px solid rgba(70, 93, 87, 0.3); 
 }
+
+.home_cocktails_reviews {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-evenly; */
+}
+
+.review_feed_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30vw;
+  padding: 20px 0;
+  background-color: #C2A684;
+}

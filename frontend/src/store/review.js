@@ -1,5 +1,6 @@
 import { csrfFetch } from "./csrf";
 
+// GET REVIEWS BY COCKTAIL ID
 const GET_REVIEWS = "reviews/GET_REVIEWS";
 
 const loadReviews = (reviews) => ({
@@ -16,15 +17,24 @@ export const getReviews = (cocktailId) => async (dispatch) => {
   }
 };
 
-//review feed on indivCocktail page
-// const GET_REVIEWS_BY_COCKTAILID = "reviews/GET_REVIEWS_BY_COCKTAILID";
+// GET ALL REVIEWS
+const GET_ALL_REVIEWS = "reviews/GET_ALL_REVIEWS";
 
-// const loadParticularReviews = (reviews) => ({
-//   type: GET_REVIEWS_BY_COCKTAILID,
-//   reviews
-// })
+const loadAllReviews = (reviews) => ({
+  type: GET_ALL_REVIEWS,
+  reviews,
+});
 
-// export const getParticularReviews = ()
+export const getAllReviews = () => async (dispatch) => {
+  const res = await csrfFetch(`/api/reviews`);
+  // console.log(res, 'res in getAllReviews')
+  if (res.ok) {
+    const reviews = await res.json();
+    console.log(reviews, 'reviews in GetAllReviews')
+    dispatch(loadAllReviews(reviews));
+    return reviews;
+  }
+};
 
 const GET_REVIEW = "reviews/GET_REVIEW";
 
@@ -145,10 +155,17 @@ const initialState = {};
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_REVIEWS:
+      const allReviewsByCocktail = {};
+      action.reviews.forEach((review) => {
+        allReviewsByCocktail[review.id] = review;
+      });
+      return { ...state, ...allReviewsByCocktail };
+    case GET_ALL_REVIEWS:
       const allReviews = {};
       action.reviews.forEach((review) => {
         allReviews[review.id] = review;
       });
+      console.log(allReviews, 'after normalization');
       return { ...state, ...allReviews };
     case GET_REVIEW:
       const oneReview = {};
@@ -156,7 +173,7 @@ const reviewReducer = (state = initialState, action) => {
         oneReview[review.id] = review;
       });
       // THIS NEEDS WORK:
-      return { ...state, ...allReviews };
+      return { ...state, ...allReviewsByCocktail };
     case ADD_REVIEW:
       return { ...state, [action.review.id]: action.review };
     case UPDATE_REVIEW:
@@ -168,26 +185,6 @@ const reviewReducer = (state = initialState, action) => {
     default:
       return state;
   }
-
-  // switch (action.type) {
-  //   // case GET_COCKTAIL:
-  // case GET_REVIEWS:
-  // const allCocktails = {};
-  // action.cocktails.forEach((cocktail) => {
-  //   allCocktails[cocktail.id] = cocktail;
-  // });
-  // return { ...state, ...allCocktails };
-  // case ADD_COCKTAIL:
-  //   return { ...state, [action.cocktail.id]: action.cocktail };
-  //   case DELETE_REVIEW:
-  //     const newState = { ...state };
-  //     delete newState[action.cocktailId];
-  //     return newState;
-  //   case UPDATE_COCKTAIL:
-  //     return {...state, [action.cocktail.id]: action.cocktail}
-  //   default:
-  //     return state;
-  // }
 };
 
 export default reviewReducer;
