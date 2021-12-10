@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
+import DemoUser from "../DemoUser";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -81,6 +82,7 @@ function SignupFormPage() {
           <button id="sign_up_button" type="submit">
             Sign Up
           </button>
+          <DemoUser/>
         </form>
       </div>
     </div>

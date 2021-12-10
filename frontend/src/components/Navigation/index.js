@@ -1,9 +1,10 @@
 // frontend/src/components/Navigation/index.js
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
+import DemoUser from "../DemoUser";
 import Logo from "../Logo/index";
 import "./Navigation.css";
 
@@ -17,7 +18,10 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup" className="text_large">Sign Up</NavLink>
+        <DemoUser />
+        <NavLink to="/signup" className="text_large">
+          Sign Up
+        </NavLink>
       </>
     );
   }
@@ -26,23 +30,24 @@ function Navigation({ isLoaded }) {
     <nav>
       <ul>
         <li>
-          <Logo/>
+          <Logo />
         </li>
         <li>
           <NavLink className="text_large" exact to="/home">
             HOME
           </NavLink>
-         
         </li>
         <li>
-          <NavLink to="/cocktails" className="text_large">EXPLORE</NavLink>
+          <NavLink to="/cocktails" className="text_large">
+            EXPLORE
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/cocktails/new" className="text_large">SUBMIT COCKTAIL</NavLink>
+          <NavLink to="/cocktails/new" className="text_large">
+            SUBMIT COCKTAIL
+          </NavLink>
         </li>
-        <li>
-        {isLoaded && sessionLinks}
-        </li>
+        <li>{isLoaded && sessionLinks}</li>
       </ul>
     </nav>
   );
