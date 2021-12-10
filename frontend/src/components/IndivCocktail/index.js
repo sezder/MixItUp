@@ -37,7 +37,7 @@ const IndivCocktail = () => {
     reviewRestriction = <NewCocktailReview />;
   } else {
     reviewRestriction = (
-      <>
+      <> 
       <button onClick={() => setShowModal(true)}>Log in to leave a review.</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
