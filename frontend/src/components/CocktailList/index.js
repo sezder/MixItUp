@@ -7,9 +7,6 @@ import CocktailDetail from "../CocktailDetail/index";
 
 const CocktailList = () => {
   const dispatch = useDispatch();
-
-  
-
   const cocktailsObj = useSelector((state) => state.cocktail);
   const cocktails = Object.values(cocktailsObj);
   

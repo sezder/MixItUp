@@ -10,6 +10,8 @@ import IndivCocktail from "./components/IndivCocktail";
 import NewCocktailForm from "./components/NewCocktailForm";
 import EditCocktailForm from "./components/EditCocktailForm";
 import EditCocktailReview from "./components/EditCocktailReview";
+import Home from "./components/Home";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,6 +24,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/home">
+            < Home />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
@@ -35,7 +40,7 @@ function App() {
             <NewCocktailForm />
           </Route>
           <Route path="/cocktails/:cocktailId/reviews/:reviewId">
-            <EditCocktailReview/>
+            <EditCocktailReview />
           </Route>
           <Route path="/cocktails/:cocktailId/edit">
             <EditCocktailForm />
