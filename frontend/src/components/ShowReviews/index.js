@@ -1,19 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCocktails } from "../../store/cocktail";
+import { destroyReview } from "../../store/review";
 import "./ShowReviews.css";
 import "../../index.css";
 
-const ShowReviews = ({id,
+
+const ShowReviews = ({id: reviewId,
   reviewRating,
   reviewBody,
   userId,
   user,
   cocktailId,
 }) => {
+  const dispatch = useDispatch();
   const currUser = useSelector((state) => state.session.user);
   const currUserId = currUser?.id;
+
+  // <NavLink to={`/cocktails/${cocktailId}/reviews/delete`}>
+  //           <button><i className="far fa-trash-alt"></i></button>
+  //         </NavLink>
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    console.log(reviewId, 'checking aliasing')
+    const destroyReviewPayload = { userId, cocktailId, reviewId };
+    // console.log(destroyCocktailPayload);
+    let destroyedReview = dispatch(destroyReview(destroyReviewPayload));
+    if (destroyedReview) {
+      // history.push("/cocktails");
+      console.log('destroyed review came back ok?')
+    }
+  };
 
   return (
     <div className="show_reviews_div">
@@ -27,12 +45,10 @@ const ShowReviews = ({id,
       <p>{reviewBody}</p>
       {userId === currUserId && (
         <div className="edit_delete_review_div">
-          <NavLink to={`/cocktails/${cocktailId}/reviews/${id}/edit`}>
+          <NavLink to={`/cocktails/${cocktailId}/reviews/${reviewId}/edit`}>
             <button><i className="fas fa-edit"></i></button>
           </NavLink>
-          <NavLink to={`/cocktails/${cocktailId}/reviews/delete`}>
-            <button><i className="far fa-trash-alt"></i></button>
-          </NavLink>
+            <button onClick={handleDelete}><i className="far fa-trash-alt"></i></button>
         </div>
       )}
     </div>

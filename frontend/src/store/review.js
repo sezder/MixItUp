@@ -83,8 +83,8 @@ const editReview = (review) => ({
 export const updateReview =
   ({ reviewRating, reviewBody, cocktailId, userId, reviewId }) =>
   async (dispatch) => {
-    console.log('reviewId in updateReview THUNK', reviewId);
-    console.log('userId in updateReview THUNK', userId);
+    console.log("reviewId in updateReview THUNK", reviewId);
+    console.log("userId in updateReview THUNK", userId);
     const res = await csrfFetch(
       `/api/cocktails/${cocktailId}/reviews/${reviewId}/edit`,
       {
@@ -107,14 +107,32 @@ export const updateReview =
     }
   };
 
-  //DESTROY
+//DESTROY
+const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 
-//LABEL
-//ACTION VARIABLE
-//ACTION CREATOR
-//THUNK
-//destroyReveiew
-//STORE
+const deleteReview = (reviewId) => ({
+  type: DELETE_REVIEW,
+  reviewId,
+});
+
+// do I even need the cocktailId to be sent in the body of the request?
+export const destroyReview =
+  ({ userId, cocktailId, reviewId }) =>
+  async (dispatch) => {
+    const res = await csrfFetch(
+      `/api/cocktails/${cocktailId}/reviews/${reviewId}/edit`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, reviewId }),
+      }
+    );
+
+    if (res.ok) {
+      const response = await res.json();
+      dispatch(deleteReview(response));
+    }
+  };
 
 //LABEL
 //ACTION VARIABLE
@@ -143,6 +161,10 @@ const reviewReducer = (state = initialState, action) => {
       return { ...state, [action.review.id]: action.review };
     case UPDATE_REVIEW:
       return { ...state, [action.review.id]: action.review };
+    case DELETE_REVIEW:
+      const postDeletionState = { ...state };
+      delete postDeletionState[action.reviewId];
+      return { ...postDeletionState };
     default:
       return state;
   }
@@ -157,7 +179,7 @@ const reviewReducer = (state = initialState, action) => {
   // return { ...state, ...allCocktails };
   // case ADD_COCKTAIL:
   //   return { ...state, [action.cocktail.id]: action.cocktail };
-  //   case DELETE_COCKTAIL:
+  //   case DELETE_REVIEW:
   //     const newState = { ...state };
   //     delete newState[action.cocktailId];
   //     return newState;

@@ -100,7 +100,7 @@ router.put(
   // requireAuth,
   // validateReview,
   asyncHandler(async (req, res, next) => {
-    console.log('reached put route')
+    // console.log('reached put route')
     // do I need the cocktailId as well as the reviewId??
     const { reviewId } = req.params;
     // console.log(cocktailId, "put cocktailId edit review");
@@ -129,6 +129,27 @@ router.put(
         userId,
       });
       return res.json(updatedReview);
+    }
+  })
+);
+
+router.delete(
+  `/:cocktailId(\\d+)/reviews/:reviewId(\\d+)/edit`,
+  // requireAuth,
+  asyncHandler(async (req, res, next) => {
+    const reviewId = parseInt(req.params.reviewId);
+    const { userId } = req.body;
+    const review = await Cocktail_Review.findByPk(reviewId);
+
+    if (!review || Number(userId) !== Number(review.userId)) {
+      const err = new Error("Review not found");
+      err.status = 404;
+      err.title = "Review not found";
+      err.errors = ["Could not find review."];
+      return next(err);
+    } else {
+      await review.destroy();
+      return res.json(reviewId);
     }
   })
 );
