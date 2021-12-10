@@ -1,19 +1,19 @@
 .home_cocktail_list {
   width: 70vw;
-  border-right: 4px solid rgba(70, 93, 87, 0.3); 
+  border-right: 4px solid rgba(70, 93, 87, 0.3);
 }
 
 .home_cocktails_reviews {
   display: flex;
-  flex-direction: row;
+  flex-flow: row;
   /* justify-content: space-evenly; */
 }
 
 .review_feed_div {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   width: 30vw;
   padding: 20px 0;
-  background-color: #C2A684;
+  background-color: #c2a684;
 }
