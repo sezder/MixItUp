@@ -95,18 +95,58 @@ router.post(
   })
 );
 
+router.put(
+  `/:cocktailId(\\d+)/reviews/:reviewId(\\d+)/edit`,
+  // requireAuth,
+  // validateReview,
+  asyncHandler(async (req, res, next) => {
+    console.log('reached put route')
+    // do I need the cocktailId as well as the reviewId??
+    const { reviewId } = req.params;
+    // console.log(cocktailId, "put cocktailId edit review");
+    // console.log(reviewId, "put cocktailId edit review");
+
+    const { reviewRating, reviewBody, cocktailId, userId } = req.body;
+    console.log('reviewRating', reviewRating);
+    console.log('reviewBody,', reviewBody,);
+    console.log('cocktailId', cocktailId);
+    console.log('userId ', userId );
+
+    const review = await Cocktail_Review.findByPk(reviewId);
+    console.log(review, 'backend review in /edit');
+    console.log(Number(userId) !== Number(review.userId), 'userId is review UserId')
+    if (!review || Number(userId) !== Number(review.userId)) {
+      const err = new Error("Review not found");
+      err.status = 404;
+      err.title = "Review not found";
+      err.errors = ["Could not find review."];
+      return next(err);
+    } else {
+      const updatedReview = await review.update({
+        reviewRating,
+        reviewBody,
+        cocktailId,
+        userId,
+      });
+      return res.json(updatedReview);
+    }
+  })
+);
+
 router.get(
   "/:cocktailId/reviews",
   asyncHandler(async (req, res) => {
     const cocktailId = parseInt(req.params.cocktailId);
     const reviews = await Cocktail_Review.findAll({
       where: { cocktailId },
-      include: [User]
+      include: [User],
     });
-    console.log(reviews, "backend db result");
+    // console.log(reviews, "backend db result");
     return res.json(reviews);
   })
 );
+
+
 
 // REVIEW FEED ROUTER
 // router.get(
@@ -137,19 +177,19 @@ router.post(
 );
 
 router.get(
-  "/",
-  asyncHandler(async function (req, res) {
-    const cocktails = await Cocktail.findAll();
-    return res.json({ cocktails });
-  })
-);
-
-router.get(
   "/:cocktailId",
   asyncHandler(async (req, res) => {
     const cocktailId = parseInt(req.params.cocktailId);
     const cocktail = await Cocktail.findByPk(cocktailId);
     return res.json(cocktail);
+  })
+);
+
+router.get(
+  "/",
+  asyncHandler(async function (req, res) {
+    const cocktails = await Cocktail.findAll();
+    return res.json({ cocktails });
   })
 );
 

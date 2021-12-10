@@ -5,7 +5,7 @@ import { getCocktails } from "../../store/cocktail";
 import "./ShowReviews.css";
 import "../../index.css";
 
-const ShowReviews = ({
+const ShowReviews = ({id,
   reviewRating,
   reviewBody,
   userId,
@@ -19,15 +19,15 @@ const ShowReviews = ({
     <div className="show_reviews_div">
       <div className="rating_user_div">
         <div className="profile_circle">
-          <p>{user.username.slice(0, 1)}</p>
+          <p>{user?.username.slice(0, 1)}</p>
         </div>
-        <p id="username_review_card">{user.username}</p>
+        <p id="username_review_card">{user?.username}</p>
         <p>Rating: {reviewRating}</p>
       </div>
       <p>{reviewBody}</p>
       {userId === currUserId && (
         <div className="edit_delete_review_div">
-          <NavLink to={`/cocktails/${cocktailId}/reviews/edit`}>
+          <NavLink to={`/cocktails/${cocktailId}/reviews/${id}/edit`}>
             <button><i className="fas fa-edit"></i></button>
           </NavLink>
           <NavLink to={`/cocktails/${cocktailId}/reviews/delete`}>
