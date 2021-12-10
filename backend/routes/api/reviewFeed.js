@@ -10,7 +10,7 @@ router.get(
   asyncHandler(async (req, res, next) => {
     // would be nice to include a cocktail model, maybe also user model
     // would be nice to sort by most recent
-    const reviews = await Cocktail_Review.findAll();
+    const reviews = await Cocktail_Review.findAll({limit: 15, order: [['createdAt', 'DESC']]});
     // console.log('reviews in get route for feed', reviews)
     return res.json(reviews);
   })
