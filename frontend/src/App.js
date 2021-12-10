@@ -9,6 +9,7 @@ import CocktailList from "./components/CocktailList";
 import IndivCocktail from "./components/IndivCocktail";
 import NewCocktailForm from "./components/NewCocktailForm";
 import EditCocktailForm from "./components/EditCocktailForm";
+import EditCocktailReview from "./components/EditCocktailReview";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/cocktails/new">
             <NewCocktailForm />
+          </Route>
+          <Route path="/cocktails/:cocktailId/reviews/:reviewId">
+            <EditCocktailReview/>
           </Route>
           <Route path="/cocktails/:cocktailId/edit">
             <EditCocktailForm />

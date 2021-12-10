@@ -11,14 +11,12 @@ export const getReviews = (cocktailId) => async (dispatch) => {
   const res = await csrfFetch(`/api/cocktails/${cocktailId}/reviews`);
   if (res.ok) {
     const reviews = await res.json();
-    console.log(reviews, 'getREviews reviews');
-    console.log(reviews.reviews, 'reviews.revwis')
     dispatch(loadReviews(reviews));
     return reviews;
   }
 };
 
-//review feed on indivCocktail page 
+//review feed on indivCocktail page
 // const GET_REVIEWS_BY_COCKTAILID = "reviews/GET_REVIEWS_BY_COCKTAILID";
 
 // const loadParticularReviews = (reviews) => ({
@@ -27,8 +25,6 @@ export const getReviews = (cocktailId) => async (dispatch) => {
 // })
 
 // export const getParticularReviews = ()
-
-
 
 const GET_REVIEW = "reviews/GET_REVIEW";
 
@@ -76,10 +72,48 @@ export const createReview =
     }
   };
 
+// EDIT REVIEW
+const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
+
+const editReview = (review) => ({
+  type: UPDATE_REVIEW,
+  review,
+});
+
+export const updateReview =
+  ({ reviewRating, reviewBody, cocktailId, userId, reviewId }) =>
+  async (dispatch) => {
+    console.log('reviewId in updateReview THUNK', reviewId);
+    console.log('userId in updateReview THUNK', userId);
+    const res = await csrfFetch(
+      `/api/cocktails/${cocktailId}/reviews/${reviewId}/edit`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          reviewRating,
+          reviewBody,
+          cocktailId,
+          userId,
+        }),
+      }
+    );
+
+    if (res.ok) {
+      const response = await res.json();
+      dispatch(editReview(response));
+    }
+  };
+
+  //DESTROY
+
 //LABEL
 //ACTION VARIABLE
 //ACTION CREATOR
 //THUNK
+//destroyReveiew
 //STORE
 
 //LABEL
@@ -106,6 +140,8 @@ const reviewReducer = (state = initialState, action) => {
       // THIS NEEDS WORK:
       return { ...state, ...allReviews };
     case ADD_REVIEW:
+      return { ...state, [action.review.id]: action.review };
+    case UPDATE_REVIEW:
       return { ...state, [action.review.id]: action.review };
     default:
       return state;
