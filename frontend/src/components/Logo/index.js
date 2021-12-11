@@ -4,9 +4,13 @@ import "./Logo.css";
 
 function Logo() {
   return (
-    <div className="logo_container">
-
-    </div>
+      <ul className="logo_container">
+        <li id="logo">MIX</li>
+        <div className="logo_dot"></div>
+        <li id="logo">IT</li>
+        <div className="logo_dot"></div>
+        <li id="logo">UP</li>
+      </ul>
   );
 }
 

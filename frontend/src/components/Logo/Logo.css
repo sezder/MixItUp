@@ -1,4 +1,20 @@
-.logo_container h2 {
-display: flex; 
-flex-direction: column;
+.logo_container {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+#logo {
+  list-style: none;
+  font-size: 35px;
+  color: #c2a27c;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.logo_dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #465d57;
+  margin: 0 5px;
 }
