@@ -36,9 +36,14 @@ const Splash = () => {
   return (
     <div className="video_container">
       <video muted autoplay="autoplay" loop>
-        <source src={BackgroundGif} type="video/mp4"/>
+        <source src={BackgroundGif} type="video/mp4" />
       </video>
-      
+
+      <a href="https://vine.co/v/5JEQYtUjtgI" id="credit_link">
+        <div id="gif_credit">
+          <p>GIF by The Videobook</p>
+        </div>
+      </a>
     </div>
   );
 };
