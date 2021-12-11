@@ -16,6 +16,7 @@ const Home = () => {
 
   const allReviewsObj = useSelector((state) => state.review);
   const allReviews = Object.values(allReviewsObj);
+  console.log(allReviews, 'allReviews')
 
   return (
     <div className="home_cocktails_reviews">
@@ -23,16 +24,17 @@ const Home = () => {
         <CocktailList />
       </div>
       <div className="review_feed_div">
+      {/* <h1 className="text_large">See what people are saying</h1> */}
       {allReviews.map(
-        ({ id, reviewRating, reviewBody, cocktailId, userId }) => {
+        ({ id, reviewRating, reviewBody, Cocktail, User }) => {
           return (
             <ShowAllReviews
               key={id}
               id={id}
               reviewRating={reviewRating}
               reviewBody={reviewBody}
-              cocktailId={cocktailId}
-              userId={userId}
+              cocktail={Cocktail}
+              user={User}
             />
           );
         }

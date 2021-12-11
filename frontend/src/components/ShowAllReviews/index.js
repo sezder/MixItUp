@@ -5,32 +5,28 @@ import { destroyReview } from "../../store/review";
 import "./ShowAllReviews.css";
 import "../../index.css";
 
-const ShowAllReviews = ({
-  id: reviewId,
-  reviewRating,
-  reviewBody,
-  cocktailId,
-  userId,
-}) => {
+const ShowAllReviews = ({ reviewRating, reviewBody, cocktail, user }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const currUser = useSelector((state) => state.session.user);
-  // const currUserId = currUser?.id;
 
-  // const handleDelete = (e) => {
-  //   e.preventDefault();
-  //   const destroyReviewPayload = { userId, cocktailId, reviewId };
-  //   let destroyedReview = dispatch(destroyReview(destroyReviewPayload));
-  //   if (destroyedReview) {
-  //     history.push(`/cocktails/${cocktailId}`);
-  //   }
-  // };
+  const backgroundImageStyling = {
+    backgroundImage: `url(${cocktail?.imageUrl})`,
+  };
 
   return (
-    <div className="show_reviews_div">
-      <p>Rating: {reviewRating}</p>
-      <p>{reviewBody}</p>
-    </div>
+    <NavLink to={`/cocktails/${cocktail?.id}`}>
+      <div className="show_reviews_div" id="home_show_reviews_div">
+        <div
+          className="show_reviews_img_container"
+          style={backgroundImageStyling}
+        ></div>
+        <div className="home_reviews_content">
+          <p id="home_username">{user?.username}</p>
+          <p id="home_rating">Rating: {reviewRating}</p>
+          <p>{reviewBody}</p>
+        </div>
+      </div>
+    </NavLink>
   );
 };
 
