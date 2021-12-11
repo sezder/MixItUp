@@ -1,3 +1,38 @@
 /* .review_feed_indiv {
 
 } */
+
+.show_reviews_img_container {
+  border: #836540 2px solid;
+  background-color: #465d57;
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  background-position: center;
+  background-size: 120px;
+  background-repeat: no-repeat;
+}
+
+#home_show_reviews_div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.home_reviews_content {
+  padding-left: 10px;
+}
+
+.home_reviews_content p {
+  padding: 5px 0;
+  color: #121715;
+  font-size: 18px;
+}
+
+#home_username{
+  padding-bottom: 0;
+}
+
+#home_rating {
+  padding-top: 2px;
+}
