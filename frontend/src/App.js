@@ -11,6 +11,7 @@ import NewCocktailForm from "./components/NewCocktailForm";
 import EditCocktailForm from "./components/EditCocktailForm";
 import EditCocktailReview from "./components/EditCocktailReview";
 import Home from "./components/Home";
+import Splash from "./components/Splash";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,11 +25,11 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-           <Route path="/test">
-
+          <Route path="/" exact>
+            <Splash />
           </Route>
           <Route path="/home">
-            < Home />
+            <Home />
           </Route>
           <Route path="/login">
             <LoginFormPage />
