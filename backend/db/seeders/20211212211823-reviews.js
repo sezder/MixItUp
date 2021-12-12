@@ -189,7 +189,7 @@ module.exports = {
   // 13. Watermelon Mint Cocktail
   {
     reviewRating: 3,
-    reviewBody: "",
+    reviewBody: "Very refreshing!",
     cocktailId: 13,
     userId: 6,
     createdAt: new Date(),
