@@ -48,6 +48,18 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </li>
         <li>{isLoaded && sessionLinks}</li>
+        <div id="about_me_container">
+          <div>
+            <a href="https://github.com/sezder">
+              <i className="fab fa-github fa-sm"></i>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.linkedin.com/in/shannon-e-zander/">
+              <i className="fab fa-linkedin-in fa-sm"></i>
+            </a>
+          </div>
+        </div>
       </ul>
     </nav>
   );

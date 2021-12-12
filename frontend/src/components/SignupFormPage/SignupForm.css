@@ -1,37 +1,14 @@
-.signup_div {
-  display: flex;
-  justify-content: space-between;
-  width: 100vw;
-}
-
-.signup_img_div {
-  background-image: url("https://source.unsplash.com/Sr3bhcYqftA");
-  width: 60%;
-  height: calc(100vh - 60px);
-  background-size: cover;
-  /* background-position: center;  */
-  background-position: bottom 0 left 0;
-  display: flex;
-  align-content: center;
-}
-
-.signup_form_div {
-  /* width: 100%; */
-  /* padding-left: 10%; */
-  display: flex;
-  /* flex-direction: column; */
-  /* align-content: center; */
-}
-
-.signup_form {
+#signup_form {
   width: 40vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 50px;
   background-color: #465d57;
 }
-.signup_form input {
+
+#signup_form input {
   align-items: space-between;
   height: 25px;
   border: none;
@@ -39,57 +16,23 @@
   font-size: 14px;
   padding-left: 10px;
   margin: 10px 0;
+  width: 30vw;
 }
 
-#sign_up_button {
-  margin-top: 5px;
-  width: fit-content;
-  align-self: center;
-}
-
-@media only screen and (min-width: 1000px) and (max-width: 3000px) {
-}
-
-@media only screen and (min-width: 750px) and (max-width: 999px) {
-  .signup_img_div {
-    background-size: cover;
-    background-position: center;
-  }
-}
-
-@media only screen and (min-width: 502px) and (max-width: 750px) {
-  .signup_img_div {
-    background-size: cover;
-    background-position: center;
-  }
-
-  .signup_form {
-    padding: 20px;
-  }
-}
 
 @media only screen and (max-width: 501px) {
-  .signup_div {
-    display: flex;
-    flex-direction: column;
+  #signup_img_div {
+    height: 50vh;
   }
 
-  .signup_img_div {
+  #signup_form {
+    height: calc(50vh - 60px);
     width: 100vw;
-    height: 60vh;
-  }
-
-  .signup_form {
-    width: 100vh;
-    height: 100%;
     padding: 30px 60px 25px 60px;
-    
-  }
-/* 
-  .signup_form input {
-    
   }
 
-  #sign_up_button {
-  } */
+  #signup_form input {
+    width: 55vw;
+  }
+
 }

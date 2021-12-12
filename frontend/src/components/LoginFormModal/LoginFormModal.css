@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   height: 50vh;
   width: 50vw;
   padding: 40px 20px;
@@ -11,18 +12,24 @@
 
 .login_form_modal input {
   align-items: space-between;
+  width: 35vw;
   height: 25px;
   border: none;
   border-radius: 60px;
   font-size: 14px;
   padding-left: 10px;
   margin: 10px 0;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .login_form_modal button {
   margin-top: 5px;
+  
 }
-
+#need_account_modal {
+  color: #232E2B;
+  font-size: 19px;
+}
 @media only screen and (min-width: 750px) and (max-width: 999px) {
   /* #modal_content {
     background-color: pink;

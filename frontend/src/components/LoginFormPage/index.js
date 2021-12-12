@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import "./LoginForm.css";
 import DemoUser from "../DemoUser";
 
@@ -12,7 +12,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/home" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,23 +35,28 @@ function LoginFormPage() {
               <li key={idx}>{error}</li>
             ))}
           </ul>
-            <input
+          <input
             placeholder="Username or Email"
-              type="text"
-              value={credential}
-              onChange={(e) => setCredential(e.target.value)}
-              required
-            />
-   
-            <input
+            type="text"
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            required
+          />
+
+          <input
             placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          <button type="submit" className="login_button"> Log In</button>
-          <DemoUser/>
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit" className="login_button">
+            Log In
+          </button>
+          <DemoUser />
+          <NavLink to="/signup" className="text_large">
+            Need an account?
+          </NavLink>
         </form>
       </div>
     </div>

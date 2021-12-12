@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import './LoginFormModal.css';
+import "./LoginFormModal.css";
 import DemoUser from "../DemoUser";
+import { NavLink } from "react-router-dom";
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function LoginForm() {
     );
   };
 
-  return ( 
+  return (
     <form onSubmit={handleSubmit} className="login_form_modal">
       <ul>
         {errors.map((error, idx) => (
@@ -46,9 +47,11 @@ function LoginForm() {
       />
 
       <button type="submit">Log In</button>
-      <DemoUser/>
+      <DemoUser />
+      <NavLink to="/signup" className="text_large" id="need_account_modal">
+        Need an account?
+      </NavLink>
     </form>
-
   );
 }
 

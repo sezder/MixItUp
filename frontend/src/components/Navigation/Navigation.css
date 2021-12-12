@@ -18,3 +18,22 @@ li .text_large {
   font-size: 20px;
   padding: 0 15px;
 }
+
+#about_me_container {
+  display: flex; 
+}
+
+#about_me_container div {
+  background-color: #A38662;
+  border-radius: 20px;
+  padding: 2px 4px;
+  margin: 0 5px;
+}
+
+#about_me_container div:hover {
+  background-color: #836540;
+}
+
+#about_me_container div a i {
+  color: #232E2B;
+}

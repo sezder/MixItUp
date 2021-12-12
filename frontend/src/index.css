@@ -12,24 +12,31 @@ body {
 }
 
 button {
-  color: #F9F7F7;
-  font-weight: bolder;
+  color: #c2a27c;
+  font-weight: bold;
   padding: 10px 25px;
   background-color: #232E2B;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   transition:  all 0.5s ease 0s;
+  width: fit-content;
+  margin: 3px;
 }
 
 button:hover {
   background-color: #090C0B;
   box-shadow: -2px 2px rgba(0, 0, 0, 0.142);
+  box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 a, p, h1, h2, h3 {
   color: #D1C1AE; 
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .text_small {
@@ -56,6 +63,7 @@ input {
   font-size: 14px;
   padding-left: 10px;
   margin: 10px 0;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 textarea {
@@ -63,4 +71,5 @@ textarea {
   border: none;
   border-radius: 10px;
   padding: 10px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
