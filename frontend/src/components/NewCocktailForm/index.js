@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createCocktail } from "../../store/cocktail";
 import "./NewCocktailForm.css";
@@ -13,6 +14,7 @@ function NewCocktailForm() {
   const [recipeUrl, setRecipeUrl] = useState("");
   const [errors, setErrors] = useState([]);
   const user = useSelector((state) => state.session.user);
+
   const userId = user?.id;
 
   useEffect(() => {
@@ -20,17 +22,17 @@ function NewCocktailForm() {
     if (!name.length) errors.push("Provide a name.");
     if (name.length > 255) errors.push("Name must be less than 255 characters");
     if (!description.length) errors.push("Provide a description.");
-    // error handling for an imageUrl actually beign a link?
     if (!imageUrl.length) errors.push("Provide an image url.");
     setErrors(errors);
   }, [name, description, imageUrl]);
+
+  if (!user) return <Redirect to="/login" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (errors.length > 0) return;
 
     const newCocktail = {
-      //payload
       name,
       description,
       imageUrl,

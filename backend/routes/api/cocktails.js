@@ -120,7 +120,7 @@ router.post(
 
 router.put(
   `/:cocktailId(\\d+)/reviews/:reviewId(\\d+)/edit`,
-  // requireAuth,
+  requireAuth,
   validateReview,
   asyncHandler(async (req, res, next) => {
     const { reviewId } = req.params;
@@ -147,7 +147,7 @@ router.put(
 
 router.delete(
   `/:cocktailId(\\d+)/reviews/:reviewId(\\d+)/edit`,
-  // requireAuth,
+  requireAuth,
   asyncHandler(async (req, res, next) => {
     const reviewId = parseInt(req.params.reviewId);
     const { userId } = req.body;
