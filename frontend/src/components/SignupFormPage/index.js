@@ -1,7 +1,7 @@
 // frontend/src/components/SignupFormPage/index.js
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
 import DemoUser from "../DemoUser";
@@ -15,7 +15,7 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
  
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/home" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,13 +34,10 @@ function SignupFormPage() {
   };
 
   return (
-    <div className="signup_div">
-      <div className="signup_img_div"></div>
-      <div className="signup_form_div">
-        <form onSubmit={handleSubmit} className="signup_form">
-          <a href="/">
-            {/* <img src="../../../../public/"></img> */}
-          </a>
+    <div className="login_div">
+      <div className="login_img_div" id="signup_img_div"></div>
+      <div className="login_form_div">
+        <form onSubmit={handleSubmit} id="signup_form">
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
@@ -79,10 +76,13 @@ function SignupFormPage() {
             required
           />
 
-          <button id="sign_up_button" type="submit">
+          <button type="submit">
             Sign Up
           </button>
           <DemoUser/>
+          <NavLink to="/login" className="text_large">
+            Already have an account?
+          </NavLink>
         </form>
       </div>
     </div>
