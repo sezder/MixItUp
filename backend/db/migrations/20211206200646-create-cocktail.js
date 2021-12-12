@@ -21,6 +21,7 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       recipeUrl: {
+        allowNull: false,
         type: Sequelize.TEXT,
       },
       userId: {
