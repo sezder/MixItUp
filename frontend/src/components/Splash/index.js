@@ -3,47 +3,34 @@ import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Splash.css";
 import "../../index.css";
-import NewCocktailReview from "../NewCocktailReview";
-import ShowReviews from "../ShowReviews";
-import { Modal } from "../../context/Modal";
-import LoginForm from "../LoginFormModal/LoginForm.js";
+import ProfileButton from "../Navigation/ProfileButton";
+import DemoUser from "../DemoUser";
+import LoginFormModal from "../LoginFormModal";
 import BackgroundGif from "./looping_cocktail.mp4";
+import Logo from "../Logo"
 
 const Splash = () => {
-  const [showModal, setShowModal] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
 
-  const user = useSelector((state) => state.session.user);
-  const userId = user?.id;
 
-  let reviewRestriction;
-  if (userId) {
-    reviewRestriction = <NewCocktailReview />;
-  } else {
-    reviewRestriction = (
-      <>
-        <button onClick={() => setShowModal(true)}>
-          Log in to leave a review.
-        </button>
-        {showModal && (
-          <Modal onClose={() => setShowModal(false)}>
-            <LoginForm />
-          </Modal>
-        )}
-      </>
-    );
-  }
 
   return (
-    <div className="video_container">
-      <video muted autoplay="autoplay" loop>
-        <source src={BackgroundGif} type="video/mp4" />
-      </video>
+    <div className="splash_container">
+        <video muted autoplay="autoplay" loop>
+          <source src={BackgroundGif} type="video/mp4" />
+        </video>
 
-      <a href="https://vine.co/v/5JEQYtUjtgI" id="credit_link">
-        <div id="gif_credit">
-          <p>GIF by The Videobook</p>
+        <a href="https://vine.co/v/5JEQYtUjtgI" id="credit_link">
+          <div id="gif_credit">
+            <p>GIF by The Videobook</p>
+          </div>
+        </a>
+      <div className="splash_nav_container">
+        <div className="splash_nav">
+          <Logo />
+          <p className="text_large">Discover your new favorite drink.</p>
         </div>
-      </a>
+      </div>
     </div>
   );
 };
