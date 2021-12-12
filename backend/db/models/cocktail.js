@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Cocktail.associate = function (models) {
-    Cocktail.hasMany(models.Cocktail_Review, { foreignKey: "cocktailId" });
+    Cocktail.hasMany(models.Cocktail_Review, { foreignKey: "cocktailId", onDelete: 'CASCADE', hooks:true });
     const columnMapping = {
       through: "Bars_Cocktails",
       otherKey: "barId",
