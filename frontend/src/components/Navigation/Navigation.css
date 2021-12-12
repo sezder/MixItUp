@@ -24,10 +24,14 @@ li .text_large {
 }
 
 #about_me_container div {
-  background-color: #836540;
+  background-color: #A38662;
   border-radius: 20px;
   padding: 2px 4px;
   margin: 0 5px;
+}
+
+#about_me_container div:hover {
+  background-color: #836540;
 }
 
 #about_me_container div a i {
