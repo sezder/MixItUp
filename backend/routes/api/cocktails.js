@@ -79,9 +79,32 @@ router.delete(
   })
 );
 
+const validateReview = [
+  check("reviewRating")
+    .exists({ checkFalsy: true })
+    .withMessage("Provide a rating.")
+    .custom((value) => {
+      if (value > 5 || value < 1) {
+        throw new Error("Rating must be between 1 and 5 stars.");
+      }
+      return true;
+    }),
+  check("reviewBody")
+    .exists({ checkFalsy: true })
+    .withMessage("Provide a comment with your review.")
+    .isLength({ min: 1 })
+    .withMessage("Provide a comment with your review."),
+  check("cocktailId")
+    .exists({ checkFalsy: true })
+    .withMessage("Review must be affiliated with a cocktail."),
+  check("userId")
+    .exists({ checkFalsy: true })
+    .withMessage("Review must be affiliated with a user."),
+];
+
 router.post(
   "/:cocktailId/reviews",
-  // validateReview,
+  validateReview,
   requireAuth,
   asyncHandler(async (req, res) => {
     const { reviewRating, reviewBody, cocktailId, userId } = req.body;
@@ -98,23 +121,12 @@ router.post(
 router.put(
   `/:cocktailId(\\d+)/reviews/:reviewId(\\d+)/edit`,
   // requireAuth,
-  // validateReview,
+  validateReview,
   asyncHandler(async (req, res, next) => {
-    // console.log('reached put route')
-    // do I need the cocktailId as well as the reviewId??
     const { reviewId } = req.params;
-    // console.log(cocktailId, "put cocktailId edit review");
-    // console.log(reviewId, "put cocktailId edit review");
-
     const { reviewRating, reviewBody, cocktailId, userId } = req.body;
-    console.log('reviewRating', reviewRating);
-    console.log('reviewBody,', reviewBody,);
-    console.log('cocktailId', cocktailId);
-    console.log('userId ', userId );
-
     const review = await Cocktail_Review.findByPk(reviewId);
-    console.log(review, 'backend review in /edit');
-    console.log(Number(userId) !== Number(review.userId), 'userId is review UserId')
+
     if (!review || Number(userId) !== Number(review.userId)) {
       const err = new Error("Review not found");
       err.status = 404;
@@ -162,20 +174,9 @@ router.get(
       where: { cocktailId },
       include: [User],
     });
-    // console.log(reviews, "backend db result");
     return res.json(reviews);
   })
 );
-
-// REVIEW FEED ROUTER
-// router.get(
-//   "reviews",
-//   // validateReview,
-//   asyncHandler(async (req, res, next) => {
-//     const reviews = await Cocktail_Review.findAll();
-//     return res.json({ reviews });
-//   })
-// );
 
 //CREATE NEW COCKTAIL
 router.post(
@@ -211,7 +212,5 @@ router.get(
     return res.json({ cocktails });
   })
 );
-
-// ----------------------- REVIEWS --------------------
 
 module.exports = router;
