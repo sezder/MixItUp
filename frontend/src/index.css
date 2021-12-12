@@ -12,14 +12,16 @@ body {
 }
 
 button {
-  color: #F9F7F7;
-  font-weight: bolder;
+  color: #c2a27c;
+  font-weight: bold;
   padding: 10px 25px;
   background-color: #232E2B;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   transition:  all 0.5s ease 0s;
+  width: fit-content;
+  margin: 3px;
 }
 
 button:hover {
@@ -30,6 +32,10 @@ button:hover {
 a, p, h1, h2, h3 {
   color: #D1C1AE; 
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .text_small {

@@ -28,6 +28,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 50px;
   background-color: #465d57;
 }
@@ -47,7 +48,14 @@
   align-self: center;
 }
 
+.login_form input {
+  width: 30vw;
+}
+
 @media only screen and (min-width: 1000px) and (max-width: 3000px) {
+  /* .login_form input {
+    width: 55vw;
+  } */
 }
 
 @media only screen and (min-width: 750px) and (max-width: 999px) {
@@ -55,6 +63,9 @@
     background-size: cover;
     background-position: center;
   }
+  /* .login_form input {
+    width: 55vw;
+  } */
 }
 
 @media only screen and (min-width: 502px) and (max-width: 750px) {
@@ -66,6 +77,9 @@
   .login_form {
     padding: 20px;
   }
+  /* .login_form input {
+    width: 55vw;
+  } */
 }
 
 @media only screen and (max-width: 501px) {
@@ -81,15 +95,11 @@
 
   .login_form {
     width: 100vh;
-    height: 100%;
+    height: calc(40vh - 60px);
     padding: 30px 60px 25px 60px;
-    
-  }
-/* 
-  .login_form input {
-    
   }
 
-  #sign_up_button {
-  } */
+  .login_form input {
+    width: 55vw;
+  }
 }
