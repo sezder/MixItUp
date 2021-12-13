@@ -61,6 +61,19 @@ li .text_large {
   padding: 8px 10px;
 }
 
+.profile-dropdown {
+  background-color: #090c0b;
+  color: #d1c1ae;
+  display: flex;
+  flex-direction: column;
+  z-index: 4;
+  height: 120px;
+  padding-bottom: 5px;
+  position: absolute;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
 @media only screen and (min-width: 1000px) and (max-width: 3000px) {
   #nav_plus_div {
     display: none;
