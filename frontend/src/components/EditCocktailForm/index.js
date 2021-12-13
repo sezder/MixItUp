@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateCocktail,
@@ -20,6 +21,7 @@ function EditCocktailForm() {
   const cocktail = useSelector((state) => state.cocktail[cocktailId]);
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
+
 
   const [name, setName] = useState(cocktail?.name || "");
   const [description, setDescription] = useState(cocktail?.description || "");
@@ -46,6 +48,8 @@ function EditCocktailForm() {
     if (!imageUrl?.length) errors.push("Provide an image url.");
     setErrors(errors);
   }, [name, description, imageUrl]);
+
+  if (user?.id!== cocktail?.userId) return <Redirect to="/home" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
