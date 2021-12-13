@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createReview } from "../../store/review";
 import {
   updateReview,
-  // destroyReview,
   getReviews,
 } from "../../store/review";
 import "./EditCocktailReview.css";
-// import { getReviews } from "../../store/review";
+
+
 
 // {reviewRating, reviewBody, cocktailId, userId};
 
@@ -19,12 +18,6 @@ function EditCocktailReview() {
   let { cocktailId, reviewId } = useParams();
   reviewId = Number(reviewId);
   cocktailId = Number(cocktailId);
-  // console.log(obj, 'params off edit review');
-  // const cocktailId = Number(paramsObj?.id);
-  // grab cocktail Id and reviewId, turn to numbers
-
-  // const cocktailId;
-  // const reviewId;
 
   useEffect(() => {
     dispatch(getReviews(cocktailId));
@@ -45,6 +38,8 @@ function EditCocktailReview() {
     if (!reviewBody.length) errors.push("Provide a comment with your review.");
     setErrors(errors);
   }, [reviewRating, reviewBody]);
+
+  if (user?.id!== review?.userId) return <Redirect to="/home" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -67,26 +62,16 @@ function EditCocktailReview() {
     }
   };
 
-  // const handleDelete = (e) => {
-  //   e.preventDefault();
-  //   const destroyReviewPayload = { userId, cocktailId };
-  //   // console.log(destroyCocktailPayload);
-  //   let destroyedReview = dispatch(destroyreview(destroyReviewPayload));
-  //   if (destroyedReview) {
-  //     history.push(`/cocktails/${cocktailId}`)
-  //   }
-  // };
-
   return (
     <div className="add_review_div">
       <h2 className="text_large">Leave a Review</h2>
 
       <form onSubmit={handleSubmit} className="add_review_form">
         {/* ERRORS */}
-        <ul className="errors">
+        {errors.length > 0 && <ul className="errors">
           {errors.length > 0 &&
             errors.map((error) => <li key={error}>{error}</li>)}
-        </ul>
+        </ul>}
 
         {/* REVIEW RATING */}
         <input

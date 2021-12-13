@@ -1,5 +1,5 @@
 /* links in capital letters on menu, any heder-type stuff */
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap'); 
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap");
 
 * {
   box-sizing: border-box;
@@ -8,30 +8,34 @@
 }
 
 body {
-  background-color: #DFDBD8;
+  background-color: #dfdbd8;
 }
 
 button {
   color: #c2a27c;
   font-weight: bold;
   padding: 10px 25px;
-  background-color: #232E2B;
+  background-color: #232e2b;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition:  all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
   width: fit-content;
   margin: 3px;
 }
 
 button:hover {
-  background-color: #090C0B;
+  background-color: #090c0b;
   box-shadow: -2px 2px rgba(0, 0, 0, 0.142);
   box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-a, p, h1, h2, h3 {
-  color: #D1C1AE; 
+a,
+p,
+h1,
+h2,
+h3 {
+  color: #d1c1ae;
   text-decoration: none;
 }
 
@@ -40,18 +44,17 @@ a:hover {
 }
 
 .text_small {
-  font-family: 'PT Serif', serif;
+  font-family: "PT Serif", serif;
   font-weight: 100;
-  color: #D1C1AE; 
-
-
+  color: #d1c1ae;
 }
 .text_medium {
-  font-family: 'PT Serif', serif;
+  font-family: "PT Serif", serif;
 }
 
-.text_large, h1 {
-  font-family: 'Source Sans Pro', sans-serif;
+.text_large,
+h1 {
+  font-family: "Source Sans Pro", sans-serif;
   color: #c2a27c;
 }
 
@@ -72,4 +75,17 @@ textarea {
   border-radius: 10px;
   padding: 10px;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.errors {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background-color: #D1C1AE;
+  border-radius: 15px;
+
+}
+
+.errors li {
+  padding: 3px 0;
 }

@@ -19,10 +19,6 @@ function NewCocktailReview() {
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
 
-  // useEffect(() => {
-  //   dispatch(getReviews(cocktailId));
-  // }, [dispatch]);
-
   useEffect(() => {
     const errors = [];
     if (reviewRating > 5 || reviewRating <= 0)
@@ -59,10 +55,9 @@ function NewCocktailReview() {
 
       <form onSubmit={handleSubmit} className="add_review_form">
         {/* ERRORS */}
-        <ul className="errors">
-          {errors.length > 0 &&
-            errors.map((error) => <li key={error}>{error}</li>)}
-        </ul>
+        {errors.length > 0 && <ul className="errors">
+            {errors.map((error) => <li key={error}>{error}</li>)}
+        </ul>}
 
         {/* REVIEW RATING */}
         <input

@@ -17,9 +17,4 @@ router.use("/users", usersRouter);
 router.use("/reviews", reviewFeedRouter);
 router.use("/cocktails", cocktailsRouter);
 
-
-// router.post("/test", (req, res) => {
-//   res.json({ requestBody: req.body });
-// });
-
 module.exports = router;

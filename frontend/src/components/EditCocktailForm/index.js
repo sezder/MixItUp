@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateCocktail,
@@ -20,6 +21,7 @@ function EditCocktailForm() {
   const cocktail = useSelector((state) => state.cocktail[cocktailId]);
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
+
 
   const [name, setName] = useState(cocktail?.name || "");
   const [description, setDescription] = useState(cocktail?.description || "");
@@ -47,6 +49,8 @@ function EditCocktailForm() {
     setErrors(errors);
   }, [name, description, imageUrl]);
 
+  if (user?.id!== cocktail?.userId) return <Redirect to="/home" />;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (errors.length > 0) return;
@@ -70,7 +74,6 @@ function EditCocktailForm() {
   const handleDelete = (e) => {
     e.preventDefault();
     const destroyCocktailPayload = { userId, cocktailId };
-    // console.log(destroyCocktailPayload);
     let destroyedCocktail = dispatch(destroyCocktail(destroyCocktailPayload));
     if (destroyedCocktail) {
       history.push("/cocktails");
@@ -91,10 +94,13 @@ function EditCocktailForm() {
         <form onSubmit={handleSubmit} className="edit_cocktail_form">
           
           {/* ERRORS */}
-          <ul className="errors">
-            {errors.length > 0 &&
-              errors.map((error) => <li key={error}>{error}</li>)}
-          </ul>
+          {errors.length > 0 && (
+            <ul className="errors">
+              {errors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          )}
 
           {/* NAME */}
           <input
