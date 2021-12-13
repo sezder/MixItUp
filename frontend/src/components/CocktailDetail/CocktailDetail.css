@@ -1,8 +1,9 @@
 h1 {
   padding-bottom: 20px;
 }
-#card_link {
+#card_link:hover {
   z-index: 0;
+  text-decoration: none;
 }
 
 .card {

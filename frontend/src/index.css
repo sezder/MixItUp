@@ -37,6 +37,11 @@ h2,
 h3 {
   color: #d1c1ae;
   text-decoration: none;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+li {
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 a:hover {
@@ -44,12 +49,12 @@ a:hover {
 }
 
 .text_small {
-  font-family: "PT Serif", serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-weight: 100;
   color: #d1c1ae;
 }
 .text_medium {
-  font-family: "PT Serif", serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .text_large,

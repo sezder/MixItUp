@@ -1,5 +1,10 @@
 .cocktail_edit_div {
   display: flex;
+  height: calc(100vh - 60px);
+}
+
+.edit_cocktail_form_div {
+  height: calc(100vh - 60px);
 }
 
 .cocktail_edit_img_div {
@@ -48,16 +53,18 @@
   align-items: center;
   z-index: 0;
   background-color: #465d57;
+  height: calc(100vh - 40px);
 }
 
-.edit_cocktail_form {
+form.edit_cocktail_form {
   width: 40vw;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 50px;
   background-color: #F6F4F4;
+  height: calc(100vh - 100px);
 }
 .edit_cocktail_form input {
   align-items: space-between;

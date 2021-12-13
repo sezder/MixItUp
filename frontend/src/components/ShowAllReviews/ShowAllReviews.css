@@ -11,12 +11,14 @@
   background-position: center;
   background-size: 120px;
   background-repeat: no-repeat;
+  padding-right: 60px;
 }
 
 #home_show_reviews_div {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 450px; 
 }
 
 .home_reviews_content {

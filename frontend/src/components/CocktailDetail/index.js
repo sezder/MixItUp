@@ -18,7 +18,7 @@ const CocktailDetail = ({ id, name, description, imageUrl, recipeUrl }) => {
 
   return (
     <div className="card">
-      <a href={`/cocktails/${id}`}>
+      <a href={`/cocktails/${id}`} id="card_link">
         <div className="card_img_container">
           <img src={imageUrl} className="card_img_container"></img>
         </div>
