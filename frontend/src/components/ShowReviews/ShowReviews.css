@@ -5,7 +5,7 @@
   margin: 10px 0; 
   padding: 15px;
   border-radius: 30px;
-  width: 300px;
+  width: 50vw;
   box-shadow: -5px 5px rgb(0 0 0 / 14%);
 }
 
@@ -31,7 +31,7 @@
 }
 
 #username_review_card {
-  padding-right: 35%;
+  padding-right: 68%;
 }
 
 

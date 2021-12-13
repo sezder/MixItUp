@@ -60,18 +60,12 @@ const IndivCocktail = () => {
           <a href={indivCocktail?.recipeUrl}>
             <button>Try It Out</button>
           </a>
-          {/* If userid matches cocktail.userId, render two buttons */}
           {userId === indivCocktail?.userId && (
             <NavLink to={`/cocktails/${id}/edit`}>
               <button>Edit</button>
             </NavLink>
           )}
         </div>
-      </div>
-      <div className="explore_cocktails_div">
-        <p>STILL THIRSTY?</p>
-        <p>Check these out</p>
-        <p>EXPLORE COMPONENT</p>
       </div>
 
       <div className="review_container">{reviewRestriction}</div>
