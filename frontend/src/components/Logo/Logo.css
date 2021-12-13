@@ -18,3 +18,7 @@
   background-color: #465d57;
   margin: 0 5px;
 }
+
+#logo_a:hover {
+text-decoration: none;
+}
