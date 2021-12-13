@@ -19,10 +19,6 @@ function NewCocktailReview() {
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
 
-  // useEffect(() => {
-  //   dispatch(getReviews(cocktailId));
-  // }, [dispatch]);
-
   useEffect(() => {
     const errors = [];
     if (reviewRating > 5 || reviewRating <= 0)

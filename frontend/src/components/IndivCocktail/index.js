@@ -27,9 +27,6 @@ const IndivCocktail = () => {
   const indivCocktail = cocktailsObj[id];
 
   const reviewsObj = useSelector((state) => state.review);
-  // console.log(reviewsObj, 'reviews Obj')
-  // const userObj = reviewsObj?.User;
-  // console.log(userObj, 'userobj')
   const reviews = Object.values(reviewsObj);
 
   let reviewRestriction;
