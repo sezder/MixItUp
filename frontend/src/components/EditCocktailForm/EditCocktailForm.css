@@ -116,4 +116,15 @@
     padding: 30px 60px 25px 60px;
   }
 
+  .edit_cocktail_form input {
+    width: 90vw;
+  }
+
+  .bg_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+  }
+
 }

@@ -33,7 +33,7 @@
   width: 30%;
   padding: 20px;
   text-align: center;
-  z-index: -2;
+  /* z-index: -2; */
 }
 
 .cocktail_add_img_div img {

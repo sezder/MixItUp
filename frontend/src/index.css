@@ -88,4 +88,5 @@ textarea {
 
 .errors li {
   padding: 3px 0;
+  list-style: none;
 }

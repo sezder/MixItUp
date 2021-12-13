@@ -21,10 +21,6 @@
   flex-direction: column;
 }
 
-.errors li {
-  list-style: none;
-}
-
 .add_review_form textarea {
   width: 40vw;
   height: 10vh;
@@ -33,4 +29,21 @@
   align-self: center;
   width: fit-content;
   margin-top: 10px;
+}
+
+
+@media only screen and (min-width: 1000px) and (max-width: 3000px) {
+
+}
+
+@media only screen and (min-width: 750px) and (max-width: 999px) {
+
+}
+
+@media only screen and (min-width: 502px) and (max-width: 750px) {
+
+}
+
+@media only screen and (max-width: 501px) {
+
 }
