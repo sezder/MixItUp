@@ -62,16 +62,6 @@ function EditCocktailReview() {
     }
   };
 
-  // const handleDelete = (e) => {
-  //   e.preventDefault();
-  //   const destroyReviewPayload = { userId, cocktailId };
-  //   // console.log(destroyCocktailPayload);
-  //   let destroyedReview = dispatch(destroyreview(destroyReviewPayload));
-  //   if (destroyedReview) {
-  //     history.push(`/cocktails/${cocktailId}`)
-  //   }
-  // };
-
   return (
     <div className="add_review_div">
       <h2 className="text_large">Leave a Review</h2>

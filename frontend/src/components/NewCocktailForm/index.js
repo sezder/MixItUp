@@ -23,6 +23,7 @@ function NewCocktailForm() {
     if (name.length > 255) errors.push("Name must be less than 255 characters");
     if (!description.length) errors.push("Provide a description.");
     if (!imageUrl.length) errors.push("Provide an image url.");
+    if (!recipeUrl.length) errors.push("Provide an recipe url.");
     setErrors(errors);
   }, [name, description, imageUrl]);
 
@@ -64,7 +65,7 @@ function NewCocktailForm() {
           {/* ERRORS */}
           <ul className="errors">
             {errors.length > 0 &&
-              errors.map((error) => <ul key={error}>{error}</ul>)}
+              errors.map((error) => <li key={error}>{error}</li>)}
           </ul>
 
           {/* NAME */}

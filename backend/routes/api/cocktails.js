@@ -23,6 +23,8 @@ const validateCocktail = [
     .isURL({ require_protocol: false, require_host: false })
     .withMessage("Must be a valid image url."),
   check("recipeUrl")
+    .exists({ checkFalsy: true })
+    .withMessage("Provide a recipe url.")
     .isURL({ require_protocol: false, require_host: false })
     .withMessage("Must be a valid recipe url."),
   check("userId").exists({ checkFalsy: true }),

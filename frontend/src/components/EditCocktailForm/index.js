@@ -74,7 +74,6 @@ function EditCocktailForm() {
   const handleDelete = (e) => {
     e.preventDefault();
     const destroyCocktailPayload = { userId, cocktailId };
-    // console.log(destroyCocktailPayload);
     let destroyedCocktail = dispatch(destroyCocktail(destroyCocktailPayload));
     if (destroyedCocktail) {
       history.push("/cocktails");
