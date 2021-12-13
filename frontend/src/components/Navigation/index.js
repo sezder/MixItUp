@@ -1,7 +1,7 @@
 // frontend/src/components/Navigation/index.js
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import DemoUser from "../DemoUser";
@@ -55,7 +55,7 @@ function Navigation({ isLoaded }) {
         <li id="nav_plus_li">
           <NavLink to="/cocktails/new">
             <div id="nav_plus_div">
-            <i className="fas fa-plus" id="nav_plus"></i>
+              <i className="fas fa-plus" id="nav_plus"></i>
             </div>
           </NavLink>
         </li>

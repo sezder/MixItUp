@@ -37,16 +37,6 @@
   margin: 10px;
 }
 
-/* Extract out into own component? */
-.explore_cocktails_div {
-  display: flex;
-  flex-direction: column;
-  width: 60vw;
-  border: 4px white solid;
-  padding: 15px;
-  margin: 20px;
-}
-
 .review_container {
   width: 100vw;
   height: fit-content;

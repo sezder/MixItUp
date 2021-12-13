@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { destroyReview } from "../../store/review";
@@ -30,6 +30,7 @@ const ShowReviews = ({
   return (
     <div className="show_reviews_div">
       <div className="rating_user_div">
+        {/* TROUBLESHOOT LATER */}
         {/* <div className="profile_circle">
           <p>{user?.username.slice(0, 1)}</p>
         </div> */}

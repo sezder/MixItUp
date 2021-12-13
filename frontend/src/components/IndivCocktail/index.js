@@ -21,7 +21,7 @@ const IndivCocktail = () => {
   useEffect(() => {
     dispatch(getCocktails());
     dispatch(getReviews(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const cocktailsObj = useSelector((state) => state.cocktail);
   const indivCocktail = cocktailsObj[id];
@@ -47,11 +47,10 @@ const IndivCocktail = () => {
 
   return (
     <div className="indiv_container">
-      {/* Content for this cocktail */}
       <div className="curr_cocktail_div">
         {/* Image */}
         <div className="indiv_img_container">
-          <img src={indivCocktail?.imageUrl}></img>
+          <img src={indivCocktail?.imageUrl} alt={indivCocktail?.name}></img>
         </div>
 
         <div className="curr_cocktail_details">

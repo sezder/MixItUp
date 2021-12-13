@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { NavLink, Redirect } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createCocktail } from "../../store/cocktail";
 import "./NewCocktailForm.css";
@@ -51,7 +50,7 @@ function NewCocktailForm() {
     <div className="cocktail_add_div">
       <div className="cocktail_add_img_div">
         <div className="background_image"></div>
-        <img src={imageUrl}></img>
+        <img src={imageUrl} alt=""></img>
         <div className="bg_text">
           <p>Provide a url to preview your photo</p>
         </div>

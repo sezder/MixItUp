@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-// import { useHistory } from "react-router-dom";
+import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { getCocktails } from "../../store/cocktail";
 import { getAllReviews } from "../../store/review";
 import "./Home.css";
 import CocktailList from "../CocktailList";

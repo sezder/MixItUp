@@ -8,8 +8,6 @@ nav ul {
   justify-content: space-around;
   align-items: center;
   height: 60px;
-  /* align-content: space-around; */
-  /* flex-direction: row; */
   padding: 0 40px;
 }
 

@@ -44,10 +44,10 @@ function EditCocktailForm() {
     if (name?.length > 255)
       errors.push("Name must be less than 255 characters");
     if (!description?.length) errors.push("Provide a description.");
-    // error handling for an imageUrl actually beign a link?
     if (!imageUrl?.length) errors.push("Provide an image url.");
+    if (!recipeUrl?.length) errors.push("Provide a recipe url.");
     setErrors(errors);
-  }, [name, description, imageUrl]);
+  }, [name, description, imageUrl, recipeUrl]);
 
   if (user?.id!== cocktail?.userId) return <Redirect to="/home" />;
 
@@ -84,7 +84,7 @@ function EditCocktailForm() {
     <div className="cocktail_edit_div">
       <div className="cocktail_edit_img_div">
         <div className="background_image"></div>
-        <img src={imageUrl}></img>
+        <img src={imageUrl} alt="Several colorful cocktails aligned on a table"></img>
         <div className="bg_text">
           <p>Provide a url to preview your photo</p>
         </div>
