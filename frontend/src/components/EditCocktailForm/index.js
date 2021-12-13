@@ -94,10 +94,13 @@ function EditCocktailForm() {
         <form onSubmit={handleSubmit} className="edit_cocktail_form">
           
           {/* ERRORS */}
-          <ul className="errors">
-            {errors.length > 0 &&
-              errors.map((error) => <li key={error}>{error}</li>)}
-          </ul>
+          {errors.length > 0 && (
+            <ul className="errors">
+              {errors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          )}
 
           {/* NAME */}
           <input

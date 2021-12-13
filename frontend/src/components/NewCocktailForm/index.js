@@ -23,9 +23,9 @@ function NewCocktailForm() {
     if (name.length > 255) errors.push("Name must be less than 255 characters");
     if (!description.length) errors.push("Provide a description.");
     if (!imageUrl.length) errors.push("Provide an image url.");
-    if (!recipeUrl.length) errors.push("Provide an recipe url.");
+    if (!recipeUrl.length) errors.push("Provide a recipe url.");
     setErrors(errors);
-  }, [name, description, imageUrl]);
+  }, [name, description, imageUrl, recipeUrl]);
 
   if (!user) return <Redirect to="/login" />;
 
@@ -38,14 +38,11 @@ function NewCocktailForm() {
       description,
       imageUrl,
       recipeUrl,
-      userId
+      userId,
     };
 
-    // returns a promise, can't key into it to redirect to new cocktail page
     let createdCocktail = dispatch(createCocktail(newCocktail));
-
     if (createdCocktail) {
-      // how to pull cocktail.id out of state to push to the path?
       history.push(`/cocktails`);
     }
   };
@@ -63,10 +60,13 @@ function NewCocktailForm() {
         <h2>Add a Cocktail</h2>
         <form onSubmit={handleSubmit} className="add_cocktail_form">
           {/* ERRORS */}
-          <ul className="errors">
-            {errors.length > 0 &&
-              errors.map((error) => <li key={error}>{error}</li>)}
-          </ul>
+          {errors.length > 0 && (
+            <ul className="errors">
+              {errors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          )}
 
           {/* NAME */}
           <input
@@ -95,7 +95,7 @@ function NewCocktailForm() {
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
           />
-
+          {/* RECIPE URL */}
           <input
             placeholder="Recipe url"
             type="text"
@@ -105,7 +105,11 @@ function NewCocktailForm() {
           />
 
           {/* SUBMIT */}
-          <button type="submit" disabled={errors.length > 0} className="add_cocktail_button">
+          <button
+            type="submit"
+            disabled={errors.length > 0}
+            className="add_cocktail_button"
+          >
             Add Cocktail
           </button>
         </form>

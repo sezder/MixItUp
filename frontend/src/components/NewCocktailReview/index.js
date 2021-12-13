@@ -55,10 +55,9 @@ function NewCocktailReview() {
 
       <form onSubmit={handleSubmit} className="add_review_form">
         {/* ERRORS */}
-        <ul className="errors">
-          {errors.length > 0 &&
-            errors.map((error) => <li key={error}>{error}</li>)}
-        </ul>
+        {errors.length > 0 && <ul className="errors">
+            {errors.map((error) => <li key={error}>{error}</li>)}
+        </ul>}
 
         {/* REVIEW RATING */}
         <input
