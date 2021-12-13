@@ -1,7 +1,7 @@
 // frontend/src/components/Navigation/index.js
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import DemoUser from "../DemoUser";
@@ -32,21 +32,34 @@ function Navigation({ isLoaded }) {
         <li>
           <Logo />
         </li>
-        <li>
+        <li id="home">
           <NavLink className="text_large" exact to="/home">
             HOME
           </NavLink>
         </li>
-        <li>
+        <li id="explore_nav">
           <NavLink to="/cocktails" className="text_large">
             EXPLORE
           </NavLink>
         </li>
         <li>
-          <NavLink to="/cocktails/new" className="text_large">
+          <NavLink
+            to="/cocktails/new"
+            className="text_large"
+            id="submit_cocktail"
+          >
             SUBMIT COCKTAIL
           </NavLink>
         </li>
+
+        <li id="nav_plus_li">
+          <NavLink to="/cocktails/new">
+            <div id="nav_plus_div">
+              <i className="fas fa-plus" id="nav_plus"></i>
+            </div>
+          </NavLink>
+        </li>
+
         <li>{isLoaded && sessionLinks}</li>
         <div id="about_me_container">
           <div>

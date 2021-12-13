@@ -12,6 +12,9 @@
 
 .indiv_img_container img {
   width: 60vw;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  margin-top: 20px;
 }
 
 .curr_cocktail_details {
@@ -21,6 +24,9 @@
   align-items: center;
   background-color: #465D57;
   padding: 20px 15px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  margin-bottom: 20px; 
 }
 
 .curr_cocktail_details h2{
@@ -29,16 +35,6 @@
 
 .curr_cocktail_details button {
   margin: 10px;
-}
-
-/* Extract out into own component? */
-.explore_cocktails_div {
-  display: flex;
-  flex-direction: column;
-  width: 60vw;
-  border: 4px white solid;
-  padding: 15px;
-  margin: 20px;
 }
 
 .review_container {

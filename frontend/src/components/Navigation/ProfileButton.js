@@ -1,4 +1,3 @@
-// frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
@@ -31,8 +30,8 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button onClick={openMenu} id="profile_button">
+        <i className="fas fa-user-circle fa-lg" />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">

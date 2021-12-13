@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createReview } from "../../store/review";
 import "./NewCocktailReview.css";
-// import { getReviews } from "../../store/review";
-
-// {reviewRating, reviewBody, cocktailId, userId};
 
 function NewCocktailReview() {
-  const history = useHistory();
   const paramsObj = useParams();
   const cocktailId = Number(paramsObj?.id);
   const dispatch = useDispatch();

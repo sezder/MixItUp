@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import "./Splash.css";
 import "../../index.css";
-import ProfileButton from "../Navigation/ProfileButton";
-import DemoUser from "../DemoUser";
-import LoginFormModal from "../LoginFormModal";
 import BackgroundGif from "./looping_cocktail.mp4";
 import Logo from "../Logo"
 
 const Splash = () => {
-  const sessionUser = useSelector((state) => state.session.user);
-
-
-
   return (
     <div className="splash_container">
         <video muted autoplay="autoplay" loop>

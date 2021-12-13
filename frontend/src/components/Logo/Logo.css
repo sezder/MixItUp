@@ -8,7 +8,7 @@
   list-style: none;
   font-size: 35px;
   color: #c2a27c;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .logo_dot {
@@ -17,4 +17,8 @@
   border-radius: 10px;
   background-color: #465d57;
   margin: 0 5px;
+}
+
+#logo_a:hover {
+  text-decoration: none;
 }

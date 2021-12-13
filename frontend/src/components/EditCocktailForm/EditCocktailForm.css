@@ -1,5 +1,10 @@
 .cocktail_edit_div {
   display: flex;
+  height: calc(100vh - 60px);
+}
+
+.edit_cocktail_form_div {
+  height: calc(100vh - 60px);
 }
 
 .cocktail_edit_img_div {
@@ -21,8 +26,7 @@
 }
 
 .bg_text {
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.6); /* Black w/opacity/see-through */
+  background-color: rgba(0,0,0, 0.6); 
   color: #F6F4F4;
   font-weight: bold;
   border: 3px solid #F6F4F4;
@@ -41,23 +45,23 @@
 }
 
 .edit_cocktail_form_div {
-  /* width: 100%; */
-  /* padding-left: 10%; */
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 0;
   background-color: #465d57;
+  height: calc(100vh - 40px);
 }
 
-.edit_cocktail_form {
+form.edit_cocktail_form {
   width: 40vw;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 50px;
   background-color: #F6F4F4;
+  height: calc(100vh - 100px);
 }
 .edit_cocktail_form input {
   align-items: space-between;
@@ -114,6 +118,17 @@
     width: 100vh;
     height: 100%;
     padding: 30px 60px 25px 60px;
+  }
+
+  .edit_cocktail_form input {
+    width: 90vw;
+  }
+
+  .bg_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
   }
 
 }

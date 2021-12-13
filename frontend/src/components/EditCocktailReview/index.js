@@ -5,11 +5,6 @@ import {
   updateReview,
   getReviews,
 } from "../../store/review";
-import "./EditCocktailReview.css";
-
-
-
-// {reviewRating, reviewBody, cocktailId, userId};
 
 function EditCocktailReview() {
   const history = useHistory();
@@ -21,7 +16,7 @@ function EditCocktailReview() {
 
   useEffect(() => {
     dispatch(getReviews(cocktailId));
-  }, [dispatch]);
+  }, [dispatch, cocktailId]);
 
   const review = useSelector((state) => state.review[reviewId]);
   const user = useSelector((state) => state.session.user);
@@ -53,8 +48,6 @@ function EditCocktailReview() {
       cocktailId,
       userId,
     };
-
-    console.log('editedReview payload', editedReview)
 
     const response = dispatch(updateReview(editedReview));
     if (response) {
@@ -98,9 +91,6 @@ function EditCocktailReview() {
         >
           Update
         </button>
-        {/* <button onClick={handleDelete} className="add_review_button">
-            Delete
-          </button> */}
       </form>
     </div>
   );

@@ -5,6 +5,7 @@
   background-color: #f9f7f7;
   padding: 20px;
   border-radius: 20px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .add_review_div h2 {
@@ -21,10 +22,6 @@
   flex-direction: column;
 }
 
-.errors li {
-  list-style: none;
-}
-
 .add_review_form textarea {
   width: 40vw;
   height: 10vh;
@@ -34,3 +31,4 @@
   width: fit-content;
   margin-top: 10px;
 }
+

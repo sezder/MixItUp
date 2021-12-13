@@ -19,6 +19,10 @@ section {
   align-items: center;
 }
 
+.cocktail_list_div {
+  padding-top: 30px;
+}
+
 
 @media only screen and (max-width: 1000px) {
 

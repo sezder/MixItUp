@@ -9,18 +9,13 @@
   width: 60%;
   height: calc(100vh - 60px);
   background-size: cover;
-  /* background-position: center;  */
   background-position: bottom 0 left 0;
   display: flex;
   align-content: center;
 }
 
 .login_form_div {
-  /* width: 100%; */
-  /* padding-left: 10%; */
   display: flex;
-  /* flex-direction: column; */
-  /* align-content: center; */
 }
 
 .login_form {
@@ -49,9 +44,6 @@
   align-self: center;
 }
 
-@media only screen and (min-width: 1000px) and (max-width: 3000px) {
-
-}
 
 @media only screen and (min-width: 750px) and (max-width: 999px) {
   .login_img_div {
