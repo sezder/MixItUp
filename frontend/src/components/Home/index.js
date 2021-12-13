@@ -16,7 +16,6 @@ const Home = () => {
 
   const allReviewsObj = useSelector((state) => state.review);
   const allReviews = Object.values(allReviewsObj);
-  console.log(allReviews, 'allReviews')
 
   return (
     <div className="home_cocktails_reviews">

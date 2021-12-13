@@ -27,10 +27,8 @@ const loadAllReviews = (reviews) => ({
 
 export const getAllReviews = () => async (dispatch) => {
   const res = await csrfFetch(`/api/reviews`);
-  // console.log(res, 'res in getAllReviews')
   if (res.ok) {
     const reviews = await res.json();
-    console.log(reviews, 'reviews in GetAllReviews')
     dispatch(loadAllReviews(reviews));
     return reviews;
   }
@@ -93,8 +91,6 @@ const editReview = (review) => ({
 export const updateReview =
   ({ reviewRating, reviewBody, cocktailId, userId, reviewId }) =>
   async (dispatch) => {
-    console.log("reviewId in updateReview THUNK", reviewId);
-    console.log("userId in updateReview THUNK", userId);
     const res = await csrfFetch(
       `/api/cocktails/${cocktailId}/reviews/${reviewId}/edit`,
       {
@@ -165,7 +161,6 @@ const reviewReducer = (state = initialState, action) => {
       action.reviews.forEach((review) => {
         allReviews[review.id] = review;
       });
-      console.log(allReviews, 'after normalization');
       return { ...state, ...allReviews };
     case GET_REVIEW:
       const oneReview = {};

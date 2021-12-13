@@ -54,8 +54,6 @@ function EditCocktailReview() {
       userId,
     };
 
-    console.log('editedReview payload', editedReview)
-
     const response = dispatch(updateReview(editedReview));
     if (response) {
       history.push(`/cocktails/${cocktailId}`);

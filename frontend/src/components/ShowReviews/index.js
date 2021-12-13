@@ -30,10 +30,10 @@ const ShowReviews = ({
   return (
     <div className="show_reviews_div">
       <div className="rating_user_div">
-        <div className="profile_circle">
+        {/* <div className="profile_circle">
           <p>{user?.username.slice(0, 1)}</p>
-        </div>
-        <p id="username_review_card">{user?.username}</p>
+        </div> */}
+        {/* <p id="username_review_card">{user?.username}</p> */}
         <p>Rating: {reviewRating}</p>
       </div>
       <p>{reviewBody}</p>
