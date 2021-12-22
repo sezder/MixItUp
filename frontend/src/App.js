@@ -12,6 +12,7 @@ import EditCocktailForm from "./components/EditCocktailForm";
 import EditCocktailReview from "./components/EditCocktailReview";
 import Home from "./components/Home";
 import Splash from "./components/Splash";
+import EditableStarRating from "./components/EditableStarRating";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/test" exact>
+            <EditableStarRating />
+          </Route>
           <Route path="/" exact>
             <Splash />
           </Route>
