@@ -1,5 +1,4 @@
-// backend/utils/auth.js
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); // JWT: proposed Internet Standard for creating data w/ optional signature and/or optional encryption 
 const { jwtConfig } = require('../config');
 const { User } = require('../db/models');
 
@@ -49,6 +48,7 @@ const restoreUser = (req, res, next) => {
     });
 };
 
+// Backend middleware to restrict access 
 const requireAuth = [
     restoreUser,
     function (req, res, next) {

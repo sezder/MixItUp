@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   },
+  // set the scope of what can be queried (e.g. generally exclude hashedPassword)
   {
     defaultScope: {
       attributes: {

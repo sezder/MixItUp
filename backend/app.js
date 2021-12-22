@@ -1,12 +1,12 @@
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
-const csurf = require("csurf");
-const helmet = require("helmet");
-const cookieParser = require("cookie-parser");
-const { environment } = require("./config");
+const express = require("express"); // Node.js framework for servers/APIs
+const morgan = require("morgan"); // HTTP request logger middleware
+const cors = require("cors"); // Cross-origin Resource Sharing: Connect/Express middleware
+const csurf = require("csurf"); // Protects against cross-site request forgery (e.g. phishing site creates AJAX button/form that creates a request to your site)
+const helmet = require("helmet"); // Connect-style middleware, helps secure Express apps via setting HTTP headers
+const cookieParser = require("cookie-parser"); // Parse Cookie header and populate req.cookies w/ cookie obj
+const { ValidationError } = require("sequelize"); // Extends Error -> BaseError -> ValidationError: thrown when sequelize validation failed 
+const { environment } = require("./config"); 
 const routes = require("./routes");
-const { ValidationError } = require("sequelize");
 
 const isProduction = environment === "production";
 
@@ -23,7 +23,7 @@ if (!isProduction) {
   // enable cors only in development
   app.use(cors());
 }
-// helmet helps set a variety of headers to better secure your app
+// helmet helps set a variety of headers to better secure app
 app.use(
   helmet({
     contentSecurityPolicy: false,
@@ -75,4 +75,5 @@ app.use((err, _req, res, _next) => {
     stack: isProduction ? null : err.stack,
   });
 });
+
 module.exports = app;

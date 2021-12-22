@@ -1,6 +1,6 @@
-// backend/config/database.js
 const config = require("./index");
 
+// set up db to reference config/index, which then references .env
 const db = config.db;
 const username = db.username;
 const password = db.password;
