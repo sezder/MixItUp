@@ -1,9 +1,4 @@
-#!/usr/bin/env node
-// backend/bin/www
-
-// Here, you will be starting your Express application to listen for 
-// server requests only after authenticating your database connection.
-
+// Express application listens for server requests after db connection auth
 const { port } = require("../config");
 
 const app = require("../app");

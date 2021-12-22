@@ -1,13 +1,16 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-
 const { check } = require("express-validator");
+
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
 const { Cocktail, Cocktail_Review, User } = require("../../db/models");
 
 const router = express.Router();
-
+// TO DO: 
+// - Extract out /reviews into another nested router
+// - Extract out validations?
+// - Regex validations for digits in url
 const validateCocktail = [
   check("name")
     .exists({ checkFalsy: true })
@@ -31,7 +34,7 @@ const validateCocktail = [
   handleValidationErrors,
 ];
 
-// EDIT COCKTAIL
+// Edit a cocktail:
 router.put(
   `/:cocktailId(\\d+)/edit`,
   requireAuth,
@@ -60,6 +63,7 @@ router.put(
   })
 );
 
+// Delete a cocktail:
 router.delete(
   `/:cocktailId(\\d+)/edit`,
   requireAuth,
@@ -104,6 +108,7 @@ const validateReview = [
     .withMessage("Review must be affiliated with a user."),
 ];
 
+// Create a review for a particular cocktail: 
 router.post(
   "/:cocktailId/reviews",
   validateReview,
@@ -120,6 +125,7 @@ router.post(
   })
 );
 
+// Edit a review for a particular cocktail: 
 router.put(
   `/:cocktailId(\\d+)/reviews/:reviewId(\\d+)/edit`,
   requireAuth,
@@ -147,6 +153,7 @@ router.put(
   })
 );
 
+// Edit a review for a particular cocktail: 
 router.delete(
   `/:cocktailId(\\d+)/reviews/:reviewId(\\d+)/edit`,
   requireAuth,
@@ -168,6 +175,7 @@ router.delete(
   })
 );
 
+// Get all the reviews for a particular cocktail: 
 router.get(
   "/:cocktailId/reviews",
   asyncHandler(async (req, res) => {
@@ -180,7 +188,7 @@ router.get(
   })
 );
 
-//CREATE NEW COCKTAIL
+// Create a new cocktail: 
 router.post(
   "/",
   validateCocktail,
@@ -198,6 +206,7 @@ router.post(
   })
 );
 
+// Get a particular cocktail: 
 router.get(
   "/:cocktailId",
   asyncHandler(async (req, res) => {
@@ -207,6 +216,7 @@ router.get(
   })
 );
 
+// Get all cocktails: 
 router.get(
   "/",
   asyncHandler(async function (req, res) {
