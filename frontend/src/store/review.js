@@ -17,23 +17,6 @@ export const getReviews = (cocktailId) => async (dispatch) => {
   }
 };
 
-// GET ALL REVIEWS
-const GET_ALL_REVIEWS = "reviews/GET_ALL_REVIEWS";
-
-const loadAllReviews = (reviews) => ({
-  type: GET_ALL_REVIEWS,
-  reviews,
-});
-
-export const getAllReviews = () => async (dispatch) => {
-  const res = await csrfFetch(`/api/reviews`);
-  if (res.ok) {
-    const reviews = await res.json();
-    dispatch(loadAllReviews(reviews));
-    return reviews;
-  }
-};
-
 const GET_REVIEW = "reviews/GET_REVIEW";
 
 const loadReview = (review) => ({
@@ -156,12 +139,6 @@ const reviewReducer = (state = initialState, action) => {
         allReviewsByCocktail[review.id] = review;
       });
       return { ...state, ...allReviewsByCocktail };
-    case GET_ALL_REVIEWS:
-      const allReviews = {};
-      action.reviews.forEach((review) => {
-        allReviews[review.id] = review;
-      });
-      return { ...state, ...allReviews };
     case GET_REVIEW:
       const oneReview = {};
       action.reviews.forEach((review) => {

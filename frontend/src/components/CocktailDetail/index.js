@@ -1,15 +1,17 @@
-import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getCocktails } from "../../store/cocktail";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import { getCocktails} from "../../store/cocktail";
+import { getReviews } from "../../store/review";
 import "./CocktailDetail.css";
 import "../../index.css";
 
 const CocktailDetail = ({ id, name, description, imageUrl}) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getCocktails());
-  // }, [dispatch]);
+  useEffect(() => {
+    // dispatch(getCocktails());
+    // dispatch(getReviews(id));
+  }, [dispatch]);
 
   // const cocktailsObj = useSelector((state) => state.cocktail);
   // const cocktails = Object.values(cocktailsObj);
