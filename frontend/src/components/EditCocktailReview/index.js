@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  updateReview,
-  getReviews,
-} from "../../store/review";
+import StarRatingComponent from 'react-star-rating-component';
+import { updateReview, getReviews } from "../../store/review";
 
 function EditCocktailReview() {
   const history = useHistory();
@@ -34,7 +32,7 @@ function EditCocktailReview() {
     setErrors(errors);
   }, [reviewRating, reviewBody]);
 
-  if (user?.id!== review?.userId) return <Redirect to="/home" />;
+  if (user?.id !== review?.userId) return <Redirect to="/home" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,23 +53,32 @@ function EditCocktailReview() {
     }
   };
 
+  const onStarClick = (nextValue, prevValue, name) => {
+    return setReviewRating(nextValue)
+  }
+
   return (
     <div className="add_review_div">
       <h2 className="text_large">Leave a Review</h2>
 
       <form onSubmit={handleSubmit} className="add_review_form">
         {/* ERRORS */}
-        {errors.length > 0 && <ul className="errors">
-          {errors.length > 0 &&
-            errors.map((error) => <li key={error}>{error}</li>)}
-        </ul>}
+        {errors.length > 0 && (
+          <ul className="errors">
+            {errors.length > 0 &&
+              errors.map((error) => <li key={error}>{error}</li>)}
+          </ul>
+        )}
 
         {/* REVIEW RATING */}
-        <input
-          type="number"
-          name="reviewRating"
+        <h2>Rating from state: {reviewRating}</h2>
+        <StarRatingComponent
+          name="rate"
+          starCount={5}
           value={reviewRating}
-          onChange={(e) => setReviewRating(e.target.value)}
+          onStarClick={onStarClick}
+          starColor="#465d57"
+          emptyStarColor="#d1c1ae"
         />
 
         {/* REVIEW BODY */}
