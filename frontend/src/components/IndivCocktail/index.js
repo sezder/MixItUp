@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import StarRatingComponent from "react-star-rating-component";
 import { getCocktails } from "../../store/cocktail";
 import { getReviews } from "../../store/review";
 import "./IndivCocktail.css";
@@ -29,6 +30,14 @@ const IndivCocktail = () => {
   const reviewsObj = useSelector((state) => state.review);
   const reviews = Object.values(reviewsObj);
 
+  const findAvg = () => {
+    let sum = 0; 
+    reviews.forEach(review => {
+      sum += review.reviewRating
+    })
+    return Math.floor(sum/reviews.length)
+  }
+
   let reviewRestriction;
   if (userId) {
     reviewRestriction = <NewCocktailReview />;
@@ -55,6 +64,14 @@ const IndivCocktail = () => {
 
         <div className="curr_cocktail_details">
           <h2>{indivCocktail?.name}</h2>
+          <StarRatingComponent
+          name="uneditableRatingAvg"
+          starCount={5}
+          value={findAvg()}
+          starColor="#d1c1ae"
+          emptyStarColor="#090C0B"
+          editable={false}
+        />
           <p>{indivCocktail?.description}</p>
           <a href={indivCocktail?.recipeUrl}>
             <button>Try It Out</button>
