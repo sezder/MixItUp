@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCocktails } from "../../store/cocktail";
-import { getAllReviews } from "../../store/reviewFeed"; //F
+import { getAllReviews } from "../../store/review"; //F
 import "./CocktailList.css";
 import CocktailDetail from "../CocktailDetail/index";
 
@@ -17,7 +17,7 @@ const CocktailList = () => {
   const cocktails = Object.values(cocktailsObj);
 
   //F
-  const reviewFeed = useSelector((state) => state.reviewFeed);
+  const reviewFeed = useSelector((state) => state.review);
 
   return (
     <div className="cocktail_list_div">

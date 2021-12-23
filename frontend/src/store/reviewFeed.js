@@ -1,15 +1,15 @@
 import { csrfFetch } from "./csrf";
 
-// GET ALL REVIEWS
-const GET_ALL_REVIEWS = "reviews/GET_ALL_REVIEWS";
+// GET REVIEWS FOR FEED
+const GET_REVIEW_FEED = "reviews/GET_REVIEW_FEED";
 
 const loadAllReviews = (allReviews) => ({
-  type: GET_ALL_REVIEWS,
+  type: GET_REVIEW_FEED,
   allReviews,
 });
 
-export const getAllReviews = () => async (dispatch) => {
-  const res = await csrfFetch(`/api/reviews`);
+export const getReviewFeed = () => async (dispatch) => {
+  const res = await csrfFetch(`/api/reviews/feed`);
   if (res.ok) {
     const reviews = await res.json();
     dispatch(loadAllReviews(reviews));
@@ -17,11 +17,12 @@ export const getAllReviews = () => async (dispatch) => {
   }
 };
 
+
 const initialState = {};
 
 const reviewFeedReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL_REVIEWS:
+    case GET_REVIEW_FEED:
       const allReviews = {};
       action.allReviews.forEach((review) => {
         allReviews[review.id] = review;
