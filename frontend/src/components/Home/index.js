@@ -1,6 +1,6 @@
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllReviews } from "../../store/reviewFeed";
+import { getReviewFeed } from "../../store/reviewFeed";
 import "./Home.css";
 import CocktailList from "../CocktailList";
 import ShowAllReviews from "../ShowAllReviews";
@@ -9,7 +9,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllReviews());
+    dispatch(getReviewFeed());
   }, [dispatch]);
 
   const allReviewsObj = useSelector((state) => state.reviewFeed);
