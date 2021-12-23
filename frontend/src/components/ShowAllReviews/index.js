@@ -1,5 +1,6 @@
 import React from "react";
 import {  NavLink } from "react-router-dom";
+import StarRatingComponent from "react-star-rating-component";
 import "./ShowAllReviews.css";
 import "../../index.css";
 
@@ -17,7 +18,15 @@ const ShowAllReviews = ({ reviewRating, reviewBody, cocktail, user }) => {
         ></div>
         <div className="home_reviews_content">
           <p id="home_username">{user?.username}</p>
-          <p id="home_rating">Rating: {reviewRating}</p>
+          
+        <StarRatingComponent
+          name="uneditableRating"
+          starCount={5}
+          value={reviewRating}
+          starColor="#465d57"
+          emptyStarColor="#d1c1ae"
+          editable={false}
+        />
           <p>{reviewBody}</p>
         </div>
       </div>
