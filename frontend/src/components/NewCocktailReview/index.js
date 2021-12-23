@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import StarRatingComponent from 'react-star-rating-component';
 import { createReview } from "../../store/review";
 import "./NewCocktailReview.css";
 
@@ -9,7 +10,7 @@ function NewCocktailReview() {
   const cocktailId = Number(paramsObj?.id);
   const dispatch = useDispatch();
 
-  let [reviewRating, setReviewRating] = useState("");
+  let [reviewRating, setReviewRating] = useState(0);
   const [reviewBody, setReviewBody] = useState("");
   const [errors, setErrors] = useState([]);
   const user = useSelector((state) => state.session.user);
@@ -24,7 +25,7 @@ function NewCocktailReview() {
   }, [reviewRating, reviewBody]);
 
   const resetFields = () => {
-    setReviewRating("");
+    setReviewRating(0);
     setReviewBody("");
   };
 
@@ -42,8 +43,11 @@ function NewCocktailReview() {
 
     dispatch(createReview(newReview));
     resetFields();
-
   };
+
+  const onStarClick = (nextValue, prevValue, name) => {
+    return setReviewRating(nextValue)
+  }
 
   return (
     <div className="add_review_div">
@@ -51,16 +55,23 @@ function NewCocktailReview() {
 
       <form onSubmit={handleSubmit} className="add_review_form">
         {/* ERRORS */}
-        {errors.length > 0 && <ul className="errors">
-            {errors.map((error) => <li key={error}>{error}</li>)}
-        </ul>}
+        {errors.length > 0 && (
+          <ul className="errors">
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        )}
 
         {/* REVIEW RATING */}
-        <input
-          type="number"
-          name="reviewRating"
+        <h2>Rating from state: {reviewRating}</h2>
+        <StarRatingComponent 
+          name="rate" 
+          starCount={5}
           value={reviewRating}
-          onChange={(e) => setReviewRating(e.target.value)}
+          onStarClick={onStarClick}
+          starColor='#465d57'
+          emptyStarColor='#d1c1ae'
         />
 
         {/* REVIEW BODY */}
