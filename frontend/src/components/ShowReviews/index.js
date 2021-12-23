@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import StarRatingComponent from "react-star-rating-component";
 import { destroyReview } from "../../store/review";
 import "./ShowReviews.css";
 import "../../index.css";
@@ -33,9 +34,16 @@ const ShowReviews = ({
         {/* TROUBLESHOOT LATER */}
         {/* <div className="profile_circle">
           <p>{user?.username.slice(0, 1)}</p>
-        </div> */}
-        {/* <p id="username_review_card">{user?.username}</p> */}
-        <p>Rating: {reviewRating}</p>
+        </div>
+        <p id="username_review_card">{user?.username}</p> */}
+        <StarRatingComponent
+          name="uneditableRating"
+          starCount={5}
+          value={reviewRating}
+          starColor="#465d57"
+          emptyStarColor="#d1c1ae"
+          editable={false}
+        />
       </div>
       <p>{reviewBody}</p>
       {userId === currUserId && (
