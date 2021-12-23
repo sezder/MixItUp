@@ -64,7 +64,6 @@ function NewCocktailReview() {
         )}
 
         {/* REVIEW RATING */}
-        <h2>Rating from state: {reviewRating}</h2>
         <StarRatingComponent 
           name="rate" 
           starCount={5}
