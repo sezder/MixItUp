@@ -39,7 +39,12 @@ function Navigation({ isLoaded }) {
         </li>
         <li id="explore_nav">
           <NavLink to="/cocktails" className="text_large">
-            EXPLORE
+            RECIPES
+          </NavLink>
+        </li>
+        <li id="bars_nav">
+          <NavLink to="/bars" className="text_large">
+            BARS
           </NavLink>
         </li>
         <li>

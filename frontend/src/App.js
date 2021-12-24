@@ -13,6 +13,7 @@ import EditCocktailReview from "./components/EditCocktailReview";
 import Home from "./components/Home";
 import Splash from "./components/Splash";
 import BarList from "./components/BarList";
+import IndivBar from "./components/IndivBar";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,8 +27,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/test" exact>
-          </Route>
+          <Route path="/test" exact></Route>
           <Route path="/" exact>
             <Splash />
           </Route>
@@ -54,6 +54,9 @@ function App() {
           </Route>
           <Route path="/cocktails/:id">
             <IndivCocktail />
+          </Route>
+          <Route path="/bars/:barId">
+            <IndivBar />
           </Route>
           <Route path="/bars" exact>
             <BarList />

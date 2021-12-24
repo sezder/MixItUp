@@ -33,6 +33,20 @@ const validateBar = [
   handleValidationErrors,
 ];
 
+// Get individual bar
+router.get(
+  "/:barId(\\d+)",
+  asyncHandler(async (req, res) => {
+    const barId = parseInt(req.params.barId);
+    // eventually, include checkins in this request
+    const bar = await Bar.findByPk(barId);
+    if (bar) {
+      return res.json(bar);
+    }
+  })
+);
+
+// Get all bars
 router.get(
   "/",
   asyncHandler(async function (req, res) {

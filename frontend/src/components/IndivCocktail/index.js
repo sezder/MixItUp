@@ -16,20 +16,19 @@ const IndivCocktail = () => {
   const [showModal, setShowModal] = useState(false);
   const { id } = useParams();
 
-  const user = useSelector((state) => state.session.user);
-  const userId = user?.id;
-
   useEffect(() => {
     dispatch(getCocktails());
     dispatch(getReviews(id));
   }, [dispatch, id]);
+
+  const user = useSelector((state) => state.session.user);
+  const userId = user?.id;
 
   const cocktailsObj = useSelector((state) => state.cocktail);
   const indivCocktail = cocktailsObj[id];
 
   const reviewsObj = useSelector((state) => state.review);
   const reviews = Object.values(reviewsObj);
-  // console.log(reviews, "reviews");
 
   const findAvg = () => {
     let sum = 0;
