@@ -13,7 +13,7 @@ const BarList = () => {
 
   const barsObj = useSelector((state) => state.bar);
   const bars = Object.values(barsObj);
-  console.log(bars);
+
   return (
     <div className="bar_list_container">
       {bars.map(

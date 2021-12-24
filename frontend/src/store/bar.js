@@ -8,7 +8,7 @@ const loadOneBar = (bar) => ({
   bar,
 });
 
-export const loadOneBar = (barId) => {
+export const getOneBar = (barId) => async (dispatch) => {
   const res = await csrfFetch(`/api/bars/${barId}`);
 
   if (res.ok) {
@@ -41,7 +41,7 @@ const barReducer = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
     case GET_ONE_BAR:
-      newState.bar = action.payload;
+      newState.indivBar = action.bar;
       return { ...state, ...newState };
     case GET_ALL_BARS:
       action.bars.forEach((bar) => {
