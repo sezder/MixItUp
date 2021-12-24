@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBars } from "../../store/bar";
+import BarDetail from "../BarDetail";
 import "./BarList.css";
 
 const BarList = () => {
@@ -13,9 +14,25 @@ const BarList = () => {
   const barsObj = useSelector((state) => state.bar);
   const bars = Object.values(barsObj);
   console.log(bars);
-  return <div>{bars.map(({name, description, location, imageUrl, menuUrl, userId })=> {
-
-  })}</div>;
+  return (
+    <div className="bar_list_container">
+      {bars.map(
+        ({ id, name, description, location, imageUrl, menuUrl, userId }) => {
+          return (
+            <BarDetail
+              key={id}
+              name={name}
+              description={description}
+              location={location}
+              imageUrl={imageUrl}
+              menuUrl={menuUrl}
+              userId={userId}
+            />
+          );
+        }
+      )}
+    </div>
+  );
 };
 
 export default BarList;
