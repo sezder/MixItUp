@@ -22,6 +22,7 @@ const BarList = () => {
             <BarDetail
               key={id}
               name={name}
+              id={id}
               description={description}
               location={location}
               imageUrl={imageUrl}

@@ -1,0 +1,40 @@
+.indiv_bar_div {
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar_banner_container {
+  width: 100vw;
+  height: 320px;
+  background-position: center;
+  border-bottom: solid 25px rgba(137, 105, 67, 0.7);
+}
+
+.indiv_bar_div h1 {
+  background-color: #232e2b;
+  position: absolute;
+  top: 320px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.indiv_bar_div main {
+  padding: 10px 20px; 
+}
+
+.indiv_bar_div ul {
+  display: flex;
+  list-style: none;
+  padding: 10px 0;
+  border: solid 3px #608078; 
+  border-radius: 100px;
+  margin-top: 30px;
+}
+
+.indiv_bar_div ul li {
+  color: #090c0b;
+  padding: 0 20px;
+  font-size: 20px;
+}
