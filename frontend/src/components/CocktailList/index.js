@@ -10,20 +10,18 @@ const CocktailList = () => {
 
   useEffect(() => {
     dispatch(getCocktails());
-    dispatch(getAllReviews()); //F
+    dispatch(getAllReviews());
   }, [dispatch]);
 
   const cocktailsObj = useSelector((state) => state.cocktail);
   const cocktails = Object.values(cocktailsObj);
 
-  //F
   const reviewFeed = useSelector((state) => state.review);
 
   return (
     <div className="cocktail_list_div">
       <section className="cards">
         {cocktails.map(({ id, name, description, imageUrl, recipeUrl }) => {
-          // PROBLEM: The THUNK only fetches 15 most recent. Need a THUNK/API call that'll get legit every single review
           let reviewRatings = [];
           for (let key in reviewFeed) {
             let indivReview = reviewFeed[key];

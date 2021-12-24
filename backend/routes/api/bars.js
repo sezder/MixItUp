@@ -36,8 +36,8 @@ const validateBar = [
 router.get(
   "/",
   asyncHandler(async function (req, res) {
-    const bars = await Bars.findAll();
-    return res.json({ bars });
+    const bars = await Bar.findAll();
+    return res.json(bars);
   })
 );
 
