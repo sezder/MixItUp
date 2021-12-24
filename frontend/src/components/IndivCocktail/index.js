@@ -29,28 +29,31 @@ const IndivCocktail = () => {
 
   const reviewsObj = useSelector((state) => state.review);
   const reviews = Object.values(reviewsObj);
+  // console.log(reviews, "reviews");
 
   const findAvg = () => {
-    let sum = 0; 
-    reviews.forEach(review => {
-      sum += review.reviewRating
-    })
-    return Math.floor(sum/reviews.length)
-  }
+    let sum = 0;
+    reviews.forEach((review) => {
+      sum += review.reviewRating;
+    });
+    return Math.floor(sum / reviews.length);
+  };
 
   let reviewRestriction;
   if (userId) {
     reviewRestriction = <NewCocktailReview />;
   } else {
     reviewRestriction = (
-      <> 
-      <button onClick={() => setShowModal(true)}>Log in to leave a review.</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
-        </Modal>
-      )}
-    </>
+      <>
+        <button onClick={() => setShowModal(true)}>
+          Log in to leave a review.
+        </button>
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <LoginForm />
+          </Modal>
+        )}
+      </>
     );
   }
 
@@ -65,13 +68,13 @@ const IndivCocktail = () => {
         <div className="curr_cocktail_details">
           <h2>{indivCocktail?.name}</h2>
           <StarRatingComponent
-          name="uneditableRatingAvg"
-          starCount={5}
-          value={findAvg()}
-          starColor="#d1c1ae"
-          emptyStarColor="#090C0B"
-          editable={false}
-        />
+            name="uneditableRatingAvg"
+            starCount={5}
+            value={findAvg()}
+            starColor="#d1c1ae"
+            emptyStarColor="#090C0B"
+            editable={false}
+          />
           <p>{indivCocktail?.description}</p>
           <a href={indivCocktail?.recipeUrl}>
             <button>Try It Out</button>

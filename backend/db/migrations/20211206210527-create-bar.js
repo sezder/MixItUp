@@ -12,9 +12,21 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      description: {
+        allowNull: false,
+        type: Sequelize.TEXT
+      }, 
       location: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      imageUrl: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
+      menuUrl: {
+        allowNull: false,
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
