@@ -7,10 +7,10 @@ const { requireAuth } = require("../../utils/auth");
 const { Cocktail, Cocktail_Review, User, Bar } = require("../../db/models");
 
 const router = express.Router();
-// TO DO: 
+// TO DO:
 // - Extract out validations?
 // - Regex validations for digits in url
-const validateCocktail = [
+const validateBar = [
   check("name")
     .exists({ checkFalsy: true })
     .withMessage("Provide a name.")
@@ -33,13 +33,12 @@ const validateCocktail = [
   handleValidationErrors,
 ];
 
-
-// router.get(
-//   "/",
-//   asyncHandler(async function (req, res) {
-//     const cocktails = await Cocktail.findAll();
-//     return res.json({ cocktails });
-//   })
-// );
+router.get(
+  "/",
+  asyncHandler(async function (req, res) {
+    const bars = await Bars.findAll();
+    return res.json({ bars });
+  })
+);
 
 module.exports = router;
