@@ -3,6 +3,7 @@ import { useParams, NavLink, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneBar } from "../../store/bar";
 import "./IndivBar.css";
+import BarDetails from "./BarDetails";
 
 const IndivBar = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const IndivBar = () => {
           <NavLink to={`/bars/${bar?.id}/checkin`}><li>Check In</li></NavLink>
         </ul>
         <Switch>
-          <Route path={`/bars/${bar?.id}/details`}>{/* < BarDetails/> */}</Route>
+          <Route path={`/bars/${bar?.id}/details`}>< BarDetails description={bar?.description}/></Route>
           <Route path={`/bars/${bar?.id}/menu`}>{/* < BarMenu/> */}</Route>
           <Route path={`/bars/${bar?.id}/location`}>{/* < BarLocation/> */}</Route>
           <Route path={`/bars/${bar?.id}/checkin`}>{/* < CheckIn/> */}</Route>

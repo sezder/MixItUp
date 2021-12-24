@@ -21,7 +21,14 @@
 }
 
 .indiv_bar_div main {
+  display: flex; 
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+  background-color: rgba(194, 166, 132, 0.8); 
   padding: 10px 20px; 
+  width: 80vw;
+  border-radius: 20px;
 }
 
 .indiv_bar_div ul {
@@ -31,6 +38,7 @@
   border: solid 3px #608078; 
   border-radius: 100px;
   margin-top: 30px;
+  width: fit-content;
 }
 
 .indiv_bar_div ul li {
