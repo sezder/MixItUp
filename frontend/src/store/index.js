@@ -4,12 +4,14 @@ import sessionReducer from "./session";
 import cocktailReducer from "./cocktail";
 import reviewReducer from "./review";
 import reviewFeedReducer from "./reviewFeed";
+import barReducer from "./bar";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   cocktail: cocktailReducer,
   review: reviewReducer,
-  reviewFeed: reviewFeedReducer
+  reviewFeed: reviewFeedReducer,
+  bar: barReducer
 });
 
 let enhancer;

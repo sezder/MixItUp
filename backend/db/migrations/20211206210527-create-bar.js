@@ -12,9 +12,26 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      description: {
+        allowNull: false,
+        type: Sequelize.TEXT
+      }, 
       location: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      imageUrl: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
+      menuUrl: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: "Users" },
       },
       createdAt: {
         allowNull: false,
