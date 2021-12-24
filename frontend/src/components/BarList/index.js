@@ -6,15 +6,16 @@ import "./BarList.css";
 const BarList = () => {
   const dispatch = useDispatch();
 
-  useEffect(()=> {
-    dispatch(getAllBars())
-  }, [dispatch])
+  useEffect(() => {
+    dispatch(getAllBars());
+  }, [dispatch]);
 
-  const barsObj = useSelector((state) => state.bar)
-  console.log(barsObj)
-  return <div>
-    <h1>GOT HERE</h1>
-  </div>;
+  const barsObj = useSelector((state) => state.bar);
+  const bars = Object.values(barsObj);
+  console.log(bars);
+  return <div>{bars.map(({name, description, location, imageUrl, menuUrl, userId })=> {
+
+  })}</div>;
 };
 
 export default BarList;
