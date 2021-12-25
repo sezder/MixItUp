@@ -10,6 +10,8 @@ const BarDetail = ({
   location,
   imageUrl,
   menuUrl,
+  reservationUrl,
+  mapsUrl,
   userId,
 }) => {
   const backgroundImageStyling = {
@@ -34,17 +36,17 @@ const BarDetail = ({
               <i class="fas fa-utensils fa-lg"></i>
             </button>
           </a>
-          <a href={menuUrl}>
+          <a href={mapsUrl}>
             <button>
               <i className="fas fa-map-marked fa-lg"></i>
             </button>
           </a>
-          <a href={menuUrl}>
+          <a href={reservationUrl}>
             <button>
               <i className="fas fa-calendar-day fa-lg"></i>
             </button>
           </a>
-          <a href={menuUrl}>
+          <a href="#">
             <button>
               <i class="fas fa-check fa-lg"></i>
             </button>

@@ -28,16 +28,35 @@ const IndivBar = () => {
       <h1>{bar?.name}</h1>
       <main>
         <ul>
-          <NavLink to={`/bars/${bar?.id}/details`}><li>Details</li></NavLink>
-          <NavLink to={`/bars/${bar?.id}/menu`}><li>Menu</li></NavLink>
-          <NavLink to={`/bars/${bar?.id}/location`}><li>Location</li></NavLink>
-          <a href={bar?.menuUrl}><li>Reservations</li></a>
-          <NavLink to={`/bars/${bar?.id}/checkin`}><li>Check In</li></NavLink>
+          <NavLink to={`/bars/${bar?.id}/details`}>
+            <li>Details</li>
+          </NavLink>
+          <NavLink to={`/bars/${bar?.id}/menu`}>
+            <li>Menu</li>
+          </NavLink>
+          <NavLink to={`/bars/${bar?.id}/location`}>
+            <li>Location</li>
+          </NavLink>
+          <a href={bar?.reservationUrl}>
+            <li>Reservations</li>
+          </a>
+          <NavLink to={`/bars/${bar?.id}/checkin`}>
+            <li>Check In</li>
+          </NavLink>
         </ul>
         <Switch>
-          <Route path={`/bars/${bar?.id}/details`}>< BarDetails description={bar?.description}/></Route>
-          <Route path={`/bars/${bar?.id}/menu`}>{/* < BarMenu/> */}</Route>
-          <Route path={`/bars/${bar?.id}/location`}>{/* < BarLocation/> */}</Route>
+          <Route path={`/bars/${bar?.id}/details`}>
+            <>
+              <BarDetails description={bar?.description} />
+              {/* <BarsCocktails /> */}
+            </>
+          </Route>
+          <Route path={`/bars/${bar?.id}/menu`}>
+            {/* < BarMenu menuUrl={bar?.menuUrl}/> */}
+          </Route>
+          <Route path={`/bars/${bar?.id}/location`}>
+            {/* < BarLocation location={bar?.location} mapsUrl={bar?.mapsUrl}/> */}
+          </Route>
           <Route path={`/bars/${bar?.id}/checkin`}>{/* < CheckIn/> */}</Route>
         </Switch>
       </main>

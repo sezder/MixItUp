@@ -33,12 +33,15 @@
 
 .indiv_bar_div ul {
   display: flex;
+  justify-content: center;
   list-style: none;
   padding: 10px 0;
-  border: solid 3px #608078; 
-  border-radius: 100px;
+  width: 100vw; 
+  border-top: solid 3px #608078; 
+  border-bottom: solid 3px #608078; 
+  /* border-radius: 100px; */
   margin-top: 30px;
-  width: fit-content;
+  /* width: fit-content; */
 }
 
 .indiv_bar_div ul li {
