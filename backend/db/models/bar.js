@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     location: DataTypes.STRING,
     imageUrl: DataTypes.TEXT,
     menuUrl: DataTypes.TEXT,
+    reservationUrl: DataTypes.TEXT,
+    mapsUrl: DataTypes.TEXT,
     userId: DataTypes.INTEGER,
     
   }, {});
