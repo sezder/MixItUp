@@ -17,7 +17,17 @@ const BarList = () => {
   return (
     <div className="bar_list_container">
       {bars.map(
-        ({ id, name, description, location, imageUrl, menuUrl, userId }) => {
+        ({
+          id,
+          name,
+          description,
+          location,
+          imageUrl,
+          menuUrl,
+          reservationUrl,
+          mapsUrl,
+          userId,
+        }) => {
           return (
             <BarDetail
               key={id}
@@ -27,6 +37,8 @@ const BarList = () => {
               location={location}
               imageUrl={imageUrl}
               menuUrl={menuUrl}
+              reservationUrl={reservationUrl}
+              mapsUrl={mapsUrl}
               userId={userId}
             />
           );
