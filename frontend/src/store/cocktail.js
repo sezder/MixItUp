@@ -5,7 +5,7 @@ const GET_COCKTAIL = "cocktails/GET_COCKTAILS";
 
 const loadCocktail = (cocktail) => ({
   type: GET_COCKTAIL,
-  cocktail,
+  cocktail, 
 });
 
 export const getOneCocktail = (cocktailId) => async (dispatch) => {
