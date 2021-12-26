@@ -35,6 +35,30 @@ export const getAllBars = () => async (dispatch) => {
   }
 };
 
+// Create a new bar
+const ADD_BAR = "bars/ADD_BAR";
+//full action creator
+const addBar = (bar) => ({
+  type: ADD_BAR,
+  bar,
+});
+
+export const createBar = (newBar) => async (dispatch) => {
+  const res = await csrfFetch(`/api/bars`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newBar),
+  });
+
+  if (res.ok) {
+    const bar = await res.json();
+    dispatch(addBar(bar));
+    return bar;
+  }
+};
+
 const initialState = {};
 
 const barReducer = (state = initialState, action) => {
@@ -48,6 +72,8 @@ const barReducer = (state = initialState, action) => {
         newState[bar.id] = bar;
       });
       return { ...state, ...newState };
+      case ADD_BAR:
+        return { ...state, [action.bar.id]: action.bar};
     default:
       return state;
   }

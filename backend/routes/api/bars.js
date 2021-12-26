@@ -33,6 +33,36 @@ const validateBar = [
   handleValidationErrors,
 ];
 
+// Create a new bar
+router.post(
+  "/",
+  // validateBar,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const {
+      name,
+      description,
+      location,
+      imageUrl,
+      menuUrl,
+      reservationUrl,
+      mapsUrl,
+      userId,
+    } = req.body;
+    const bar = await Bar.create({
+      name,
+      description,
+      location,
+      imageUrl,
+      menuUrl,
+      reservationUrl,
+      mapsUrl,
+      userId,
+    });
+    return res.json(bar);
+  })
+);
+
 // Get individual bar
 router.get(
   "/:barId(\\d+)",
