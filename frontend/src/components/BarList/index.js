@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { getAllBars } from "../../store/bar";
 import BarDetail from "../BarDetail";
 import "./BarList.css";
@@ -16,6 +17,12 @@ const BarList = () => {
 
   return (
     <div className="bar_list_container">
+      <div className="submit_new_bar">
+      <h2>Bar you've visited not already listed?</h2>
+      <NavLink to="/bars/new">
+        <button>Submit a Bar</button>
+      </NavLink>
+      </div>
       {bars.map(
         ({
           id,

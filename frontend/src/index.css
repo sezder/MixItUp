@@ -89,7 +89,7 @@ textarea {
   padding: 12px;
   background-color: #D1C1AE;
   border-radius: 15px;
-
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .errors li {
