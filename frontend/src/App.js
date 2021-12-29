@@ -15,6 +15,7 @@ import Splash from "./components/Splash";
 import BarList from "./components/BarList";
 import IndivBar from "./components/IndivBar";
 import NewBarForm from "./components/NewBarForm";
+import EditBarForm from "./components/EditBarForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route path="/bars/new" exact>
             <NewBarForm />
+          </Route>
+          <Route path="/bars/:barId/edit" exact>
+            <EditBarForm />
           </Route>
           <Route path="/bars/:barId">
             <IndivBar />
