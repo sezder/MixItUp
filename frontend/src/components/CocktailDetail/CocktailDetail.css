@@ -14,7 +14,7 @@ h1 {
   cursor: pointer;
   transition: all 0.3s ease 0s;
   border-radius: 10px;
-  box-shadow: -5px 5px rgba(0, 0, 0, 0.142);
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .card:hover {

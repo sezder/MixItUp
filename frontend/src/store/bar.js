@@ -59,6 +59,50 @@ export const createBar = (newBar) => async (dispatch) => {
   }
 };
 
+// Edit a bar
+const UPDATE_BAR = "bars/UPDATE_BAR";
+
+const editBarPayload = (bar) => ({
+  type: UPDATE_BAR, 
+  bar
+});
+
+export const updateBar =
+  ({barId,
+    name,
+    description,
+    location,
+    imageUrl,
+    menuUrl,
+    reservationUrl,
+    mapsUrl,
+    userId,
+  }) =>
+  async (dispatch) => {
+    // console.log("barId in thunk", barId)
+    console.log("userId in THUNK DOG", userId)
+    const res = await csrfFetch(`/api/bars/${barId}/edit`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        barId,
+        name,
+        description,
+        location,
+        imageUrl,
+        menuUrl,
+        reservationUrl,
+        mapsUrl,
+        userId,
+      }),
+    });
+
+    if (res.ok) {
+      const response = await res.json();
+      dispatch(editBarPayload(response));
+    }
+  };
+
 const initialState = {};
 
 const barReducer = (state = initialState, action) => {
@@ -68,12 +112,14 @@ const barReducer = (state = initialState, action) => {
       newState.indivBar = action.bar;
       return { ...state, ...newState };
     case GET_ALL_BARS:
-      action.bars.forEach((bar) => {
+      action.bars.forEach((bar) => { 
         newState[bar.id] = bar;
       });
       return { ...state, ...newState };
-      case ADD_BAR:
-        return { ...state, [action.bar.id]: action.bar};
+    case ADD_BAR:
+      return { ...state, [action.bar.id]: action.bar }; // does thi sneed to be indivBar: action.bar
+    case UPDATE_BAR:
+      return { ...state, indivBar: action.bar };
     default:
       return state;
   }

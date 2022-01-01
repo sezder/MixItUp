@@ -6,7 +6,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
 const { Cocktail, Cocktail_Review, User, Bar } = require("../../db/models");
 
-const router = express.Router();
+const router = express.Router(); 
 // TO DO:
 // - Extract out validations?
 // - Regex validations for digits in url
@@ -60,6 +60,54 @@ router.post(
       userId,
     });
     return res.json(bar);
+  })
+);
+
+// Edit a bar
+router.put(
+  "/:barId(\\d+)/edit",
+  requireAuth,
+  // validateBar,
+  asyncHandler(async (req, res, next) => {
+    const barId = parseInt(req.params.barId);
+    console.log(barId, "barId backend useparams")
+
+    const {
+      // barId,
+      name,
+      description,
+      location,
+      imageUrl,
+      menuUrl,
+      reservationUrl,
+      mapsUrl,
+      userId,
+    } = req.body;
+
+    console.log("barId backend", barId)
+
+    const bar = await Bar.findByPk(barId);
+    console.log(bar.userId, 'bar.userId')
+    console.log(userId, "userId")
+    if (!bar || Number(userId) !== Number(bar.userId)) {
+      const err = new Error("Bar not found.");
+      err.status = 404;
+      err.title = "Bar not found.";
+      err.errors = ["Could not find bar."];
+      return next(err);
+    } else {
+      const updatedBar = await bar.update({
+        name,
+        description,
+        location,
+        imageUrl,
+        menuUrl,
+        reservationUrl,
+        mapsUrl,
+        userId,
+      });
+      return res.json(updatedBar);
+    }
   })
 );
 
