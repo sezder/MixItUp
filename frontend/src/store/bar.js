@@ -79,7 +79,8 @@ export const updateBar =
     userId,
   }) =>
   async (dispatch) => {
-    console.log("barId in thunk", barId)
+    // console.log("barId in thunk", barId)
+    console.log("userId in THUNK DOG", userId)
     const res = await csrfFetch(`/api/bars/${barId}/edit`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -111,14 +112,14 @@ const barReducer = (state = initialState, action) => {
       newState.indivBar = action.bar;
       return { ...state, ...newState };
     case GET_ALL_BARS:
-      action.bars.forEach((bar) => {
+      action.bars.forEach((bar) => { 
         newState[bar.id] = bar;
       });
       return { ...state, ...newState };
     case ADD_BAR:
-      return { ...state, [action.bar.id]: action.bar };
+      return { ...state, [action.bar.id]: action.bar }; // does thi sneed to be indivBar: action.bar
     case UPDATE_BAR:
-      return { ...state, [action.bar.id]: action.bar };
+      return { ...state, indivBar: action.bar };
     default:
       return state;
   }

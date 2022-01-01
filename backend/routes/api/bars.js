@@ -6,7 +6,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
 const { Cocktail, Cocktail_Review, User, Bar } = require("../../db/models");
 
-const router = express.Router();
+const router = express.Router(); 
 // TO DO:
 // - Extract out validations?
 // - Regex validations for digits in url
@@ -69,9 +69,11 @@ router.put(
   requireAuth,
   // validateBar,
   asyncHandler(async (req, res, next) => {
+    const barId = parseInt(req.params.barId);
+    console.log(barId, "barId backend useparams")
 
     const {
-      barId,
+      // barId,
       name,
       description,
       location,

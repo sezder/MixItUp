@@ -12,14 +12,8 @@ const EditBarForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { barId } = useParams();
-  // console.log("barId DOG", barId);
-
-  useEffect(() => {
-    dispatch(getOneBar(barId));
-  }, [dispatch]);
 
   const bar = useSelector((state) => state.bar).indivBar;
-  // console.log(bar, "bar");
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
 
@@ -44,7 +38,11 @@ const EditBarForm = () => {
       setReservationUrl(bar.reservationUrl);
       setMapsUrl(bar.mapsUrl);
     }
-  }, [bar]);
+  }, [bar.name, bar.description, bar.location, bar.imageUrl, bar.menuUrl, bar.reservationUrl, bar.mapsUrl]);
+
+  useEffect(() => {
+    dispatch(getOneBar(barId));
+  }, []);
 
   useEffect(() => {
     const errors = [];
@@ -68,6 +66,7 @@ const EditBarForm = () => {
     if (errors.length > 0) return;
 
     const editedBar = {
+      userId,
       barId,
       name,
       description,
