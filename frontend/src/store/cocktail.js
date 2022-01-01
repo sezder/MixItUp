@@ -85,7 +85,6 @@ export const updateCocktail =
       }),
     });
 
-    
     if (res.ok) {
       const response = await res.json();
       dispatch(editCocktailPayload(response));

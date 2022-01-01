@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { updateBar } from "../../store/bar";
+import { getOneBar, updateBar } from "../../store/bar";
 import "./EditBarForm.css";
 
 {
@@ -12,12 +12,14 @@ const EditBarForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { barId } = useParams();
+  // console.log("barId DOG", barId);
 
   useEffect(() => {
-    // dispatch(updateBar(id))
-  }, [dispatch, barId]);
+    dispatch(getOneBar(barId));
+  }, [dispatch]);
 
-  const bar = useSelector((state) => state.bar);
+  const bar = useSelector((state) => state.bar).indivBar;
+  // console.log(bar, "bar");
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
 
@@ -46,26 +48,27 @@ const EditBarForm = () => {
 
   useEffect(() => {
     const errors = [];
-    if (!name.length) errors.push("Provide the name of the bar.");
-    if (!description.length) errors.push("Provide a description of the bar.");
-    if (!location.length) errors.push("Provide bar's address.");
-    if (!imageUrl.length) errors.push("Provide a photo of the bar.");
-    if (!menuUrl.length) errors.push("Provide url for menu.");
-    if (!reservationUrl.length)
+    if (!name?.length) errors.push("Provide the name of the bar.");
+    if (!description?.length) errors.push("Provide a description of the bar.");
+    if (!location?.length) errors.push("Provide bar's address.");
+    if (!imageUrl?.length) errors.push("Provide a photo of the bar.");
+    if (!menuUrl?.length) errors.push("Provide url for menu.");
+    if (!reservationUrl?.length)
       errors.push("Provide a url to book a reservation.");
-    if (!mapsUrl.length) errors.push("PLACEHOLDER: Provide Google Maps url.");
+    if (!mapsUrl?.length) errors.push("PLACEHOLDER: Provide Google Maps url.");
     setErrors(errors);
   }, [name, description, location, imageUrl, menuUrl, reservationUrl, mapsUrl]);
 
-  // console.log("userId", userId)
-  // console.log("bar.id", )
-  // if (Number(userId) !== Number(bar?.id)) return <Redirect to="/bars" />;
+  console.log("userId", userId);
+  console.log("bar.userId", bar?.userId);
+  if (Number(userId) !== Number(bar?.userId)) return <Redirect to="/bars" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (errors.length > 0) return;
 
     const editedBar = {
+      barId,
       name,
       description,
       location,
@@ -73,10 +76,10 @@ const EditBarForm = () => {
       menuUrl,
       reservationUrl,
     };
-    //   const response = dispatch(updateBar(editedBar));
-    //   if (response) {
-    //     history.push(`/bars/${barId}`);
-    //   }
+    const response = dispatch(updateBar(editedBar));
+    if (response) {
+      history.push(`/bars/${barId}`);
+    }
   };
 
   return (
@@ -89,7 +92,7 @@ const EditBarForm = () => {
         </div>
       </div>
       <div className="add_cocktail_form_div">
-        <h2>Add a Bar</h2>
+        <h2>Edit Bar</h2>
         <form onSubmit={handleSubmit} className="add_cocktail_form">
           {/* ERRORS */}
           {errors.length > 0 && (

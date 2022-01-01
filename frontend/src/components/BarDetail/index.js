@@ -20,7 +20,9 @@ const BarDetail = ({
 
   return (
     <div className="bar_container">
+      <NavLink to={`/bars/${id}`}>
       <div className="bar_img_container" style={backgroundImageStyling}></div>
+      </NavLink>
       <div className="bar_content">
         <h1>{name}</h1>
         <p>{location}</p>

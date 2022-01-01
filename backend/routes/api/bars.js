@@ -63,6 +63,52 @@ router.post(
   })
 );
 
+// Edit a bar
+router.put(
+  "/:barId(\\d+)/edit",
+  requireAuth,
+  // validateBar,
+  asyncHandler(async (req, res, next) => {
+
+    const {
+      barId,
+      name,
+      description,
+      location,
+      imageUrl,
+      menuUrl,
+      reservationUrl,
+      mapsUrl,
+      userId,
+    } = req.body;
+
+    console.log("barId backend", barId)
+
+    const bar = await Bar.findByPk(barId);
+    console.log(bar.userId, 'bar.userId')
+    console.log(userId, "userId")
+    if (!bar || Number(userId) !== Number(bar.userId)) {
+      const err = new Error("Bar not found.");
+      err.status = 404;
+      err.title = "Bar not found.";
+      err.errors = ["Could not find bar."];
+      return next(err);
+    } else {
+      const updatedBar = await bar.update({
+        name,
+        description,
+        location,
+        imageUrl,
+        menuUrl,
+        reservationUrl,
+        mapsUrl,
+        userId,
+      });
+      return res.json(updatedBar);
+    }
+  })
+);
+
 // Get individual bar
 router.get(
   "/:barId(\\d+)",

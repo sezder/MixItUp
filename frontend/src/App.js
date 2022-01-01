@@ -60,7 +60,7 @@ function App() {
           <Route path="/bars/new" exact>
             <NewBarForm />
           </Route>
-          <Route path="/bars/:barId/edit" exact>
+          <Route path="/bars/:barId/edit">
             <EditBarForm />
           </Route>
           <Route path="/bars/:barId">

@@ -13,7 +13,8 @@ const IndivBar = () => {
     dispatch(getOneBar(parseInt(barId)));
   }, [dispatch]);
   const bar = useSelector((state) => state.bar.indivBar);
-  console.log("indivBar frontend bar.bar", bar);
+  const barUserId = bar?.userId;
+
 
   const backgroundImageStyling = {
     backgroundImage: `url(${bar?.imageUrl})`,
@@ -47,7 +48,7 @@ const IndivBar = () => {
         <Switch>
           <Route path={`/bars/${bar?.id}/details`}>
             <>
-              <BarDetails description={bar?.description} />
+              <BarDetails description={bar?.description} barUserId={barUserId} id={bar?.id}/>
               {/* <BarsCocktails /> */}
             </>
           </Route>

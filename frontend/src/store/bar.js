@@ -59,6 +59,49 @@ export const createBar = (newBar) => async (dispatch) => {
   }
 };
 
+// Edit a bar
+const UPDATE_BAR = "bars/UPDATE_BAR";
+
+const editBarPayload = (bar) => ({
+  type: UPDATE_BAR, 
+  bar
+});
+
+export const updateBar =
+  ({barId,
+    name,
+    description,
+    location,
+    imageUrl,
+    menuUrl,
+    reservationUrl,
+    mapsUrl,
+    userId,
+  }) =>
+  async (dispatch) => {
+    console.log("barId in thunk", barId)
+    const res = await csrfFetch(`/api/bars/${barId}/edit`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        barId,
+        name,
+        description,
+        location,
+        imageUrl,
+        menuUrl,
+        reservationUrl,
+        mapsUrl,
+        userId,
+      }),
+    });
+
+    if (res.ok) {
+      const response = await res.json();
+      dispatch(editBarPayload(response));
+    }
+  };
+
 const initialState = {};
 
 const barReducer = (state = initialState, action) => {
@@ -72,8 +115,10 @@ const barReducer = (state = initialState, action) => {
         newState[bar.id] = bar;
       });
       return { ...state, ...newState };
-      case ADD_BAR:
-        return { ...state, [action.bar.id]: action.bar};
+    case ADD_BAR:
+      return { ...state, [action.bar.id]: action.bar };
+    case UPDATE_BAR:
+      return { ...state, [action.bar.id]: action.bar };
     default:
       return state;
   }
