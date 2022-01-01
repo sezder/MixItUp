@@ -63,12 +63,13 @@ export const createBar = (newBar) => async (dispatch) => {
 const UPDATE_BAR = "bars/UPDATE_BAR";
 
 const editBarPayload = (bar) => ({
-  type: UPDATE_BAR, 
-  bar
+  type: UPDATE_BAR,
+  bar,
 });
 
 export const updateBar =
-  ({barId,
+  ({
+    barId,
     name,
     description,
     location,
@@ -80,7 +81,7 @@ export const updateBar =
   }) =>
   async (dispatch) => {
     // console.log("barId in thunk", barId)
-    console.log("userId in THUNK DOG", userId)
+    console.log("userId in THUNK DOG", userId);
     const res = await csrfFetch(`/api/bars/${barId}/edit`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -103,6 +104,30 @@ export const updateBar =
     }
   };
 
+// Delete Bar
+
+const DELETE_BAR = "bars/DELETE_BAR";
+
+const deleteBar = (barId) => ({
+  type: DELETE_BAR,
+  barId,
+});
+
+export const destroyBar =
+  ({ userId, barId }) =>
+  async (dispatch) => {
+    const res = await csrfFetch(`/api/bars/${barId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, barId }),
+    });
+
+    if (res.ok) {
+      const response = await res.json();
+      dispatch(deleteBar(response));
+    }
+  };
+
 const initialState = {};
 
 const barReducer = (state = initialState, action) => {
@@ -112,7 +137,7 @@ const barReducer = (state = initialState, action) => {
       newState.indivBar = action.bar;
       return { ...state, ...newState };
     case GET_ALL_BARS:
-      action.bars.forEach((bar) => { 
+      action.bars.forEach((bar) => {
         newState[bar.id] = bar;
       });
       return { ...state, ...newState };
@@ -120,6 +145,10 @@ const barReducer = (state = initialState, action) => {
       return { ...state, [action.bar.id]: action.bar }; // does thi sneed to be indivBar: action.bar
     case UPDATE_BAR:
       return { ...state, indivBar: action.bar };
+    case DELETE_BAR:
+      newState = { ...state };
+      delete newState[action.barId];
+      return { ...newState };
     default:
       return state;
   }
