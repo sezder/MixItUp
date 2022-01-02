@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneBar, updateBar } from "../../store/bar";
+import { getOneBar, updateBar, destroyBar } from "../../store/bar";
 import "./EditBarForm.css";
 
 {
@@ -13,7 +13,7 @@ const EditBarForm = () => {
   const dispatch = useDispatch();
   const { barId } = useParams();
 
-  const bar = useSelector((state) => state.bar).indivBar;
+  const bar = useSelector((state) => state.bar);
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
 
@@ -38,7 +38,7 @@ const EditBarForm = () => {
       setReservationUrl(bar.reservationUrl);
       setMapsUrl(bar.mapsUrl);
     }
-  }, [bar.name, bar.description, bar.location, bar.imageUrl, bar.menuUrl, bar.reservationUrl, bar.mapsUrl]);
+  }, [bar]);
 
   useEffect(() => {
     dispatch(getOneBar(barId));
@@ -57,8 +57,6 @@ const EditBarForm = () => {
     setErrors(errors);
   }, [name, description, location, imageUrl, menuUrl, reservationUrl, mapsUrl]);
 
-  console.log("userId", userId);
-  console.log("bar.userId", bar?.userId);
   if (Number(userId) !== Number(bar?.userId)) return <Redirect to="/bars" />;
 
   const handleSubmit = (e) => {
@@ -78,6 +76,15 @@ const EditBarForm = () => {
     const response = dispatch(updateBar(editedBar));
     if (response) {
       history.push(`/bars/${barId}`);
+    }
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    const destroyBarPayload = { userId, barId };
+    const destroyedBar = dispatch(destroyBar(destroyBarPayload));
+    if (destroyedBar) {
+      history.push("/bars");
     }
   };
 
@@ -167,6 +174,11 @@ const EditBarForm = () => {
           >
             <i class="fas fa-plus"></i>
           </button>
+          <button onClick={handleDelete}>
+              <i className="far fa-trash-alt"></i>
+            </button>
+
+
         </form>
       </div>
     </div>

@@ -12,7 +12,8 @@ const IndivBar = () => {
   useEffect(() => {
     dispatch(getOneBar(parseInt(barId)));
   }, [dispatch]);
-  const bar = useSelector((state) => state.bar.indivBar);
+  const bar = useSelector((state) => state.bar[barId]);
+  console.log(bar, "Bar IDNIVBAR")
   const barUserId = bar?.userId;
 
 
