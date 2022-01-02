@@ -134,7 +134,7 @@ const barReducer = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
     case GET_ONE_BAR:
-      newState.indivBar = action.bar;
+      newState[action.bar.id]= action.bar;
       return { ...state, ...newState };
     case GET_ALL_BARS:
       action.bars.forEach((bar) => {
@@ -142,9 +142,9 @@ const barReducer = (state = initialState, action) => {
       });
       return { ...state, ...newState };
     case ADD_BAR:
-      return { ...state, [action.bar.id]: action.bar }; // does thi sneed to be indivBar: action.bar
+      return { ...state, [action.bar.id]: action.bar }; 
     case UPDATE_BAR:
-      return { ...state, indivBar: action.bar };
+      return { ...state, [action.bar.id]: action.bar };
     case DELETE_BAR:
       newState = { ...state };
       delete newState[action.barId];
