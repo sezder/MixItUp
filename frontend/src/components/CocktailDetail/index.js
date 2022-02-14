@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import StarRatingComponent from "react-star-rating-component";
 import "./CocktailDetail.css";
 import "../../index.css";
 
 const CocktailDetail = ({ id, name, description, imageUrl, avgRating }) => {
-
-  const reviewsObj = useSelector((state) => state.review);
-  const reviews = Object.values(reviewsObj);
-
   return (
     <div className="card">
       <a href={`/cocktails/${id}`} id="card_link">

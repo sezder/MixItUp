@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+// import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./BarDetail.css";
 
@@ -21,7 +21,7 @@ const BarDetail = ({
   return (
     <div className="bar_container">
       <NavLink to={`/bars/${id}`}>
-      <div className="bar_img_container" style={backgroundImageStyling}></div>
+        <div className="bar_img_container" style={backgroundImageStyling}></div>
       </NavLink>
       <div className="bar_content">
         <h1>{name}</h1>
@@ -48,11 +48,11 @@ const BarDetail = ({
               <i className="fas fa-calendar-day fa-lg"></i>
             </button>
           </a>
-          <a href="#">
+          <NavLink to={`/bars/${id}/checkin`}>
             <button>
               <i class="fas fa-check fa-lg"></i>
             </button>
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>

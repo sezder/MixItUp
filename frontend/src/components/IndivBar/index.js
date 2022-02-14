@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams, NavLink, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneBar } from "../../store/bar";
@@ -11,9 +11,8 @@ const IndivBar = () => {
 
   useEffect(() => {
     dispatch(getOneBar(parseInt(barId)));
-  }, [dispatch]);
+  }, [dispatch, barId]);
   const bar = useSelector((state) => state.bar[barId]);
-  console.log(bar, "Bar IDNIVBAR")
   const barUserId = bar?.userId;
 
 

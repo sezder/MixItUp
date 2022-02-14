@@ -4,10 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createBar } from "../../store/bar";
 import "./NewBarForm.css";
 
-{
-  /* {name, description, location, imageUrl, menuUrl, reservationUrl, mapsUrl, userId} */
-}
-
 const NewBarForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();

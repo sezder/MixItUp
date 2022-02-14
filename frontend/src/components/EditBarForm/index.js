@@ -5,9 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOneBar, updateBar, destroyBar } from "../../store/bar";
 import "./EditBarForm.css";
 
-{
-  /* {name, description, location, imageUrl, menuUrl, reservationUrl, mapsUrl, userId} */
-}
+/* {name, description, location, imageUrl, menuUrl, reservationUrl, mapsUrl, userId} */
+
 const EditBarForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -42,7 +41,7 @@ const EditBarForm = () => {
 
   useEffect(() => {
     dispatch(getOneBar(barId));
-  }, []);
+  }, [barId, dispatch]);
 
   useEffect(() => {
     const errors = [];
@@ -175,10 +174,8 @@ const EditBarForm = () => {
             <i class="fas fa-plus"></i>
           </button>
           <button onClick={handleDelete}>
-              <i className="far fa-trash-alt"></i>
-            </button>
-
-
+            <i className="far fa-trash-alt"></i>
+          </button>
         </form>
       </div>
     </div>

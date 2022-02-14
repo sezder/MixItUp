@@ -25,7 +25,7 @@ const CocktailList = () => {
           let reviewRatings = [];
           for (let key in reviewFeed) {
             let indivReview = reviewFeed[key];
-            if (indivReview.cocktailId == id) {
+            if (indivReview.cocktailId === id) {
               reviewRatings.push(indivReview.reviewRating);
             }
           }
