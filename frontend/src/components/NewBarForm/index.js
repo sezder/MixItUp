@@ -13,7 +13,6 @@ const NewBarForm = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [menuUrl, setMenuUrl] = useState("");
   const [reservationUrl, setReservationUrl] = useState("");
-  const [mapsUrl, setMapsUrl] = useState("");
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
@@ -25,9 +24,8 @@ const NewBarForm = () => {
     if (!menuUrl.length) errors.push("Provide url for menu.");
     if (!reservationUrl.length)
       errors.push("Provide a url to book a reservation.");
-    if (!mapsUrl.length) errors.push("PLACEHOLDER: Provide Google Maps url.");
     setErrors(errors);
-  }, [name, description, location, imageUrl, menuUrl, reservationUrl, mapsUrl]);
+  }, [name, description, location, imageUrl, menuUrl, reservationUrl]);
 
   const userId = useSelector((state) => state.session.user?.id);
 
@@ -42,7 +40,6 @@ const NewBarForm = () => {
       imageUrl,
       menuUrl,
       reservationUrl,
-      mapsUrl,
       userId,
     };
 
@@ -124,13 +121,7 @@ const NewBarForm = () => {
             onChange={(e) => setReservationUrl(e.target.value)}
           ></input>
 
-          <input
-            name="mapsUrl"
-            placeholder="Provide a Google Maps url."
-            type="text"
-            value={mapsUrl}
-            onChange={(e) => setMapsUrl(e.target.value)}
-          ></input>
+
 
           {/* SUBMIT */}
           <button

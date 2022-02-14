@@ -11,7 +11,6 @@ const BarDetail = ({
   imageUrl,
   menuUrl,
   reservationUrl,
-  mapsUrl,
   userId,
 }) => {
   const backgroundImageStyling = {
@@ -36,11 +35,6 @@ const BarDetail = ({
           <a href={menuUrl}>
             <button>
               <i class="fas fa-utensils fa-lg"></i>
-            </button>
-          </a>
-          <a href={mapsUrl}>
-            <button>
-              <i className="fas fa-map-marked fa-lg"></i>
             </button>
           </a>
           <a href={reservationUrl}>

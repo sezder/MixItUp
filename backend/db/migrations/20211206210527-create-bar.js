@@ -32,10 +32,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
-      mapsUrl: {
-        allowNull: false,
-        type: Sequelize.TEXT,
-      },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,

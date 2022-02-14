@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOneBar, updateBar, destroyBar } from "../../store/bar";
 import "./EditBarForm.css";
 
-/* {name, description, location, imageUrl, menuUrl, reservationUrl, mapsUrl, userId} */
+/* {name, description, location, imageUrl, menuUrl, reservationUrl,userId} */
 
 const EditBarForm = () => {
   const history = useHistory();
@@ -16,28 +16,16 @@ const EditBarForm = () => {
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
 
-  const [name, setName] = useState(bar?.name || "");
-  const [description, setDescription] = useState(bar?.description || "");
-  const [location, setLocation] = useState(bar?.location || "");
-  const [imageUrl, setImageUrl] = useState(bar?.imageUrl || "");
-  const [menuUrl, setMenuUrl] = useState(bar?.menuUrl || "");
+  const [name, setName] = useState(bar?.name);
+  const [description, setDescription] = useState(bar.description || "");
+  const [location, setLocation] = useState(bar.location || "");
+  const [imageUrl, setImageUrl] = useState(bar.imageUrl || "");
+  const [menuUrl, setMenuUrl] = useState(bar.menuUrl || "");
   const [reservationUrl, setReservationUrl] = useState(
-    bar?.reservationUrl || ""
+    bar?.reservationUrl
   );
-  const [mapsUrl, setMapsUrl] = useState(bar?.mapsUrl || "");
   const [errors, setErrors] = useState([]);
 
-  useEffect(() => {
-    if (bar) {
-      setName(bar.name);
-      setDescription(bar.description);
-      setLocation(bar.location);
-      setImageUrl(bar.imageUrl);
-      setMenuUrl(bar.menuUrl);
-      setReservationUrl(bar.reservationUrl);
-      setMapsUrl(bar.mapsUrl);
-    }
-  }, [bar]);
 
   useEffect(() => {
     dispatch(getOneBar(barId));
@@ -52,11 +40,11 @@ const EditBarForm = () => {
     if (!menuUrl?.length) errors.push("Provide url for menu.");
     if (!reservationUrl?.length)
       errors.push("Provide a url to book a reservation.");
-    if (!mapsUrl?.length) errors.push("PLACEHOLDER: Provide Google Maps url.");
     setErrors(errors);
-  }, [name, description, location, imageUrl, menuUrl, reservationUrl, mapsUrl]);
+  }, [name, description, location, imageUrl, menuUrl, reservationUrl]);
 
-  if (Number(userId) !== Number(bar?.userId)) return <Redirect to="/bars" />;
+  console.log(userId, 'userId', bar.userId, 'barId user')
+  // if (Number(userId) !== Number(bar?.userId)) return <Redirect to="/bars" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -155,14 +143,6 @@ const EditBarForm = () => {
             type="text"
             value={reservationUrl}
             onChange={(e) => setReservationUrl(e.target.value)}
-          ></input>
-
-          <input
-            name="mapsUrl"
-            placeholder="Provide a Google Maps url."
-            type="text"
-            value={mapsUrl}
-            onChange={(e) => setMapsUrl(e.target.value)}
           ></input>
 
           {/* SUBMIT */}

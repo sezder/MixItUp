@@ -55,9 +55,6 @@ const IndivBar = () => {
           <Route path={`/bars/${bar?.id}/menu`}>
             {/* < BarMenu menuUrl={bar?.menuUrl}/> */}
           </Route>
-          <Route path={`/bars/${bar?.id}/location`}>
-            {/* < BarLocation location={bar?.location} mapsUrl={bar?.mapsUrl}/> */}
-          </Route>
           <Route path={`/bars/${bar?.id}/checkin`}>{/* < CheckIn/> */}</Route>
         </Switch>
       </main>

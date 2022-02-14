@@ -32,7 +32,6 @@ const BarList = () => {
           imageUrl,
           menuUrl,
           reservationUrl,
-          mapsUrl,
           userId,
         }) => {
           return (
@@ -45,7 +44,6 @@ const BarList = () => {
               imageUrl={imageUrl}
               menuUrl={menuUrl}
               reservationUrl={reservationUrl}
-              mapsUrl={mapsUrl}
               userId={userId}
             />
           );
