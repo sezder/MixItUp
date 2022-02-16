@@ -1,11 +1,10 @@
 .bar_container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* border: #836540 1px solid; */
+  width: 80vw;
   background-color: #c2a684;
-  padding: 15px;
-  margin: 20px;
+  padding: 15px 30px;
+  margin: 10px;
   border-radius: 15px;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
@@ -19,6 +18,7 @@
   background-size: 350px;
   background-repeat: no-repeat;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin-right: 10px;
 }
 
 .bar_content {
@@ -34,32 +34,22 @@
 }
 
 .bar_content p:first-of-type {
-  /* background-color: pink;  */
   color: #836540;
-  /* color: #836540; */
-  /* color: #608078; */
   font-style: italic;
   padding-bottom: 10px;
 }
 
 .bar_content p {
   color: #465d57;
-  /* padding-bottom: 5px; */
 }
-
-/* .bar_content a { */
-  /* background-color: pink; */
-  /* margin-top: 5px; */
-  /* align-self: flex-end; */
-/* } */
 
 .bar_card_button_container {
   display: flex;
   justify-content: flex-end;
 }
 
-.bar_content a button {
-  /* background-color: pink; */
+.bar_content a button,
+.bar_content span button {
   width: 40px;
   height: 40px;
   margin-top: 5px;
@@ -67,6 +57,3 @@
   border-radius: 50px;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
-
-/* .bar_content a button i {
-} */

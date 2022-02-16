@@ -1,5 +1,4 @@
 import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./BarDetail.css";
 
@@ -11,7 +10,6 @@ const BarDetail = ({
   imageUrl,
   menuUrl,
   reservationUrl,
-  userId,
 }) => {
   const backgroundImageStyling = {
     backgroundImage: `url(${imageUrl})`,
@@ -27,21 +25,23 @@ const BarDetail = ({
         <p>{location}</p>
         <p>{description}</p>
         <div className="bar_card_button_container">
-          <NavLink to={`/bars/${id}`}>
+          <NavLink to={`/bars/${id}/details`}>
             <button>
               <i class="fas fa-info fa-lg"></i>
             </button>
           </NavLink>
-          <a href={menuUrl}>
+
+          <span onClick={() => window.open(menuUrl)}>
             <button>
               <i class="fas fa-utensils fa-lg"></i>
             </button>
-          </a>
-          <a href={reservationUrl}>
+          </span>
+
+          <span onClick={() => window.open(reservationUrl)}>
             <button>
-              <i className="fas fa-calendar-day fa-lg"></i>
+            <i className="fas fa-calendar-day fa-lg"></i>
             </button>
-          </a>
+          </span>
           <NavLink to={`/bars/${id}/checkin`}>
             <button>
               <i class="fas fa-check fa-lg"></i>
