@@ -12,7 +12,7 @@ const ShowReviews = ({
   reviewBody,
   userId,
   user,
-  cocktailId,
+  cocktailId, 
 }) => {
   const dispatch = useDispatch();
   const history = useHistory();

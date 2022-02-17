@@ -22,12 +22,12 @@
 }
 
 .indiv_bar_div main {
-  display: flex; 
+  display: flex;
   align-items: center;
   flex-direction: column;
   margin-top: 10px;
-  background-color: rgba(194, 166, 132, 0.8); 
-  padding: 10px 20px; 
+  background-color: #c2a684;
+  padding: 10px 20px;
   width: 80vw;
   border-radius: 20px;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -36,18 +36,27 @@
 .indiv_bar_div ul {
   display: flex;
   justify-content: center;
+  align-items: center;
   list-style: none;
   padding: 10px 0;
-  width: 100vw; 
-  border-top: solid 3px #608078; 
-  border-bottom: solid 3px #608078; 
-  /* border-radius: 100px; */
+  width: 100vw;
+  border-top: solid 3px #608078;
+  border-bottom: solid 3px #608078;
   margin-top: 30px;
-  /* width: fit-content; */
 }
 
-.indiv_bar_div ul li {
+.indiv_bar_div ul li,
+.indiv_bar_div ul a i,
+.indiv_bar_div ul i {
   color: #090c0b;
   padding: 0 20px;
   font-size: 20px;
+}
+
+.indiv_bar_div ul i {
+  cursor: pointer;
+}
+
+.indiv_bar_div ul span {
+  cursor: alias;
 }

@@ -18,10 +18,10 @@ const BarList = () => {
   return (
     <div className="bar_list_container">
       <div className="submit_new_bar">
-      <h2>Bar you've visited not already listed?</h2>
-      <NavLink to="/bars/new">
-        <button>Submit a Bar</button>
-      </NavLink>
+        <h2>Bar you've visited not already listed?</h2>
+        <NavLink to="/bars/new">
+          <button>Submit a Bar</button>
+        </NavLink>
       </div>
       {bars.map(
         ({
@@ -32,7 +32,6 @@ const BarList = () => {
           imageUrl,
           menuUrl,
           reservationUrl,
-          mapsUrl,
           userId,
         }) => {
           return (
@@ -45,8 +44,6 @@ const BarList = () => {
               imageUrl={imageUrl}
               menuUrl={menuUrl}
               reservationUrl={reservationUrl}
-              mapsUrl={mapsUrl}
-              userId={userId}
             />
           );
         }

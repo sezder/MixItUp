@@ -46,7 +46,6 @@ router.post(
       imageUrl,
       menuUrl,
       reservationUrl,
-      mapsUrl,
       userId,
     } = req.body;
     const bar = await Bar.create({
@@ -56,7 +55,6 @@ router.post(
       imageUrl,
       menuUrl,
       reservationUrl,
-      mapsUrl,
       userId,
     });
     return res.json(bar);
@@ -102,7 +100,6 @@ router.put(
       imageUrl,
       menuUrl,
       reservationUrl,
-      mapsUrl,
       userId,
     } = req.body;
 
@@ -125,7 +122,6 @@ router.put(
         imageUrl,
         menuUrl,
         reservationUrl,
-        mapsUrl,
         userId,
       });
       return res.json(updatedBar);

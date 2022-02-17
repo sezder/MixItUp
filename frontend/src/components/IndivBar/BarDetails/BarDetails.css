@@ -1,4 +1,25 @@
-.bar_details p {
+/* Content about the bar: description and location */
+.bar_details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar_details p:nth-child(2) {
   padding: 10px 20px;
   color: rgba(35, 46, 43, 0.8);
+  width: 75vw;
+}
+
+#location {
+  justify-self: center;
+  color: #836540;
+  font-style: italic;
+  padding-bottom: 10px;
+}
+
+/* Checkins displayed */
+.bar_details section {
+  border-top: solid 3px #608078;
+  width: 100vw;
 }
