@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneBar, updateBar, destroyBar } from "../../store/bar";
-// import "./EditBarForm.css";
+import "./EditBarForm.css";
 
 /* {name, description, location, imageUrl, menuUrl, reservationUrl,userId} */
 
@@ -143,16 +143,18 @@ const EditBarForm = () => {
           ></input>
 
           {/* SUBMIT */}
-          <button
-            type="submit"
-            disabled={errors.length > 0}
-            className="add_btn"
-          >
-            <i class="fas fa-plus"></i>
-          </button>
-          <button onClick={handleDelete}>
-            <i className="far fa-trash-alt"></i>
-          </button>
+          <div id="btn_div">
+            <button
+              type="submit"
+              disabled={errors.length > 0}
+              className="add_btn"
+            >
+              <i className="fas fa-plus"></i>
+            </button>
+            <button onClick={handleDelete}>
+              <i className="far fa-trash-alt"></i>
+            </button>
+          </div>
         </form>
       </div>
     </div>
