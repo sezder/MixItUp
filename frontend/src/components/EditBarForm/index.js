@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneBar, updateBar, destroyBar } from "../../store/bar";
-import "./EditBarForm.css";
+// import "./EditBarForm.css";
 
 /* {name, description, location, imageUrl, menuUrl, reservationUrl,userId} */
 
@@ -21,11 +21,8 @@ const EditBarForm = () => {
   const [location, setLocation] = useState(bar.location || "");
   const [imageUrl, setImageUrl] = useState(bar.imageUrl || "");
   const [menuUrl, setMenuUrl] = useState(bar.menuUrl || "");
-  const [reservationUrl, setReservationUrl] = useState(
-    bar?.reservationUrl
-  );
+  const [reservationUrl, setReservationUrl] = useState(bar?.reservationUrl);
   const [errors, setErrors] = useState([]);
-
 
   useEffect(() => {
     dispatch(getOneBar(barId));
@@ -43,7 +40,7 @@ const EditBarForm = () => {
     setErrors(errors);
   }, [name, description, location, imageUrl, menuUrl, reservationUrl]);
 
-  console.log(userId, 'userId', bar.userId, 'barId user')
+  console.log(userId, "userId", bar.userId, "barId user");
   // if (Number(userId) !== Number(bar?.userId)) return <Redirect to="/bars" />;
 
   const handleSubmit = (e) => {
@@ -76,17 +73,17 @@ const EditBarForm = () => {
   };
 
   return (
-    <div className="cocktail_add_div">
-      <div className="cocktail_add_img_div">
+    <div className="form_page_div">
+      <div className="form_img_div">
         <div className="background_image"></div>
         <img src={imageUrl} alt=""></img>
         <div className="bg_text">
           <p>Provide a url to preview photo.</p>
         </div>
       </div>
-      <div className="add_cocktail_form_div">
+      <div className="form_div">
         <h2>Edit Bar</h2>
-        <form onSubmit={handleSubmit} className="add_cocktail_form">
+        <form onSubmit={handleSubmit} className="form">
           {/* ERRORS */}
           {errors.length > 0 && (
             <ul className="errors">
@@ -149,7 +146,7 @@ const EditBarForm = () => {
           <button
             type="submit"
             disabled={errors.length > 0}
-            className="add_cocktail_button"
+            className="add_btn"
           >
             <i class="fas fa-plus"></i>
           </button>
