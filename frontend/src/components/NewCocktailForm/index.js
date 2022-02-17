@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createCocktail } from "../../store/cocktail";
-import "./NewCocktailForm.css";
+import "../../Form.css";
 
 function NewCocktailForm() {
   const history = useHistory();
@@ -47,17 +47,17 @@ function NewCocktailForm() {
   };
 
   return (
-    <div className="cocktail_add_div">
-      <div className="cocktail_add_img_div">
+    <div className="form_page_div">
+      <div className="form_img_div">
         <div className="background_image"></div>
         <img src={imageUrl} alt=""></img>
         <div className="bg_text">
           <p>Provide a url to preview your photo</p>
         </div>
       </div>
-      <div className="add_cocktail_form_div">
+      <div className="form_div">
         <h2>Add a Cocktail</h2>
-        <form onSubmit={handleSubmit} className="add_cocktail_form">
+        <form onSubmit={handleSubmit} className="form">
           {/* ERRORS */}
           {errors.length > 0 && (
             <ul className="errors">
@@ -107,7 +107,7 @@ function NewCocktailForm() {
           <button
             type="submit"
             disabled={errors.length > 0}
-            className="add_cocktail_button"
+            className="add_btn"
           >
             Add Cocktail
           </button>
