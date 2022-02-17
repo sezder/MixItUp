@@ -7,7 +7,6 @@ import {
   destroyCocktail,
   getCocktails,
 } from "../../store/cocktail";
-// import "./EditCocktailForm.css";
 
 function EditCocktailForm() {
   const history = useHistory();
@@ -81,17 +80,17 @@ function EditCocktailForm() {
   };
 
   return (
-    <div className="cocktail_edit_div">
-      <div className="cocktail_edit_img_div">
+    <div className="form_page_div">
+      <div className="form_img_div">
         <div className="background_image"></div>
         <img src={imageUrl} alt="Several colorful cocktails aligned on a table"></img>
         <div className="bg_text">
           <p>Provide a url to preview your photo</p>
         </div>
       </div>
-      <div className="edit_cocktail_form_div">
+      <div className="form_div">
       <h2>Edit a Cocktail</h2>
-        <form onSubmit={handleSubmit} className="edit_cocktail_form">
+        <form onSubmit={handleSubmit} className="form">
           
           {/* ERRORS */}
           {errors.length > 0 && (
@@ -139,16 +138,18 @@ function EditCocktailForm() {
           />
 
           {/* SUBMIT */}
-          <button
-            type="submit"
-            disabled={errors.length > 0}
-            className="edit_cocktail_button"
-          >
-            Update Cocktail
-          </button>
-          <button onClick={handleDelete} className="edit_cocktail_button">
-            Delete
-          </button>
+          <div id="btn_div">
+            <button
+              type="submit"
+              disabled={errors.length > 0}
+              className="add_btn"
+            >
+              <i className="fas fa-plus"></i>
+            </button>
+            <button onClick={handleDelete}>
+              <i className="far fa-trash-alt"></i>
+            </button>
+          </div>
         </form>
       </div>
     </div>
