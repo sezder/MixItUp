@@ -57,7 +57,7 @@ function App() {
           <Route path="/cocktails/:id">
             <IndivCocktail />
           </Route>
-          <Route path="/bars/new" exact>
+          <Route path="/bars/new">
             <NewBarForm />
           </Route>
           <Route path="/bars/:barId/edit">

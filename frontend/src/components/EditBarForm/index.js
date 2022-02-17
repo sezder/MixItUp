@@ -12,21 +12,21 @@ const EditBarForm = () => {
   const dispatch = useDispatch();
   const { barId } = useParams();
 
-  const bar = useSelector((state) => state.bar);
+  useEffect(() => {
+    dispatch(getOneBar(barId));
+  }, [dispatch, barId]);
+
+  const bar = useSelector((state) => state.bar[barId]);
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
 
   const [name, setName] = useState(bar?.name);
-  const [description, setDescription] = useState(bar.description || "");
-  const [location, setLocation] = useState(bar.location || "");
-  const [imageUrl, setImageUrl] = useState(bar.imageUrl || "");
-  const [menuUrl, setMenuUrl] = useState(bar.menuUrl || "");
+  const [description, setDescription] = useState(bar?.description);
+  const [location, setLocation] = useState(bar?.location);
+  const [imageUrl, setImageUrl] = useState(bar?.imageUrl);
+  const [menuUrl, setMenuUrl] = useState(bar?.menuUrl);
   const [reservationUrl, setReservationUrl] = useState(bar?.reservationUrl);
   const [errors, setErrors] = useState([]);
-
-  useEffect(() => {
-    dispatch(getOneBar(barId));
-  }, [barId, dispatch]);
 
   useEffect(() => {
     const errors = [];
@@ -40,8 +40,8 @@ const EditBarForm = () => {
     setErrors(errors);
   }, [name, description, location, imageUrl, menuUrl, reservationUrl]);
 
-  console.log(userId, "userId", bar.userId, "barId user");
-  // if (Number(userId) !== Number(bar?.userId)) return <Redirect to="/bars" />;
+  console.log(userId, "userId", bar?.userId, "barId user");
+  if (bar && userId !== bar.userId) return <Redirect to="/bars" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
