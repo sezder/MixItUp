@@ -26,7 +26,7 @@
   align-items: center;
   flex-direction: column;
   margin-top: 10px;
-  background-color: rgba(194, 166, 132, 0.8);
+  background-color: #c2a684;
   padding: 10px 20px;
   width: 80vw;
   border-radius: 20px;
@@ -47,7 +47,7 @@
 
 .indiv_bar_div ul li,
 .indiv_bar_div ul a i,
-.indiv_bar_div ul i  {
+.indiv_bar_div ul i {
   color: #090c0b;
   padding: 0 20px;
   font-size: 20px;

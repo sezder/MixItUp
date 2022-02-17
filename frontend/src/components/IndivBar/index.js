@@ -35,16 +35,23 @@ const IndivBar = () => {
 
   const backgroundImageStyling = {
     backgroundImage: `url(${bar?.imageUrl})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "100vw"
   };
 
   return (
     <div className="indiv_bar_div">
+
+      {/* Banner with bar image */}
       <div
         className="bar_banner_container"
         style={backgroundImageStyling}
       ></div>
       <h1>{bar?.name}</h1>
+
       <main>
+        {/* Navigation links to switch the component rendered in main */}
         <ul>
           <NavLink to={`/bars/${bar?.id}/info`}>
             <li>Info</li>
@@ -71,6 +78,8 @@ const IndivBar = () => {
             </>
           )}
         </ul>
+
+        {/* What to display for each path */}
         <Switch>
           <Route path={`/bars/${bar?.id}/info`}>
             <>
