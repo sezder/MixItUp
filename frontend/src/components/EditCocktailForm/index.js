@@ -7,7 +7,6 @@ import {
   destroyCocktail,
   getCocktails,
 } from "../../store/cocktail";
-import "./EditCocktailForm.css";
 
 function EditCocktailForm() {
   const history = useHistory();
