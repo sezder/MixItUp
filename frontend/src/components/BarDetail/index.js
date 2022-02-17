@@ -25,7 +25,7 @@ const BarDetail = ({
         <p>{location}</p>
         <p>{description}</p>
         <div className="bar_card_button_container">
-          <NavLink to={`/bars/${id}/details`}>
+          <NavLink to={`/bars/${id}/info`}>
             <button>
               <i class="fas fa-info fa-lg"></i>
             </button>

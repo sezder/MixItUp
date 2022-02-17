@@ -1,11 +1,29 @@
 import React, { useEffect } from "react";
-import { useParams, NavLink, Switch, Route } from "react-router-dom";
+import {
+  useParams,
+  NavLink,
+  Switch,
+  Route,
+  useHistory,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneBar } from "../../store/bar";
 import "./IndivBar.css";
 import BarDetails from "./BarDetails";
+import { destroyBar } from "../../store/bar";
 
 const IndivBar = () => {
+  const history = useHistory();
+  const userId = useSelector((state) => state.session.user)?.id;
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    const destroyBarPayload = { userId, barId };
+    const destroyedBar = dispatch(destroyBar(destroyBarPayload));
+    if (destroyedBar) {
+      history.push("/bars");
+    }
+  };
   const dispatch = useDispatch();
   const { barId } = useParams();
 
@@ -14,7 +32,6 @@ const IndivBar = () => {
   }, [dispatch, barId]);
   const bar = useSelector((state) => state.bar[barId]);
   const barUserId = bar?.userId;
-
 
   const backgroundImageStyling = {
     backgroundImage: `url(${bar?.imageUrl})`,
@@ -29,26 +46,40 @@ const IndivBar = () => {
       <h1>{bar?.name}</h1>
       <main>
         <ul>
-          <NavLink to={`/bars/${bar?.id}/details`}>
-            <li>Details</li>
+          <NavLink to={`/bars/${bar?.id}/info`}>
+            <li>Info</li>
           </NavLink>
-          <NavLink to={`/bars/${bar?.id}/menu`}>
+
+          <span onClick={() => window.open(bar?.menuUrl)}>
             <li>Menu</li>
-          </NavLink>
-          <NavLink to={`/bars/${bar?.id}/location`}>
-            <li>Location</li>
-          </NavLink>
-          <a href={bar?.reservationUrl}>
+          </span>
+
+          <span onClick={() => window.open(bar?.reservationUrl)}>
             <li>Reservations</li>
-          </a>
+          </span>
+
           <NavLink to={`/bars/${bar?.id}/checkin`}>
             <li>Check In</li>
           </NavLink>
+          {barUserId === userId && (
+            <>
+              <NavLink to={`/bars/${barId}/edit`}>
+                <i className="fas fa-edit"></i>
+              </NavLink>
+
+              <i className="far fa-trash-alt" onClick={handleDelete}></i>
+            </>
+          )}
         </ul>
         <Switch>
-          <Route path={`/bars/${bar?.id}/details`}>
+          <Route path={`/bars/${bar?.id}/info`}>
             <>
-              <BarDetails description={bar?.description} barUserId={barUserId} id={bar?.id}/>
+              <BarDetails
+                description={bar?.description}
+                location={bar?.location}
+                barUserId={barUserId}
+                id={bar?.id}
+              />
               {/* <BarsCocktails /> */}
             </>
           </Route>
