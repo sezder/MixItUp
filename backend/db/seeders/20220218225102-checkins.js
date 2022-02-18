@@ -6,19 +6,24 @@ module.exports = {
       "Checkins",
       [
         {
+          id: 1,
           content:
             'Love that you can book your reservation on opentable and they just recently opened up a more "bar area" for mainly drinks. Had a Rosemary Mezcal Negroni and it was fantastic.',
           rating: 5,
           barId: 1,
           userId: 6,
-          cockaitlId: 4,
+          cocktailId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
-        //   {
+        //   {id: ,
         //     content: "",
         //     rating: ,
         //     barId: ,
         //     userId: ,
-        //     cockaitlId: ,
+        //     cocktailId: ,
+        // createdAt: new Date(),
+        // updatedAt: new Date()
         // },
       ],
       {}

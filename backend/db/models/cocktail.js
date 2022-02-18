@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       through: "Checkin",
       otherKey: "barId",
       foreignKey: "cocktailId",
-      onDelete: "CASCADE",
     };
     Cocktail.belongsToMany(models.Bar, columnMapping);
   };
