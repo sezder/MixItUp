@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "cocktailId",
       foreignKey: "barId",
     };
-    Bar.belongsToMany(models.Checkin, columnMapping);
+    Bar.belongsToMany(models.Cocktail, columnMapping);
   };
   return Bar;
 };
