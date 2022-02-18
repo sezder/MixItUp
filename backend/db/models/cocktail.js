@@ -12,14 +12,18 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Cocktail.associate = function (models) {
-    Cocktail.hasMany(models.Cocktail_Review, { foreignKey: "cocktailId", onDelete: 'CASCADE', hooks:true });
+    Cocktail.hasMany(models.Cocktail_Review, {
+      foreignKey: "cocktailId",
+      onDelete: "CASCADE",
+      hooks: true,
+    });
+    Cocktail.belongsTo(models.User, { foreignKey: "userId" });
     const columnMapping = {
-      through: "Bars_Cocktails",
+      through: "Checkin",
       otherKey: "barId",
       foreignKey: "cocktailId",
     };
     Cocktail.belongsToMany(models.Bar, columnMapping);
-    Cocktail.belongsTo(models.User, { foreignKey: "userId" });
   };
   return Cocktail;
 };
