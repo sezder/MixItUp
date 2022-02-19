@@ -6,7 +6,8 @@ import { getCocktails } from "../../store/cocktail";
 import { createCheckin } from "../../store/checkin";
 import "./NewCheckin.css";
 
-const NewCheckin = ({ barId }) => {
+const NewCheckin = ({ barId, setBarComponent }) => {
+  console.log(barId, 'barId on newchckin')
   const history = useHistory();
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
@@ -40,7 +41,8 @@ const NewCheckin = ({ barId }) => {
 
     const checkin = await dispatch(createCheckin(newCheckinPayload));
     if (checkin) {
-      history.push(`/bars/${barId}/info`);
+      setBarComponent("info");
+      history.push(`/bars/${barId}`);
     }
   };
 
@@ -59,7 +61,7 @@ const NewCheckin = ({ barId }) => {
       )}
 
       {/* RATING*/}
-      <label for="rate" className="hidden">
+      <label htmlFor="rate" className="hidden">
         Rate your bar experience
       </label>
       <StarRatingComponent
@@ -73,7 +75,7 @@ const NewCheckin = ({ barId }) => {
       />
 
       {/* CONTENT */}
-      <label for="content" className="hidden">
+      <label htmlFor="content" className="hidden">
         Review content
       </label>
       <textarea
@@ -86,7 +88,7 @@ const NewCheckin = ({ barId }) => {
       ></textarea>
 
       {/* SELECT COCKTAIL */}
-      <label for="cocktail_id" className="hidden">
+      <label htmlFor="cocktail_id" className="hidden">
         Cocktail you had at the bar
       </label>
       <select
@@ -105,7 +107,7 @@ const NewCheckin = ({ barId }) => {
         Don't see the cocktail you had?
       </NavLink>
       <button type="submit" disabled={errors.length > 0} className="add_btn">
-        <i class="fas fa-plus"></i>
+        <i className="fas fa-plus"></i>
       </button>
     </form>
   );

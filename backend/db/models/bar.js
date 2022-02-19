@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Bar = sequelize.define(
     "Bar",
-    {
+    { id: { type: DataTypes.INTEGER, primaryKey: true },
       name: DataTypes.STRING,
       description: DataTypes.TEXT,
       location: DataTypes.STRING,

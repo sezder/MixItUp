@@ -5,7 +5,7 @@ import { getAllBars } from "../../store/bar";
 import BarDetail from "../BarDetail";
 import "./BarList.css";
 
-const BarList = () => {
+const BarList = ({ setBarComponent }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,6 +44,7 @@ const BarList = () => {
               imageUrl={imageUrl}
               menuUrl={menuUrl}
               reservationUrl={reservationUrl}
+              setBarComponent={setBarComponent}
             />
           );
         }

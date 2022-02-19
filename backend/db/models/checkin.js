@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Checkin = sequelize.define(
     "Checkin",
     {
+      id: { type: DataTypes.INTEGER, primaryKey: true },
       content: DataTypes.TEXT,
       rating: DataTypes.INTEGER,
       barId: DataTypes.INTEGER,

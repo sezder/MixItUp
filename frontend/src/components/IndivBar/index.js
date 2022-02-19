@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useParams,
   NavLink,
@@ -13,7 +13,7 @@ import BarDetails from "./BarDetails";
 import { destroyBar } from "../../store/bar";
 import NewCheckin from "../NewCheckin";
 
-const IndivBar = () => {
+const IndivBar = ({ setBarComponent, barComponent }) => {
   const history = useHistory();
   const userId = useSelector((state) => state.session.user)?.id;
 
@@ -28,7 +28,6 @@ const IndivBar = () => {
   const dispatch = useDispatch();
   let { barId } = useParams();
   barId = Number(barId);
-  console.log(barId, 'barId on IndivBar')
 
   useEffect(() => {
     dispatch(getOneBar(parseInt(barId)));
@@ -37,11 +36,14 @@ const IndivBar = () => {
   const barUserId = bar?.userId;
 
   const backgroundImageStyling = {
-    backgroundImage: `url(${bar?.imageUrl})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "100vw",
   };
+
+  if (bar?.imageUrl !== undefined) {
+    backgroundImageStyling["backgroundImage"] = `url(${bar.imageUrl})`;
+  }
 
   return (
     <div className="indiv_bar_div">
@@ -55,9 +57,9 @@ const IndivBar = () => {
       <main>
         {/* Navigation links to switch the component rendered in main */}
         <ul>
-          <NavLink to={`/bars/${barId}/info`}>
+          <p onClick={() => setBarComponent("info")}>
             <li>Info</li>
-          </NavLink>
+          </p>
 
           <span onClick={() => window.open(bar?.menuUrl)}>
             <li>Menu</li>
@@ -67,9 +69,10 @@ const IndivBar = () => {
             <li>Reservations</li>
           </span>
 
-          <NavLink to={`/bars/${barId}/checkin`}>
+          <p onClick={() => setBarComponent("checkin")}>
             <li>Check In</li>
-          </NavLink>
+          </p>
+
           {barUserId === userId && (
             <>
               <NavLink to={`/bars/${barId}/edit`}>
@@ -80,24 +83,16 @@ const IndivBar = () => {
             </>
           )}
         </ul>
-
-        {/* What to display for each path */}
-        <Switch>
-          <Route path={`/bars/${barId}/info`}>
-            <>
-              <BarDetails
-                description={bar?.description}
-                location={bar?.location}
-                barUserId={barUserId}
-                id={barId}
-              />
-              {/* <BarsCocktails /> */}
-            </>
-          </Route>
-          <Route path={`/bars/${barId}/checkin`}>
-            <NewCheckin barId={barId}/>
-          </Route>
-        </Switch>
+        {barComponent === "info" ? (
+          <BarDetails
+            description={bar?.description}
+            location={bar?.location}
+            barUserId={barUserId}
+            id={barId}
+          />
+        ) : (
+          <NewCheckin barId={barId} setBarComponent={setBarComponent} />
+        )}
       </main>
     </div>
   );
