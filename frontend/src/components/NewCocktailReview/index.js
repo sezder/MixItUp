@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import StarRatingComponent from 'react-star-rating-component';
+import StarRatingComponent from "react-star-rating-component";
 import { createReview } from "../../store/review";
 import "./NewCocktailReview.css";
 
@@ -46,8 +46,8 @@ function NewCocktailReview() {
   };
 
   const onStarClick = (nextValue, prevValue, name) => {
-    return setReviewRating(nextValue)
-  }
+    return setReviewRating(nextValue);
+  };
 
   return (
     <div className="add_review_div">
@@ -64,13 +64,13 @@ function NewCocktailReview() {
         )}
 
         {/* REVIEW RATING */}
-        <StarRatingComponent 
-          name="rate" 
+        <StarRatingComponent
+          name="rate"
           starCount={5}
           value={reviewRating}
           onStarClick={onStarClick}
-          starColor='#465d57'
-          emptyStarColor='#d1c1ae'
+          starColor="#465d57"
+          emptyStarColor="#d1c1ae"
         />
 
         {/* REVIEW BODY */}

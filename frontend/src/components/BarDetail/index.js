@@ -17,7 +17,7 @@ const BarDetail = ({
 
   return (
     <div className="bar_container">
-      <NavLink to={`/bars/${id}`}>
+      <NavLink to={`/bars/${id}/info`}>
         <div className="bar_img_container" style={backgroundImageStyling}></div>
       </NavLink>
       <div className="bar_content">

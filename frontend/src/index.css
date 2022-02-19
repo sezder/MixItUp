@@ -87,7 +87,7 @@ textarea {
   display: flex;
   flex-direction: column;
   padding: 12px;
-  background-color: #D1C1AE;
+  background-color: #d1c1ae;
   border-radius: 15px;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
@@ -95,4 +95,8 @@ textarea {
 .errors li {
   padding: 3px 0;
   list-style: none;
+}
+
+.hidden {
+  display: none;
 }
