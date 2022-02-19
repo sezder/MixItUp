@@ -3,13 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
 import { getCocktails } from "../../store/cocktail";
+import { createCheckin } from "../../store/checkin";
 import "./NewCheckin.css";
 
-const NewCheckin = () => {
+const NewCheckin = ({ barId }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
   const [rating, setRating] = useState(0);
-  const [cocktailId, setCocktailId] = useState(null);
+  const [cocktailId, setCocktailId] = useState("");
   const [errors, setErrors] = useState([]);
   const cocktails = useSelector((state) => state.cocktail);
 
@@ -22,12 +24,9 @@ const NewCheckin = () => {
     if (!content.length) errors.push("Provide content for your bar checkin.");
     if (rating > 5 || rating <= 0) errors.push("Rate between 1 and 5 stars.");
     setErrors(errors);
-    if (cocktailId === null) errors.push("Select a cocktail.");
+    if (cocktailId === "") errors.push("Select a cocktail.");
   }, [content, rating, cocktailId]);
-
   const userId = useSelector((state) => state.session.user.id);
-  const paramsObj = useParams();
-  const barId = Number(paramsObj?.barId);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,10 +38,10 @@ const NewCheckin = () => {
       barId,
     };
 
-    // const checkin = await dispatch();
-    // if (checkin) {
-    //   history.push(`/bars/${barId}/details`);
-    // }
+    const checkin = await dispatch(createCheckin(newCheckinPayload));
+    if (checkin) {
+      history.push(`/bars/${barId}/info`);
+    }
   };
 
   const onStarClick = (nextValue, prevValue, name) => {
@@ -105,7 +104,9 @@ const NewCheckin = () => {
       <NavLink to={"/cocktails/new"} className="dark_small">
         Don't see the cocktail you had?
       </NavLink>
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={errors.length > 0} className="add_btn">
+        <i class="fas fa-plus"></i>
+      </button>
     </form>
   );
 };

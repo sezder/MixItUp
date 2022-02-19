@@ -10,7 +10,7 @@ const addCheckin = (checkin) => ({
 
 export const createCheckin = (newCheckin) => async (dispatch) => {
   const res = csrfFetch("/api/checkins", {
-    methods: "POST",
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newCheckin),
   });

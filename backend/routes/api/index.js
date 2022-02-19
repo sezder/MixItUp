@@ -4,6 +4,7 @@ const usersRouter = require("./users.js");
 const barsRouter = require("./bars");
 const cocktailsRouter = require("./cocktails");
 const reviewFeedRouter = require("./reviewFeed");
+const checkinRouter = require("./checkin");
 
 // Reference subrouters: order specific, with /cocktails last, as it has the most general routes
 router.use("/session", sessionRouter);
@@ -11,5 +12,6 @@ router.use("/users", usersRouter);
 router.use("/bars", barsRouter);
 router.use("/reviews", reviewFeedRouter);
 router.use("/cocktails", cocktailsRouter);
+router.use("/checkins", checkinRouter);
 
 module.exports = router;

@@ -26,7 +26,9 @@ const IndivBar = () => {
     }
   };
   const dispatch = useDispatch();
-  const { barId } = useParams();
+  let { barId } = useParams();
+  barId = Number(barId);
+  console.log(barId, 'barId on IndivBar')
 
   useEffect(() => {
     dispatch(getOneBar(parseInt(barId)));
@@ -53,7 +55,7 @@ const IndivBar = () => {
       <main>
         {/* Navigation links to switch the component rendered in main */}
         <ul>
-          <NavLink to={`/bars/${bar?.id}/info`}>
+          <NavLink to={`/bars/${barId}/info`}>
             <li>Info</li>
           </NavLink>
 
@@ -65,7 +67,7 @@ const IndivBar = () => {
             <li>Reservations</li>
           </span>
 
-          <NavLink to={`/bars/${bar?.id}/checkin`}>
+          <NavLink to={`/bars/${barId}/checkin`}>
             <li>Check In</li>
           </NavLink>
           {barUserId === userId && (
@@ -81,19 +83,19 @@ const IndivBar = () => {
 
         {/* What to display for each path */}
         <Switch>
-          <Route path={`/bars/${bar?.id}/info`}>
+          <Route path={`/bars/${barId}/info`}>
             <>
               <BarDetails
                 description={bar?.description}
                 location={bar?.location}
                 barUserId={barUserId}
-                id={bar?.id}
+                id={barId}
               />
               {/* <BarsCocktails /> */}
             </>
           </Route>
-          <Route path={`/bars/${bar?.id}/checkin`}>
-            <NewCheckin />
+          <Route path={`/bars/${barId}/checkin`}>
+            <NewCheckin barId={barId}/>
           </Route>
         </Switch>
       </main>
