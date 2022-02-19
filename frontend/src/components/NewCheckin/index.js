@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
 import { getCocktails } from "../../store/cocktail";
-import "NewCheckin.css";
+import "./NewCheckin.css";
 
 const NewCheckin = () => {
   const dispatch = useDispatch();
@@ -20,9 +20,9 @@ const NewCheckin = () => {
   useEffect(() => {
     const errors = [];
     if (!content.length) errors.push("Provide content for your bar checkin.");
-    if (reviewRating > 5 || reviewRating <= 0)
-      errors.push("Rate between 1 and 5 stars.");
+    if (rating > 5 || rating <= 0) errors.push("Rate between 1 and 5 stars.");
     setErrors(errors);
+    if (cocktailId === null) errors.push("Select a cocktail.");
   }, [content, rating, cocktailId]);
 
   const userId = useSelector((state) => state.session.user.id);
@@ -46,18 +46,32 @@ const NewCheckin = () => {
   };
 
   const onStarClick = (nextValue, prevValue, name) => {
-    return setReviewRating(nextValue);
+    return setRating(nextValue);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {errors.length && (
+    <form onSubmit={handleSubmit} className="checkin_form">
+      {errors.length > 0 && (
         <ul className="errors">
           {errors.map((error) => (
             <li key={error}>{error}</li>
           ))}
         </ul>
       )}
+
+      {/* RATING*/}
+      <label for="rate" className="hidden">
+        Rate your bar experience
+      </label>
+      <StarRatingComponent
+        className="checkin_star"
+        name="rate"
+        starCount={5}
+        value={rating}
+        onStarClick={onStarClick}
+        starColor="#465d57"
+        emptyStarColor="#d1c1ae"
+      />
 
       {/* CONTENT */}
       <label for="content" className="hidden">
@@ -69,20 +83,8 @@ const NewCheckin = () => {
         type="text"
         value={content}
         onChange={(e) => setContent(e.target.value)}
+        rows="5"
       ></textarea>
-
-      {/* RATING*/}
-      <label for="rate" className="hidden">
-        Rate your bar experience
-      </label>
-      <StarRatingComponent
-        name="rate"
-        starCount={5}
-        value={rating}
-        onStarClick={onStarClick}
-        starColor="#465d57"
-        emptyStarColor="#d1c1ae"
-      />
 
       {/* SELECT COCKTAIL */}
       <label for="cocktail_id" className="hidden">
@@ -93,11 +95,16 @@ const NewCheckin = () => {
         value={cocktailId}
         onChange={(e) => setCocktailId(e.target.value)}
       >
-        <option value={null}>Select a Cocktail</option>
-        {Object.values(cocktails).map((cocktail) => (
-          <option value={cocktail.id}>{cocktail.name}</option>
+        <option value={null}>-- Select a Cocktail --</option>
+        {Object.values(cocktails).map((cocktail, idx) => (
+          <option key={idx} value={cocktail.id}>
+            {cocktail.name}
+          </option>
         ))}
       </select>
+      <NavLink to={"/cocktails/new"} className="dark_small">
+        Don't see the cocktail you had?
+      </NavLink>
       <button type="submit">Submit</button>
     </form>
   );

@@ -11,6 +11,7 @@ import { getOneBar } from "../../store/bar";
 import "./IndivBar.css";
 import BarDetails from "./BarDetails";
 import { destroyBar } from "../../store/bar";
+import NewCheckin from "../NewCheckin";
 
 const IndivBar = () => {
   const history = useHistory();
@@ -37,12 +38,11 @@ const IndivBar = () => {
     backgroundImage: `url(${bar?.imageUrl})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    backgroundSize: "100vw"
+    backgroundSize: "100vw",
   };
 
   return (
     <div className="indiv_bar_div">
-
       {/* Banner with bar image */}
       <div
         className="bar_banner_container"
@@ -92,10 +92,9 @@ const IndivBar = () => {
               {/* <BarsCocktails /> */}
             </>
           </Route>
-          <Route path={`/bars/${bar?.id}/menu`}>
-            {/* < BarMenu menuUrl={bar?.menuUrl}/> */}
+          <Route path={`/bars/${bar?.id}/checkin`}>
+            <NewCheckin />
           </Route>
-          <Route path={`/bars/${bar?.id}/checkin`}>{/* < CheckIn/> */}</Route>
         </Switch>
       </main>
     </div>
