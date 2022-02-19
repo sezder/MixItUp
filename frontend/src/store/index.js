@@ -5,13 +5,15 @@ import cocktailReducer from "./cocktail";
 import reviewReducer from "./review";
 import reviewFeedReducer from "./reviewFeed";
 import barReducer from "./bar";
+import checkinReducer from "./checkin";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   cocktail: cocktailReducer,
   review: reviewReducer,
   reviewFeed: reviewFeedReducer,
-  bar: barReducer
+  bar: barReducer,
+  checkin: checkinReducer,
 });
 
 let enhancer;
