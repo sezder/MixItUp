@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   Checkin.associate = function (models) {
     Checkin.belongsTo(models.Bar, { foreignKey: "barId" });
     Checkin.belongsTo(models.User, { foreignKey: "userId" });
+    Checkin.belongsTo(models.Cocktail, { foreignKey: "cocktailId" });
   };
   return Checkin;
 };

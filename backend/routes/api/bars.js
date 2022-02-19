@@ -4,7 +4,7 @@ const { check } = require("express-validator");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Bar, Checkin, User } = require("../../db/models");
+const { Bar, Checkin, User, Cocktail } = require("../../db/models");
 
 const router = express.Router();
 // TO DO:
@@ -139,11 +139,7 @@ router.get(
       include: [
         {
           model: Checkin,
-          include: [
-            {
-              model: User,
-            },
-          ],
+          include: [Cocktail, User],
         },
       ],
     });

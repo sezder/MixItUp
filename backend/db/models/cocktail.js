@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true,
     });
+    Cocktail.hasMany(models.Checkin, { foreignKey: "cocktailId" });
     Cocktail.belongsTo(models.User, { foreignKey: "userId" });
     const columnMapping = {
       through: "Checkin",
