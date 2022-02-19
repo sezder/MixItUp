@@ -52,7 +52,8 @@
   font-size: 20px;
 }
 
-.indiv_bar_div ul i {
+.indiv_bar_div ul i,
+.indiv_bar_div ul p {
   cursor: pointer;
 }
 

@@ -4,7 +4,7 @@ const { check } = require("express-validator");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Bar, Checkin } = require("../../db/models");
+const { Bar, Checkin, User } = require("../../db/models");
 
 const router = express.Router();
 // TO DO:
@@ -134,7 +134,19 @@ router.get(
   "/:barId",
   asyncHandler(async (req, res) => {
     const barId = parseInt(req.params.barId);
-    const bar = await Bar.findByPk(barId, { include: [Checkin] });
+
+    const bar = await Bar.findByPk(barId, {
+      include: [
+        {
+          model: Checkin,
+          include: [
+            {
+              model: User,
+            },
+          ],
+        },
+      ],
+    });
     return res.json(bar);
   })
 );

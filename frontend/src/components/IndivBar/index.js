@@ -89,6 +89,7 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
             location={bar?.location}
             barUserId={barUserId}
             id={barId}
+            checkins={bar?.Checkins}
           />
         ) : (
           <NewCheckin barId={barId} setBarComponent={setBarComponent} />
