@@ -77,6 +77,8 @@ const checkinReducer = (state = initialState, action) => {
       return { ...state, ...newState };
     case ADD_CHECKIN:
       return { ...state, [action.checkin.id]: action.checkin };
+    case UPDATE_CHECKIN:
+      return { ...state, [action.checkin.id]: action.checkin };
     default:
       return state;
   }

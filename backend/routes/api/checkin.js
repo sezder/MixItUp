@@ -50,6 +50,37 @@ router.post(
   })
 );
 
+// Update a checkin
+router.put(
+  "/:checkinId(\\d+)",
+  requireAuth,
+  validateCheckin,
+  asyncHandler(async (req, res, next) => {
+    const checkinId = parseInt(req.params.checkinId);
+
+    const { checkinId, content, rating, cocktailId, userId, barId } = req.body;
+
+    const checkin = await Checkin.findByPk(checkinId);
+    if (!checkin || Number(userId) !== Number(checkin.userId)) {
+      const err = new Error("Checkin not found.");
+      err.status = 404;
+      err.title = "Checkin not found.";
+      err.errors = ["Could not find checkin."];
+      return next(err);
+    } else {
+      const updatedCheckin = await Checkin.update({
+        checkinId,
+        content,
+        rating,
+        cocktailId,
+        userId,
+        barId,
+      });
+      return res.json(updatedCheckin);
+    }
+  })
+);
+
 // Get individual checkin
 router.get(
   "/:checkinId",
