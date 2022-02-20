@@ -1,4 +1,21 @@
 import { csrfFetch } from "./csrf";
+
+const GET_ALL_CHECKINS = "checkins/GET_ALL_CHECKINS";
+
+const loadCheckins = (checkins) => ({
+  type: GET_ALL_CHECKINS,
+  checkins,
+});
+
+export const getAllCheckins = (checkinId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/checkins/${checkinId}`);
+  if (res.ok) {
+    const checkin = await res.json();
+    dispatch(loadCheckins(checkin));
+    return checkin;
+  }
+};
+
 // Get checkin by id
 const GET_CHECKIN = "checkins/GET_CHECKINS";
 
@@ -48,7 +65,7 @@ const editCheckinPayload = (checkin) => ({
 export const updateCheckin =
   ({ checkinId, content, rating, cocktailId, userId, barId }) =>
   async (dispatch) => {
-    const res = await csrfFetch(`/api/checkins/${checkinId}`, {
+    const res = await csrfFetch(`/api/checkins`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -72,6 +89,11 @@ const initialState = {};
 const checkinReducer = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
+    case GET_ALL_CHECKINS:
+      action.checkins.forEach((checkin) => {
+        newState[checkin.id] = checkin;
+      });
+      return { ...state, ...newState };
     case GET_CHECKIN:
       newState[action.checkin.id] = action.checkin;
       return { ...state, ...newState };

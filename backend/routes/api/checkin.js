@@ -52,14 +52,11 @@ router.post(
 
 // Update a checkin
 router.put(
-  "/:checkinId(\\d+)",
+  "/",
   requireAuth,
   validateCheckin,
   asyncHandler(async (req, res, next) => {
-    const checkinId = parseInt(req.params.checkinId);
-
     const { checkinId, content, rating, cocktailId, userId, barId } = req.body;
-
     const checkin = await Checkin.findByPk(checkinId);
     if (!checkin || Number(userId) !== Number(checkin.userId)) {
       const err = new Error("Checkin not found.");
@@ -86,7 +83,6 @@ router.get(
   "/:checkinId",
   asyncHandler(async (req, res) => {
     const checkinId = parseInt(req.params.checkinId);
-    console.log(checkinId, "checkinId in backend get route");
     const checkin = await Checkin.findByPk(checkinId);
     return res.json(checkin);
   })

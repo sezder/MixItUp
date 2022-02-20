@@ -79,8 +79,6 @@ export const updateBar =
     userId,
   }) =>
   async (dispatch) => {
-    // console.log("barId in thunk", barId)
-    console.log("userId in THUNK DOG", userId);
     const res = await csrfFetch(`/api/bars/${barId}/edit`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

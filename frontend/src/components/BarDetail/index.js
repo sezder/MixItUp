@@ -16,7 +16,6 @@ const BarDetail = ({
     backgroundImage: `url(${imageUrl})`,
   };
 
-  console.log(id, 'barId on bardetail')
   return (
     <div className="bar_container">
       <NavLink to={`/bars/${id}`} onClick={() => setBarComponent("info")}>

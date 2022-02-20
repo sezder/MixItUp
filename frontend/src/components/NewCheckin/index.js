@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
 import { getCocktails } from "../../store/cocktail";
-import { createCheckin } from "../../store/checkin";
+import { createCheckin, getCheckin } from "../../store/checkin";
 import "./NewCheckin.css";
+import { getOneBar } from "../../store/bar";
 
 const NewCheckin = ({ barId, setBarComponent }) => {
-  console.log(barId, 'barId on newchckin')
   const history = useHistory();
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
@@ -42,6 +42,7 @@ const NewCheckin = ({ barId, setBarComponent }) => {
     const checkin = await dispatch(createCheckin(newCheckinPayload));
     if (checkin) {
       setBarComponent("info");
+      dispatch(getOneBar(barId));
       history.push(`/bars/${barId}`);
     }
   };
@@ -51,65 +52,67 @@ const NewCheckin = ({ barId, setBarComponent }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="checkin_form">
-      {errors.length > 0 && (
-        <ul className="errors">
-          {errors.map((error) => (
-            <li key={error}>{error}</li>
+    <div className="checkin_div">
+      <form onSubmit={handleSubmit} className="checkin_form">
+        {errors.length > 0 && (
+          <ul className="errors">
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        )}
+
+        {/* RATING*/}
+        <label htmlFor="rate" className="hidden">
+          Rate your bar experience
+        </label>
+        <StarRatingComponent
+          className="checkin_star"
+          name="rate"
+          starCount={5}
+          value={rating}
+          onStarClick={onStarClick}
+          starColor="#465d57"
+          emptyStarColor="#d1c1ae"
+        />
+
+        {/* CONTENT */}
+        <label htmlFor="content" className="hidden">
+          Review content
+        </label>
+        <textarea
+          name="content"
+          placeholder="Review content"
+          type="text"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          rows="5"
+        ></textarea>
+
+        {/* SELECT COCKTAIL */}
+        <label htmlFor="cocktail_id" className="hidden">
+          Cocktail you had at the bar
+        </label>
+        <select
+          name="cocktail_id"
+          value={cocktailId}
+          onChange={(e) => setCocktailId(e.target.value)}
+        >
+          <option value={null}>-- Select a Cocktail --</option>
+          {Object.values(cocktails).map((cocktail, idx) => (
+            <option key={idx} value={cocktail.id}>
+              {cocktail.name}
+            </option>
           ))}
-        </ul>
-      )}
-
-      {/* RATING*/}
-      <label htmlFor="rate" className="hidden">
-        Rate your bar experience
-      </label>
-      <StarRatingComponent
-        className="checkin_star"
-        name="rate"
-        starCount={5}
-        value={rating}
-        onStarClick={onStarClick}
-        starColor="#465d57"
-        emptyStarColor="#d1c1ae"
-      />
-
-      {/* CONTENT */}
-      <label htmlFor="content" className="hidden">
-        Review content
-      </label>
-      <textarea
-        name="content"
-        placeholder="Review content"
-        type="text"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        rows="5"
-      ></textarea>
-
-      {/* SELECT COCKTAIL */}
-      <label htmlFor="cocktail_id" className="hidden">
-        Cocktail you had at the bar
-      </label>
-      <select
-        name="cocktail_id"
-        value={cocktailId}
-        onChange={(e) => setCocktailId(e.target.value)}
-      >
-        <option value={null}>-- Select a Cocktail --</option>
-        {Object.values(cocktails).map((cocktail, idx) => (
-          <option key={idx} value={cocktail.id}>
-            {cocktail.name}
-          </option>
-        ))}
-      </select>
-      <NavLink to={"/cocktails/new"} className="dark_small">
-        Don't see the cocktail you had?
-      </NavLink>
-      <button type="submit" disabled={errors.length > 0} className="add_btn">
-        <i className="fas fa-plus"></i>
-      </button>
-    </form>
+        </select>
+        <NavLink to={"/cocktails/new"} className="dark_small">
+          Don't see the cocktail you had?
+        </NavLink>
+        <button type="submit" disabled={errors.length > 0} className="add_btn">
+          <i className="fas fa-plus"></i>
+        </button>
+      </form>
+    </div>
   );
 };
 

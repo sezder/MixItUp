@@ -90,7 +90,6 @@ router.put(
   // validateBar,
   asyncHandler(async (req, res, next) => {
     const barId = parseInt(req.params.barId);
-    console.log(barId, "barId backend useparams");
 
     const {
       // barId,
@@ -103,11 +102,7 @@ router.put(
       userId,
     } = req.body;
 
-    console.log("barId backend", barId);
-
     const bar = await Bar.findByPk(barId);
-    console.log(bar.userId, "bar.userId");
-    console.log(userId, "userId");
     if (!bar || Number(userId) !== Number(bar.userId)) {
       const err = new Error("Bar not found.");
       err.status = 404;
@@ -143,6 +138,7 @@ router.get(
         },
       ],
     });
+
     return res.json(bar);
   })
 );

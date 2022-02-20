@@ -16,8 +16,6 @@ import BarList from "./components/BarList";
 import IndivBar from "./components/IndivBar";
 import NewBarForm from "./components/NewBarForm";
 import EditBarForm from "./components/EditBarForm";
-import NewCheckin from "./components/NewCheckin";
-import BarDetails from "./components/IndivBar/BarDetails";
 
 function App() {
   const dispatch = useDispatch();

@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
 import EditCheckin from "../../EditCheckin";
 import "./BarDetails.css";
+import "../../EditCheckin/EditCheckin.css";
+import { useSelector } from "react-redux";
 
 const BarDetails = ({
   description,
@@ -13,8 +15,9 @@ const BarDetails = ({
   checkins,
   name,
 }) => {
-  const [showEditCheckin, setShowEditCheckin] = useState(false);
-  
+  const [showEditCheckin, setShowEditCheckin] = useState(null);
+  const userId = useSelector((state) => state.session?.user?.id);
+
   return (
     <div className="bar_details">
       <p id="location">{location}</p>
@@ -24,13 +27,17 @@ const BarDetails = ({
         <h2>{`See what people have to say about ${name}`} </h2>
         {checkins?.length > 0 &&
           checkins.map((checkin, idx) => {
+            const owned = checkin?.userId === userId;
+            const checkinId = checkin?.id;
             const user = checkin?.User;
             const cocktail = checkin?.Cocktail;
-            return showEditCheckin ? (
+            return owned && showEditCheckin === idx ? (
               <EditCheckin
                 barId={barId}
                 id={checkin?.id}
                 setShowEditCheckin={setShowEditCheckin}
+                key={`editCheckin:${idx}`}
+                checkin={checkin}
               />
             ) : (
               <div key={`checkin:${idx}`} className="checkin_div">
@@ -41,15 +48,23 @@ const BarDetails = ({
                     </div>
                     <p>{user?.username}</p>
                   </div>
+                  <div>
+                    <StarRatingComponent
+                      name="uneditableRating"
+                      starCount={5}
+                      value={checkin?.rating}
+                      starColor="#232e2b"
+                      emptyStarColor="#d1c1ae"
+                      editable={false}
+                    />
 
-                  <StarRatingComponent
-                    name="uneditableRating"
-                    starCount={5}
-                    value={checkin?.rating}
-                    starColor="#232e2b"
-                    emptyStarColor="#d1c1ae"
-                    editable={false}
-                  />
+                    {owned && (
+                      <i
+                        className="fas fa-edit"
+                        onClick={() => setShowEditCheckin(idx)}
+                      ></i>
+                    )}
+                  </div>
                 </div>
                 <p id="checkin_content">{checkin?.content}</p>
 

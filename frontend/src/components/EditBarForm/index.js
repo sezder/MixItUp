@@ -40,7 +40,6 @@ const EditBarForm = () => {
     setErrors(errors);
   }, [name, description, location, imageUrl, menuUrl, reservationUrl]);
 
-  console.log(userId, "userId", bar?.userId, "barId user");
   if (bar && userId !== bar.userId) return <Redirect to="/bars" />;
 
   const handleSubmit = (e) => {
