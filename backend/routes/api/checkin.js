@@ -50,7 +50,15 @@ router.post(
   })
 );
 
-
-
+// Get individual checkin
+router.get(
+  "/:checkinId",
+  asyncHandler(async (req, res) => {
+    const checkinId = parseInt(req.params.checkinId);
+    console.log(checkinId, "checkinId in backend get route");
+    const checkin = await Checkin.findByPk(checkinId);
+    return res.json(checkin);
+  })
+);
 
 module.exports = router;
