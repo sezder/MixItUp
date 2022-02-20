@@ -1,5 +1,4 @@
 .indiv_bar_div {
-  height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,12 +36,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  list-style: none;
-  padding: 10px 0;
-  width: 100vw;
   border-top: solid 3px #608078;
   border-bottom: solid 3px #608078;
+  width: 100vw;
   margin-top: 30px;
+}
+
+.indiv_bar_div ul div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 10px 0;
+  max-width: 75vw;
 }
 
 .indiv_bar_div ul li,
@@ -53,7 +59,8 @@
   font-size: 20px;
 }
 
-.indiv_bar_div ul i {
+.indiv_bar_div ul i,
+.indiv_bar_div ul p {
   cursor: pointer;
 }
 

@@ -20,6 +20,7 @@ import EditBarForm from "./components/EditBarForm";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [barComponent, setBarComponent] = useState("info");
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -29,7 +30,6 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/test" exact></Route>
           <Route path="/" exact>
             <Splash />
           </Route>
@@ -64,10 +64,13 @@ function App() {
             <EditBarForm />
           </Route>
           <Route path="/bars/:barId">
-            <IndivBar />
+            <IndivBar
+              setBarComponent={setBarComponent}
+              barComponent={barComponent}
+            />
           </Route>
           <Route path="/bars" exact>
-            <BarList />
+            <BarList setBarComponent={setBarComponent} />
           </Route>
         </Switch>
       )}

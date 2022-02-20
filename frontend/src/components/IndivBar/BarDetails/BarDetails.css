@@ -1,25 +1,133 @@
 /* Content about the bar: description and location */
-.bar_details {
+.bar_details,
+.bar_details span,
+.profile_circle,
+.checkin_div #user_info,
+#cocktail_preview_div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.bar_details p:nth-child(2) {
+.bar_details #bar_descrip {
   padding: 10px 20px;
   color: rgba(35, 46, 43, 0.8);
   width: 75vw;
 }
 
 #location {
-  justify-self: center;
   color: #836540;
   font-style: italic;
   padding-bottom: 10px;
+  text-align: center;
+  width: 75vw;
 }
 
 /* Checkins displayed */
-.bar_details section {
+.bar_details span {
   border-top: solid 3px #608078;
   width: 100vw;
+}
+
+.bar_details span h2 {
+  width: 75vw;
+  text-align: center;
+  color: #090c0b;
+  background-color: #232e2b;
+  color: #c2a27c;
+  width: 50vw;
+  align-self: center;
+  justify-self: center;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.checkin_div {
+  background-color: rgba(35, 46, 43, 0.4);
+  width: 75vw;
+  align-self: center;
+  padding: 25px 25px 10px 25px;
+  border-radius: 20px;
+  margin-top: 10px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.checkin_div #user_info {
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.checkin_div #user_info div {
+  display: flex;
+  align-items: center;
+}
+
+.checkin_div #user_info div p {
+  width: fit-content;
+}
+
+.profile_circle {
+  width: 35px;
+  height: 35px;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+#checkin_content {
+  justify-self: flex-start;
+}
+
+.checkin_div a {
+  text-decoration: none;
+  position: relative;
+  top: 0;
+  transition: top ease-in-out 0.5s;
+}
+
+.checkin_div a:hover {
+  top: -3px;
+}
+
+.checkin_cocktail {
+  background-color: #465d57;
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  border-radius: 100px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+}
+
+#checkin_img_container {
+  width: 100px;
+  height: 100px;
+  min-width: 100px;
+  min-height: 100px;
+  background-color: #465d57;
+  border-radius: 20px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin-right: 10px;
+  overflow: hidden;
+  /* align-self: flex-start; */
+}
+
+#checkin_img_container img {
+  object-fit: cover;
+  object-position: center;
+  width: 100px;
+  height: 100px;
+  min-width: 100px;
+  min-height: 100px;
+}
+
+#cocktail_preview_div {
+  width: 100%;
+}
+
+#what_have {
+  font-size: 20px;
+  border-bottom: #836540 2px solid;
+  width: 100%;
+  text-align: center;
 }

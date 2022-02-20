@@ -1,0 +1,31 @@
+.checkin_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.checkin_form .errors {
+  width: 90%;
+  border-top: none;
+  border-bottom: none;
+}
+.checkin_form .errors li {
+  font-size: 16px;
+}
+
+.checkin_form textarea,
+.checkin_form select {
+  width: 90%;
+}
+
+.checkin_star {
+  background-color: rgba(70, 93, 87, 0.3);
+  padding: 5px 10px;
+  margin: 5px 0;
+  border-radius: 30px;
+}
+
+.checkin_form a {
+  color: #090c0b;
+}

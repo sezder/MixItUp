@@ -6,7 +6,7 @@ module.exports = {
       "Cocktails",
       [
         {
-          id: 1,
+          // id: 1,
           name: "Blood Orange Rosemary Cocktail",
           description:
             "With the sweet tang of blood orange and aromatic rosemary, this is the perfect cocktail with vodka, even if you’re more of a bourbon fan at heart!",
@@ -18,7 +18,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 2,
+          // id: 2,
           name: "Shiitake Mushroom Cocktail",
           description:
             "This mushroom cocktail was created by Tomo, an overwhelmingly creative mixologist in Kyoto. Step in his well-lit eight-person bar and take a seat.",
@@ -30,7 +30,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 3,
+          // id: 3,
           name: "Blackberry Lemon Smash Cocktail",
           description:
             "Looking for a sweet and tart fruity cocktail with the refreshing taste of citrus? Try this blackberry lemon smash recipe.",
@@ -42,7 +42,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 4,
+          // id: 4,
           name: "Rosemary Mezcal Negroni",
           description:
             "The Negroni was stirred to life in the early 20th century, but it wasn’t until the early 21st century that seemingly every bartender with a mixing glass and bar spoon began to create their own version of the classic cocktail.",
@@ -53,7 +53,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 5,
+          // id: 5,
           name: "Paloma Cucumber Mojito Mule Punch",
           description:
             "When you’re craving a Moscow Mule. And Mojito. And Paloma. Of course you make a mix of all three.",
@@ -65,7 +65,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 6,
+          // id: 6,
           name: "Authentic Mojito",
           description:
             "This is an authentic recipe for mojito: a very refreshing drink for hot summer days. Tonic water can be substituted instead of the soda water for a less sweet taste.",
@@ -76,7 +76,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 7,
+          // id: 7,
           name: "Blackberry-Mint Julep",
           description:
             "Adding blackberries to a mint julep adds fruity flavor to the classic warm-weather cocktail.",
@@ -88,7 +88,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 8,
+          // id: 8,
           name: "Strawberry Whiskey Smash",
           description:
             "An easy and fast riff on a classic – a Strawberry Whiskey Smash. Add in strawberry flavor to the simple syrup and muddle fresh strawberries.",
@@ -100,7 +100,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 9,
+          // id: 9,
           name: "Winter White Cosmo",
           description:
             "Winter White Cosmo, a classic winter-favorite drink. Mixed with Icelandic Reyka Vodka, white cranberry juice, and fresh lime, this sweet cocktail is the perfect way to kick-off the holidays.",
@@ -112,7 +112,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 10,
+          // id: 10,
           name: "Fig Thyme Shrub Cocktail",
           description:
             "This Fig Thyme Shrub Cocktail is a perfect way to celebrate the late summer figs and the beginning of fall! It’s the perfect mix of tangy and sweet, and the fresh thyme adds an unexpected, but delicious note of herby flavor.",
@@ -123,7 +123,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 11,
+          // id: 11,
           name: "Electric Lemonade Cocktail",
           description:
             "A bright blue summer cocktail. A hot-weather favorite vodka drinks because it's sweetly tropical with a little sparkle. The perfect party punch.",
@@ -134,7 +134,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 12,
+          // id: 12,
           name: "Spicy Grapefruit Paloma",
           description:
             "This traditional Mexican cocktail made with fresh grapefruit juice and tequila is given a spicy kick from a chili-infused simple syrup.",
@@ -145,7 +145,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 13,
+          // id: 13,
           name: "Watermelon Mint Cocktail",
           description:
             "Cool off this summer with a refreshing Watermelon Mint Cocktail with vodka. It’s made with 5 simple ingredients that come together quickly, so in no time you’ll be happy hour ready.",
@@ -157,7 +157,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 14,
+          // id: 14,
           name: "Plum Blossom Cobbler Champagne",
           description:
             "Another easy-drinking concoction perfect for spring, this drink makes use of readily available fresh cumquats and umeshu, a plum wine from Japan.",
@@ -169,7 +169,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 15,
+          // id: 15,
           name: "Blueberry Lavender Vodka Spritze",
           description:
             "Made with a blueberry-lavender simple syrup, lime juice, and vodka, this refreshing soda spritzer is an easy happy hour cocktail that everyone will enjoy.",
@@ -181,7 +181,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 16,
+          // id: 16,
           name: "Strawberry Rosé Sangria",
           description:
             "Quick and simple sangria made with fresh strawberries, rosé wine, and kicked up with some vodka.",

@@ -6,7 +6,7 @@ module.exports = {
       "Bars",
       [
         {
-          id: 1,
+          // id: 1,
           name: "LA Cha Cha Chá",
           description:
             "LA Cha Cha Chá is bringing a distinctly Mexican flavor to an Arts District rooftop from March 19. Being the sister location of the popular Terraza Cha Cha Cha in Mexico City's Colona Tabacalera neighborhood, it will combine traditional dishes with Mexico City-born, LA-raised chef Alejandro Guzman signature touch. Design-wise, you'll find sleek timbers, eclectic tiles in turquoise with a substantial amount of foliage (about 150 plants) enclosing the space, all accented with fairy lights for ambiance.",
@@ -20,7 +20,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 2,
+          // id: 2,
           name: "Margot LA",
           description:
             "This Culver City hotspot channels the very best of the Mediterranean with Spanish-style tapas, seasonal craft cocktails, a beautiful blend of natural furnishings, contrasted with bold centerpieces, accented with vibrant tiles and dotted with sun-loving plants. With nothing but the blue skies as your ceiling, you can imagine yourself on a quaint, Balearic coastal terrace. The greenhouse-like indoor section is also a cute spot to migrate to if things heat up or cool down.",
@@ -34,7 +34,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 3,
+          // id: 3,
           name: "Merois",
           description:
             "Chef Wolfgang Puck has gifted L.A. with two incredible new restaurants, exciting new restaurants, Merois and Ospero. Merois, located on the rooftop of Pendry West Hollywood, combines the striking views of the city (which can be enjoyed through floor-to-ceiling windows with a menu that weaves Japanese, Southeast Asian flavors with French-California cuisine.",
@@ -49,7 +49,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 4,
+          // id: 4,
           name: "The Highlight Room",
           description:
             "The Highlight Room offers something for every mood, whether it's the wild parties at the rooftop pool, drinks or a brunch at the Grill, you're bound to enjoy yourself at this Hollywood hideaway, perched on the 10th floor of the DREAM Hotel Hollywood.",
@@ -64,7 +64,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 5,
+          // id: 5,
           name: "The Roof at Edition",
           description:
             "Edition hotels have mastered the art of creating exclusive oases while making you feel as though you're still fully immersed in the city. You can sip on cocktails on one of the loungers under a lush canopy of foliage or get cozy at one of the intimate, candlelit tables perched on the patio along the side. of the rooftop. Enjoy tequila cocktails and tostadas with 360-degree views of the sun setting over the city.",
@@ -79,7 +79,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 6,
+          // id: 6,
           name: "L.P. Rooftop Bar",
           description:
             "The hotspot, located on Melrose and La Cienega, offers some of the best views of West Hollywood. The insanely popular rooftop is the first section of the multistorey dining and drinking haven to reopen. You'll have to wait for the main dining room to open over the next few weeks. You might also want to check out their more tropical sister space, Las Palmas.",
@@ -93,7 +93,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 7,
+          // id: 7,
           name: "Perch",
           description:
             "Perch LA, the Downtown rooftop hotspot, and its breathtaking 360-degree views are yours to enjoy once again! Head up to the 15th floor and waltz through the eclectic interior of the bar and restaurant filled with vintage oddities and colorful textiles. Then, step through the arches and out onto the outdoor terrace covered with lush greenery and fire pits to take in the sunsets over the city. On the 16th floor, you'll find an open rooftop terrace for more all-encompassing views of the city.",
@@ -107,7 +107,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 8,
+          // id: 8,
           name: "Catch LA",
           description:
             "Walking under this canopy of white wisterias and exotic blooms will make you feel like wandering through the Enchanted Forest. At Catch, you're likely to rub shoulders with the rich and famous, a crowd that's glammed up to the gills, while you work your way through a decadent seafood tower. The unique cocktails will make the chandeliers and moody fairy lights at this hotspot twinkle just that little bit extra.",
@@ -121,7 +121,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 9,
+          // id: 9,
           name: "Mama Shelter",
           description:
             "The vibrant escape six floors up are filled with tropical plants, colorful prints and draped fairy lights that will make you feel like you've stepped into an exotic hideaway. Until, of course, you get the head-on view of the Hollywood sign and remember where you are. You'll have an eclectic mix of drinks and decor to lose yourself in as you leave the hustle and bustle below.",
@@ -135,7 +135,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 10,
+          // id: 10,
           name: "Élephante",
           description:
             "This Santa Monica beach house seems to float in the sky with the palm trees, the casual-chic atmosphere will make you feel like you've stepped into an old friend's living room—a friend that's not struggling to show up with a new designer bag in tow for weekly brunches. Their Italian-style food seems at odds with the clientele but there are plenty of options that are surprisingly good considering the incredible ocean view—which is notoriously coupled with less than desirable food.",
@@ -149,7 +149,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 11,
+          // id: 11,
           name: "Terra",
           description:
             "The Century City rooftop oasis, Terra, is a little slice of Italian heaven perched atop the mammoth food emporium Eataly LA. You'll ascend a spiral staircase, catching a glimpse of the wood-burning grill where the beautiful seasonal ingredients are brought to life, before stepping out onto the bright terrace with panoramic views of the Hollywood Hills. Terra is centered on seasonal ingredients grilled on open flames to bring out the rich flavors. Of course, nothing pairs better with these earthy dishes than botanical cocktails or a premium Italian wine alongside an L.A. skyline.",
@@ -165,7 +165,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 12,
+          // id: 12,
           name: "Upstairs at the Ace Hotel DTLA",
           description:
             "This beautiful spot offers views of the city in every direction and is the perfect balance of luxe and casual. White textiles and natural furniture with gorgeous trees dotted around makes this a welcoming haven to end the week off with. Reservations are required and you can book for a maximum of 6 people.",
@@ -180,7 +180,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 13,
+          // id: 13,
           name: "SkyBar",
           description:
             "This glamorous rooftop setting is covered in ivy and is perched atop the Mondrian Los Angeles. It's the perfect place to take in panoramic views of the city on a romantic date or to spend your summers occasionally dipping into the pool between drinks. It's currently only open to hotel guests, it could still work out to be a more affordable option.",

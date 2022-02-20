@@ -4,7 +4,7 @@ const { check } = require("express-validator");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Cocktail, Cocktail_Review, User, Bar } = require("../../db/models");
+const { Bar, Checkin, User, Cocktail } = require("../../db/models");
 
 const router = express.Router();
 // TO DO:
@@ -90,7 +90,6 @@ router.put(
   // validateBar,
   asyncHandler(async (req, res, next) => {
     const barId = parseInt(req.params.barId);
-    console.log(barId, "barId backend useparams");
 
     const {
       // barId,
@@ -103,11 +102,7 @@ router.put(
       userId,
     } = req.body;
 
-    console.log("barId backend", barId);
-
     const bar = await Bar.findByPk(barId);
-    console.log(bar.userId, "bar.userId");
-    console.log(userId, "userId");
     if (!bar || Number(userId) !== Number(bar.userId)) {
       const err = new Error("Bar not found.");
       err.status = 404;
@@ -129,16 +124,29 @@ router.put(
   })
 );
 
-// Get individual bar
+// // Get checkins by bar
 router.get(
-  "/:barId(\\d+)",
+  "/:barId/checkins",
   asyncHandler(async (req, res) => {
     const barId = parseInt(req.params.barId);
-    // eventually, include checkins in this request
+
+    const checkIn = await Checkin.findAll({
+      where: { barId: barId },
+      include: [Cocktail, User],
+    });
+
+    return res.json(checkIn);
+  })
+);
+
+// Get individual bar
+router.get(
+  "/:barId",
+  asyncHandler(async (req, res) => {
+    const barId = parseInt(req.params.barId);
+
     const bar = await Bar.findByPk(barId);
-    if (bar) {
-      return res.json(bar);
-    }
+    return res.json(bar);
   })
 );
 
