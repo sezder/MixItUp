@@ -1,6 +1,8 @@
 import React from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
+import EditCheckin from "../../EditCheckin";
 import "./BarDetails.css";
 
 const BarDetails = ({
@@ -9,8 +11,10 @@ const BarDetails = ({
   id: barId,
   location,
   checkins,
-  name
+  name,
 }) => {
+  const [showEditCheckin, setShowEditCheckin] = useState(false);
+  
   return (
     <div className="bar_details">
       <p id="location">{location}</p>
@@ -22,7 +26,13 @@ const BarDetails = ({
           checkins.map((checkin, idx) => {
             const user = checkin?.User;
             const cocktail = checkin?.Cocktail;
-            return (
+            return showEditCheckin ? (
+              <EditCheckin
+                barId={barId}
+                id={checkin?.id}
+                setShowEditCheckin={setShowEditCheckin}
+              />
+            ) : (
               <div key={`checkin:${idx}`} className="checkin_div">
                 <div id="user_info">
                   <div>

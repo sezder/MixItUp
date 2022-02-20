@@ -3,19 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
 import { getCocktails } from "../../store/cocktail";
-import { createCheckin, getCheckin } from "../../store/checkin";
+import { updateCheckin, getCheckin } from "../../store/checkin";
 import "./EditCheckin.css";
 
-const EditCheckin = ({
-  barId,
-  setBarComponent,
-  id: checkinId,
-  setShowEditCheckin,
-}) => {
+const EditCheckin = ({ barId, id: checkinId, setShowEditCheckin }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const checkin = useSelector(() => state.checkins[checkinId]);
+  const checkin = useSelector((state) => state.checkins[checkinId]);
+  const userId = useSelector((state) => state.session.user.id);
 
   const [content, setContent] = useState(checkin?.content);
   const [rating, setRating] = useState(checkin?.rating);
@@ -35,11 +31,11 @@ const EditCheckin = ({
     setErrors(errors);
     if (cocktailId === "") errors.push("Select a cocktail.");
   }, [content, rating, cocktailId]);
-  const userId = useSelector((state) => state.session.user.id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const editCheckinPayload = {
+      checkinId,
       content,
       rating,
       cocktailId,

@@ -37,6 +37,36 @@ export const createCheckin = (newCheckin) => async (dispatch) => {
   }
 };
 
+// Edit a checkin
+const UPDATE_CHECKIN = "checkins/UPDATE_CHECKIN";
+
+const editCheckinPayload = (checkin) => ({
+  type: UPDATE_CHECKIN,
+  checkin,
+});
+
+export const updateCheckin =
+  ({ checkinId, content, rating, cocktailId, userId, barId }) =>
+  async (dispatch) => {
+    const res = await csrfFetch(`/api/checkins/${checkinId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        checkinId,
+        content,
+        rating,
+        cocktailId,
+        userId,
+        barId,
+      }),
+    });
+
+    if (res.ok) {
+      const checkin = await res.json();
+      dispatch(editCheckinPayload(checkin));
+    }
+  };
+
 const initialState = {};
 
 const checkinReducer = (state = initialState, action) => {
