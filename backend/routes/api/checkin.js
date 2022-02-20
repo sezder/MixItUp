@@ -57,13 +57,8 @@ router.put(
   validateCheckin,
   asyncHandler(async (req, res, next) => {
     const { checkinId, content, rating, cocktailId, userId, barId } = req.body;
-    console.log(checkinId, "checkinID backend");
     const selector = { where: { id: checkinId } };
     const checkin = await Checkin.findOne(selector);
-    console.log(checkin, "CHECKIN DIGG");
-    console.log(Number(userId) === Number(checkin.userId), "====");
-    console.log(Number(userId));
-    console.log(Number(checkin.userId), "*****");
     if (checkin && Number(userId) === Number(checkin.userId)) {
       const updatedCheckin = await Checkin.update(
         {
@@ -77,6 +72,27 @@ router.put(
         selector
       );
       return res.json(updatedCheckin);
+    } else {
+      const err = new Error("Checkin not found.");
+      err.status = 404;
+      err.title = "Checkin not found.";
+      err.errors = ["Could not find checkin."];
+      return next(err);
+    }
+  })
+);
+
+// Update a checkin
+router.delete(
+  "/:checkinId",
+  requireAuth,
+  asyncHandler(async (req, res, next) => {
+    const { checkinId, userId } = req.body;
+    const selector = { where: { id: checkinId } };
+    const checkin = await Checkin.findOne(selector);
+    if (checkin && Number(userId) === Number(checkin.userId)) {
+      await checkin.destroy();
+      return res.json(checkinId);
     } else {
       const err = new Error("Checkin not found.");
       err.status = 404;

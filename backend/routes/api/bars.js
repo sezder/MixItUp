@@ -125,19 +125,19 @@ router.put(
 );
 
 // // Get checkins by bar
-// router.get(
-//   "/:barId/checkins",
-//   asyncHandler(async (req, res) => {
-//     const barId = parseInt(req.params.barId);
+router.get(
+  "/:barId/checkins",
+  asyncHandler(async (req, res) => {
+    const barId = parseInt(req.params.barId);
 
-//     const checkIn = await Checkin.findAll({
-//       where: { barId: barId },
-//       include: [Cocktail, User],
-//     });
+    const checkIn = await Checkin.findAll({
+      where: { barId: barId },
+      include: [Cocktail, User],
+    });
 
-//     return res.json(checkIn);
-//   })
-// );
+    return res.json(checkIn);
+  })
+);
 
 // Get individual bar
 router.get(
@@ -145,14 +145,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const barId = parseInt(req.params.barId);
 
-    const bar = await Bar.findByPk(barId, {
-      include: [
-        {
-          model: Checkin,
-          include: [Cocktail, User],
-        },
-      ],
-    });
+    const bar = await Bar.findByPk(barId);
     return res.json(bar);
   })
 );

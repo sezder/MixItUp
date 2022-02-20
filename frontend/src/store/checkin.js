@@ -1,5 +1,6 @@
 import { csrfFetch } from "./csrf";
 
+// Get checkins by barId
 const GET_ALL_CHECKINS = "checkins/GET_ALL_CHECKINS";
 
 const loadCheckins = (checkins) => ({
@@ -7,6 +8,16 @@ const loadCheckins = (checkins) => ({
   checkins,
 });
 
+export const getAllCheckinsByBarId = (barId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/bars/${barId}/checkins`);
+  if (res.ok) {
+    const checkin = await res.json();
+    dispatch(loadCheckins(checkin));
+    return checkin;
+  }
+};
+
+// Get all checkins
 export const getAllCheckins = (checkinId) => async (dispatch) => {
   const res = await csrfFetch(`/api/checkins/${checkinId}`);
   if (res.ok) {
@@ -84,6 +95,25 @@ export const updateCheckin =
     }
   };
 
+const DELETE_CHECKIN = "checkins/deleteCheckin";
+export const deleteCheckin = (checkinId) => ({
+  type: DELETE_CHECKIN,
+  checkinId,
+});
+export const destroyCheckin =
+  ({ userId, checkinId }) =>
+  async (dispatch) => {
+    const res = await csrfFetch(`/api/checkins/${checkinId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, checkinId }),
+    });
+    if (res.ok) {
+      const checkinId = await res.json();
+      dispatch(deleteCheckin(checkinId));
+    }
+  };
+
 const initialState = {};
 
 const checkinReducer = (state = initialState, action) => {
@@ -101,6 +131,10 @@ const checkinReducer = (state = initialState, action) => {
       return { ...state, [action.checkin.id]: action.checkin };
     case UPDATE_CHECKIN:
       return { ...state, [action.checkin.id]: action.checkin };
+    case DELETE_CHECKIN:
+      newState = { ...state };
+      delete newState[action.checkinId];
+      return { ...newState };
     default:
       return state;
   }

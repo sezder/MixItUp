@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
 import { getCocktails } from "../../store/cocktail";
 import { getOneBar } from "../../store/bar";
-import { updateCheckin } from "../../store/checkin";
+import { updateCheckin, destroyCheckin } from "../../store/checkin";
 import "./EditCheckin.css";
 
 const EditCheckin = ({ barId, id: checkinId, setShowEditCheckin, checkin }) => {
+  checkinId = Number(checkinId);
   const dispatch = useDispatch();
-
   const userId = useSelector((state) => state?.session?.user?.id);
 
   const [content, setContent] = useState(checkin?.content);
@@ -38,12 +38,13 @@ const EditCheckin = ({ barId, id: checkinId, setShowEditCheckin, checkin }) => {
       content,
       rating,
       cocktailId,
-      userId,
       barId,
     };
 
-    dispatch(updateCheckin(editCheckinPayload));
-    dispatch(getOneBar(barId));
+    dispatch(updateCheckin(editCheckinPayload)).then(() =>
+      dispatch(getOneBar(barId))
+    );
+
     setShowEditCheckin(null);
   };
 
@@ -51,14 +52,15 @@ const EditCheckin = ({ barId, id: checkinId, setShowEditCheckin, checkin }) => {
     return setRating(nextValue);
   };
 
-  //   const handleDelete = (e) => {
-  //     e.preventDefault();
-  //     const destroyBarPayload = { userId, barId };
-  //     const destroyedBar = dispatch(destroyBar(destroyBarPayload));
-  //     if (destroyedBar) {
-  //       history.push("/bars");
-  //     }
-  //   };
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    const delCheckinPayload = { userId, checkinId };
+    dispatch(destroyCheckin(delCheckinPayload)).then(() =>
+      dispatch(getOneBar(barId))
+    );
+
+    setShowEditCheckin(null);
+  };
 
   return (
     <div className="checkin_div">
@@ -117,9 +119,19 @@ const EditCheckin = ({ barId, id: checkinId, setShowEditCheckin, checkin }) => {
         <NavLink to={"/cocktails/new"} className="dark_small">
           Don't see the cocktail you had?
         </NavLink>
-        <button type="submit" disabled={errors.length > 0} className="add_btn">
-          <i className="fas fa-check"></i>
-        </button>
+        <div>
+          <button
+            type="submit"
+            disabled={errors.length > 0}
+            className="add_btn"
+          >
+            <i className="fas fa-check"></i>
+          </button>
+
+          <button onClick={handleDelete}>
+            <i className="fas fa-trash"></i>
+          </button>
+        </div>
       </form>
     </div>
   );

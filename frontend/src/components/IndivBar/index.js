@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   useParams,
   NavLink,
-  Switch,
-  Route,
   useHistory,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
 import EditCheckin from "../../EditCheckin";
 import "./BarDetails.css";
 import "../../EditCheckin/EditCheckin.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCheckinsByBarId } from "../../../store/checkin";
 
 const BarDetails = ({
   description,
-  barUserId,
   id: barId,
   location,
-  checkins,
   name,
 }) => {
+  const dispatch = useDispatch();
   const [showEditCheckin, setShowEditCheckin] = useState(null);
   const userId = useSelector((state) => state.session?.user?.id);
+
+  let checkins = useSelector((state) => state.checkin);
+  checkins = Object.values(checkins);
+
+  useEffect(() => {
+    dispatch(getAllCheckinsByBarId(barId));
+  }, [dispatch, barId]);
 
   return (
     <div className="bar_details">
@@ -26,21 +33,20 @@ const BarDetails = ({
       <span>
         <h2>{`See what people have to say about ${name}`} </h2>
         {checkins?.length > 0 &&
-          checkins.map((checkin, idx) => {
+          checkins.map((checkin) => {
             const owned = checkin?.userId === userId;
-            const checkinId = checkin?.id;
             const user = checkin?.User;
             const cocktail = checkin?.Cocktail;
-            return owned && showEditCheckin === idx ? (
+            return owned && showEditCheckin === checkin.id ? (
               <EditCheckin
                 barId={barId}
-                id={checkin?.id}
+                id={checkin.id}
                 setShowEditCheckin={setShowEditCheckin}
-                key={`editCheckin:${idx}`}
+                key={`editCheckin:${checkin.id}`}
                 checkin={checkin}
               />
             ) : (
-              <div key={`checkin:${idx}`} className="checkin_div">
+              <div key={`checkin:${checkin.id}`} className="checkin_div">
                 <div id="user_info">
                   <div>
                     <div className="profile_circle">
@@ -61,7 +67,7 @@ const BarDetails = ({
                     {owned && (
                       <i
                         className="fas fa-edit"
-                        onClick={() => setShowEditCheckin(idx)}
+                        onClick={() => setShowEditCheckin(checkin.id)}
                       ></i>
                     )}
                   </div>
@@ -74,7 +80,7 @@ const BarDetails = ({
                       className="bar_img_container"
                       id="checkin_img_container"
                     >
-                      <img src={cocktail?.imageUrl}></img>
+                      <img src={cocktail?.imageUrl} alt={cocktail?.name}></img>
                     </div>
 
                     <div id="cocktail_preview_div">
