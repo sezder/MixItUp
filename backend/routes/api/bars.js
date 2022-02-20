@@ -124,6 +124,21 @@ router.put(
   })
 );
 
+// // Get checkins by bar
+// router.get(
+//   "/:barId/checkins",
+//   asyncHandler(async (req, res) => {
+//     const barId = parseInt(req.params.barId);
+
+//     const checkIn = await Checkin.findAll({
+//       where: { barId: barId },
+//       include: [Cocktail, User],
+//     });
+
+//     return res.json(checkIn);
+//   })
+// );
+
 // Get individual bar
 router.get(
   "/:barId",
@@ -138,7 +153,6 @@ router.get(
         },
       ],
     });
-
     return res.json(bar);
   })
 );
