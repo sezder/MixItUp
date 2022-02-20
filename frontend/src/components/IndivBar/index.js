@@ -73,6 +73,7 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
             <li>Check In</li>
           </p>
 
+          {/* If the current user is the creator of the bar, show edit/delete */}
           {barUserId === userId && (
             <>
               <NavLink to={`/bars/${barId}/edit`}>
@@ -90,6 +91,7 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
             barUserId={barUserId}
             id={barId}
             checkins={bar?.Checkins}
+            name={bar?.name}
           />
         ) : (
           <NewCheckin barId={barId} setBarComponent={setBarComponent} />

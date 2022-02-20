@@ -100,3 +100,7 @@ textarea {
 .hidden {
   display: none;
 }
+
+.default_cursor {
+  cursor: default;
+}
