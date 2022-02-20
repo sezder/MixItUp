@@ -20,12 +20,8 @@ const BarDetails = ({
         <h2>{`See what people have to say about ${name}`} </h2>
         {checkins?.length > 0 &&
           checkins.map((checkin, idx) => {
-            console.log(checkin, "checkin");
             const user = checkin?.User;
             const cocktail = checkin?.Cocktail;
-            console.log(cocktail, "cocktail");
-            console.log(user, "user");
-
             return (
               <div key={`checkin:${idx}`} className="checkin_div">
                 <div id="user_info">

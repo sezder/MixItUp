@@ -57,32 +57,34 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
       <main>
         {/* Navigation links to switch the component rendered in main */}
         <ul>
-          <p onClick={() => setBarComponent("info")}>
-            <li>Info</li>
-          </p>
+          <div>
+            <p onClick={() => setBarComponent("info")}>
+              <li>Info</li>
+            </p>
 
-          <span onClick={() => window.open(bar?.menuUrl)}>
-            <li>Menu</li>
-          </span>
+            <span onClick={() => window.open(bar?.menuUrl)}>
+              <li>Menu</li>
+            </span>
 
-          <span onClick={() => window.open(bar?.reservationUrl)}>
-            <li>Reservations</li>
-          </span>
+            <span onClick={() => window.open(bar?.reservationUrl)}>
+              <li>Reservations</li>
+            </span>
 
-          <p onClick={() => setBarComponent("checkin")}>
-            <li>Check In</li>
-          </p>
+            <p onClick={() => setBarComponent("checkin")}>
+              <li>Check In</li>
+            </p>
 
-          {/* If the current user is the creator of the bar, show edit/delete */}
-          {barUserId === userId && (
-            <>
-              <NavLink to={`/bars/${barId}/edit`}>
-                <i className="fas fa-edit"></i>
-              </NavLink>
+            {/* If the current user is the creator of the bar, show edit/delete */}
+            {barUserId === userId && (
+              <>
+                <NavLink to={`/bars/${barId}/edit`}>
+                  <i className="fas fa-edit"></i>
+                </NavLink>
 
-              <i className="far fa-trash-alt" onClick={handleDelete}></i>
-            </>
-          )}
+                <i className="far fa-trash-alt" onClick={handleDelete}></i>
+              </>
+            )}
+          </div>
         </ul>
         {barComponent === "info" ? (
           <BarDetails
