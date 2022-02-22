@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     Cocktail.hasMany(models.Checkin, { foreignKey: "cocktailId" });
     Cocktail.belongsTo(models.User, { foreignKey: "userId" });
     const columnMapping = {
-      through: "Checkin",
+      through: "Bar_Cocktails",
       otherKey: "barId",
       foreignKey: "cocktailId",
     };
