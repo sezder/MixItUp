@@ -87,7 +87,7 @@ const BarDetails = ({
                       <p id="what_have">What'd you have?</p>
                       <p id="checkin_cocktail_name">{cocktail?.name}</p>
                       <p id="checkin_cocktail_descrip">
-                        {cocktail.description.length > 100
+                        {cocktail?.description.length > 100
                           ? `${cocktail?.description.slice(0, 100)}...`
                           : cocktail?.description}
                       </p>
