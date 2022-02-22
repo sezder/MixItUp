@@ -74,6 +74,10 @@
   margin-right: 10px;
 }
 
+.checkin_div #user_info div i.fa-edit {
+  margin-left: 8px;
+}
+
 #checkin_content {
   justify-self: flex-start;
 }
