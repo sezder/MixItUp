@@ -57,7 +57,7 @@ const IndivCocktail = () => {
   }
 
   return (
-    <div className="indiv_container">
+    <div>
       <div className="curr_cocktail_div">
         {/* Image */}
         <div className="indiv_img_container">

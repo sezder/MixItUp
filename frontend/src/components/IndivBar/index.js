@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  useParams,
-  NavLink,
-  useHistory,
-} from "react-router-dom";
+import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneBar } from "../../store/bar";
 import "./IndivBar.css";
@@ -44,10 +40,10 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
   }
 
   return (
-    <div className="indiv_bar_div">
+    <div className="indiv_div">
       {/* Banner with bar image */}
       <div
-        className="bar_banner_container"
+        className="indiv_banner_container"
         style={backgroundImageStyling}
       ></div>
       <h1>{bar?.name}</h1>
