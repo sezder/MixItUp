@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import DemoUser from "../DemoUser";
@@ -12,6 +13,12 @@ function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
+
+  // controls the burger menu animation
+  const variants = {
+    hidden: { opacity: 0, y: -30 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   const logout = (e) => {
     e.preventDefault();
@@ -115,41 +122,96 @@ function Navigation({ isLoaded }) {
       {/* Burger menu */}
       {showMenu && (
         <ul className="menu_dropdown">
-          <li>
+          <motion.li
+            transition={{ delay: 0.05 }}
+            initial="hidden"
+            animate="visible"
+            variants={variants}
+          >
             <NavLink to="/cocktails" className="text_large">
               RECIPES
             </NavLink>
-          </li>
-          <li>
+          </motion.li>
+
+          <motion.li
+            transition={{ delay: 0.1 }}
+            initial="hidden"
+            animate="visible"
+            variants={variants}
+          >
             <NavLink to="/bars" className="text_large">
               BARS
             </NavLink>
-          </li>
-          <li>
+          </motion.li>
+
+          <motion.li
+            transition={{ delay: 0.2 }}
+            initial="hidden"
+            animate="visible"
+            variants={variants}
+          >
             <NavLink to="/about" className="text_large">
               ABOUT
             </NavLink>
-          </li>
+          </motion.li>
 
           {sessionUser ? (
-            <li className="menu_user_div">
-              <div id="icon_name_container">
+            <motion.li
+              className="menu_user_div"
+              transition={{ delay: 0.3 }}
+              initial="hidden"
+              animate="visible"
+              variants={variants}
+            >
+              <motion.div
+                id="icon_name_container"
+                transition={{ delay: 0.4 }}
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+              >
                 <div className="profile_circle">
                   <p>{sessionUser?.username.slice(0, 1)}</p>
                 </div>
                 <p>{sessionUser?.username}</p>
-              </div>
-              <li>
+              </motion.div>
+              <motion.li
+                transition={{ delay: 0.5 }}
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+              >
                 <button onClick={logout}>Log Out</button>
-              </li>
-            </li>
+              </motion.li>
+            </motion.li>
           ) : (
             <>
-              <LoginFormModal />
-              <DemoUser />
-              <NavLink to="/signup" className="text_large">
-                Sign Up
-              </NavLink>
+              <motion.li
+                transition={{ delay: 0.3 }}
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+              >
+                <LoginFormModal />
+              </motion.li>
+              <motion.li
+                transition={{ delay: 0.4 }}
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+              >
+                <DemoUser />
+              </motion.li>
+              <motion.li
+                transition={{ delay: 0.5 }}
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+              >
+                <NavLink to="/signup" className="text_large">
+                  Sign Up
+                </NavLink>
+              </motion.li>
             </>
           )}
         </ul>
