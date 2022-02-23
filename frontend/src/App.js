@@ -9,7 +9,6 @@ import CocktailList from "./components/CocktailList";
 import IndivCocktail from "./components/IndivCocktail";
 import NewCocktailForm from "./components/NewCocktailForm";
 import EditCocktailForm from "./components/EditCocktailForm";
-import Home from "./components/Home";
 import Splash from "./components/Splash";
 import BarList from "./components/BarList";
 import IndivBar from "./components/IndivBar";
@@ -31,9 +30,6 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Splash />
-          </Route>
-          <Route path="/home">
-            <Home />
           </Route>
           <Route path="/login">
             <LoginFormPage />

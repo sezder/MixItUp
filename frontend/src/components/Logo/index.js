@@ -5,13 +5,13 @@ import { NavLink } from "react-router-dom";
 
 function Logo() {
   return (
-    <NavLink to="/home" id="logo_a">
+    <NavLink to="/" id="logo_a">
       <ul className="logo_container">
-        <li id="logo">MIX</li>
+        <span id="logo">MIX</span>
         <div className="logo_dot"></div>
-        <li id="logo">IT</li>
+        <span id="logo">IT</span>
         <div className="logo_dot"></div>
-        <li id="logo">UP</li>
+        <span id="logo">UP</span>
       </ul>
     </NavLink>
   );

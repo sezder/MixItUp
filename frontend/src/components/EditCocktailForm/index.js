@@ -48,7 +48,7 @@ function EditCocktailForm() {
     setErrors(errors);
   }, [name, description, imageUrl, recipeUrl]);
 
-  if (user?.id!== cocktail?.userId) return <Redirect to="/home" />;
+  if (user?.id!== cocktail?.userId) return <Redirect to="/cocktails" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();

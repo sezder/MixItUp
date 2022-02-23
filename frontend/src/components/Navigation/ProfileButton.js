@@ -4,24 +4,24 @@ import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    if (showUserMenu) return;
+    setShowUserMenu(true);
   };
   
   useEffect(() => {
-    if (!showMenu) return;
+    if (!showUserMenu) return;
 
     const closeMenu = () => {
-      setShowMenu(false);
+      setShowUserMenu(false);
     };
 
     document.addEventListener('click', closeMenu);
   
     return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  }, [showUserMenu]);
 
   const logout = (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ function ProfileButton({ user }) {
       <button onClick={openMenu} id="profile_button">
         <i className="fas fa-user-circle fa-lg" />
       </button>
-      {showMenu && (
+      {showUserMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>

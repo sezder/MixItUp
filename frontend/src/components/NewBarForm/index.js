@@ -31,7 +31,7 @@ const NewBarForm = () => {
 
   if (!userId) return <Redirect to="/login"></Redirect>;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newBar = {
       name,
@@ -43,11 +43,9 @@ const NewBarForm = () => {
       userId,
     };
 
-    const createdBar = dispatch(createBar(newBar));
+    const createdBar = await dispatch(createBar(newBar));
     if (createdBar) {
-      //get the id: res.id and the push to redirect there
-      // /bars/${createdBar?.id}
-      history.push("/bars");
+      history.push(`/bars/${createdBar?.id}`);
     }
   };
 
