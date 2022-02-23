@@ -32,6 +32,10 @@
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+.indiv_div main .indivUneditableRating {
+  margin: 15px;
+}
+
 .indiv_div ul {
   display: flex;
   justify-content: center;
@@ -39,7 +43,7 @@
   border-top: solid 3px #608078;
   border-bottom: solid 3px #608078;
   width: 100vw;
-  margin-top: 30px;
+  
 }
 
 .indiv_div ul div {

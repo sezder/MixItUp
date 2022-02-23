@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import StarRatingComponent from "react-star-rating-component";
 import { getCocktails } from "../../store/cocktail";
-import { getReviews } from "../../store/review";
-import "./IndivCocktail.css";
-import "../../index.css";
+import CocktailDetails from "./CocktailDetails";
 import NewCocktailReview from "../NewCocktailReview";
-import ShowReviews from "../ShowReviews";
 import { Modal } from "../../context/Modal";
 import LoginForm from "../LoginFormModal/LoginForm.js";
+import { destroyCocktail } from "../../store/cocktail";
 
 const IndivCocktail = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const { id } = useParams();
+  const [cocktailComponent, setCocktailComponent] = useState("info");
+  let { id: cocktailId } = useParams();
+  cocktailId = Number(cocktailId);
 
   useEffect(() => {
     dispatch(getCocktails());
-    dispatch(getReviews(id));
-  }, [dispatch, id]);
+  }, [dispatch]);
 
   const user = useSelector((state) => state.session.user);
   const userId = user?.id;
 
   const cocktailsObj = useSelector((state) => state.cocktail);
-  const indivCocktail = cocktailsObj[id];
+  const cocktail = cocktailsObj[cocktailId];
 
   const reviewsObj = useSelector((state) => state.review);
   const reviews = Object.values(reviewsObj);
@@ -38,71 +38,101 @@ const IndivCocktail = () => {
     return Math.floor(sum / reviews.length);
   };
 
-  let reviewRestriction;
-  if (userId) {
-    reviewRestriction = <NewCocktailReview />;
-  } else {
-    reviewRestriction = (
-      <>
-        <button onClick={() => setShowModal(true)}>
-          Log in to leave a review.
-        </button>
-        {showModal && (
-          <Modal onClose={() => setShowModal(false)}>
-            <LoginForm />
-          </Modal>
-        )}
-      </>
-    );
+  let reviewRestriction = user ? (
+    <NewCocktailReview
+      setCocktailComponent={setCocktailComponent}
+      userId={userId}
+      cocktailId={cocktailId}
+    />
+  ) : (
+    <>
+      <button onClick={() => setShowModal(true)}>
+        Log in to leave a review.
+      </button>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <LoginForm />
+        </Modal>
+      )}
+    </>
+  );
+
+  const backgroundImageStyling = {
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "100vw",
+  };
+
+  if (cocktail?.imageUrl !== undefined) {
+    backgroundImageStyling["backgroundImage"] = `url(${cocktail?.imageUrl})`;
   }
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    const cocktailPayload = { userId, cocktailId: cocktail?.id };
+    const cocktailId = dispatch(destroyCocktail(cocktailPayload));
+    if (cocktailId) {
+      history.push("/cocktails");
+    }
+  };
+
   return (
-    <div>
-      <div className="curr_cocktail_div">
-        {/* Image */}
-        <div className="indiv_img_container">
-          <img src={indivCocktail?.imageUrl} alt={indivCocktail?.name}></img>
-        </div>
+    <div className="indiv_div">
+      {/* Banner with cocktail image */}
+      <div
+        className="indiv_banner_container"
+        style={backgroundImageStyling}
+      ></div>
+      <h1>{cocktail?.name}</h1>
 
-        <div className="curr_cocktail_details">
-          <h2>{indivCocktail?.name}</h2>
-          <StarRatingComponent
-            name="uneditableRatingAvg"
-            starCount={5}
-            value={findAvg()}
-            starColor="#d1c1ae"
-            emptyStarColor="#090C0B"
-            editable={false}
+      <main>
+        <StarRatingComponent
+          name="uneditableRatingAvg"
+          starCount={5}
+          value={findAvg()}
+          starColor="#d1c1ae"
+          emptyStarColor="#090C0B"
+          editable={false}
+          className="indivUneditableRating"
+        />
+        <ul>
+          <div>
+            <p onClick={() => setCocktailComponent("info")}>
+              <li>Info</li>
+            </p>
+
+            <span onClick={() => window.open(cocktail?.recipeUrl)}>
+              <li>Recipe</li>
+            </span>
+
+            <p onClick={() => setCocktailComponent("review")}>
+              <li>Review</li>
+            </p>
+
+            {/* If the current user is the creator of the bar, show edit/delete */}
+            {cocktail?.userId === userId && (
+              <>
+                <NavLink to={`/cocktails/${cocktail?.id}/edit`}>
+                  <i className="far fa-edit"></i>
+                </NavLink>
+
+                <i className="far fa-trash-alt" onClick={handleDelete}></i>
+              </>
+            )}
+          </div>
+        </ul>
+
+        {cocktailComponent === "info" ? (
+          <CocktailDetails
+            cocktail={cocktail}
+            user={user}
+            userId={userId}
+            cocktailId={cocktailId}
           />
-          <p>{indivCocktail?.description}</p>
-          <a href={indivCocktail?.recipeUrl}>
-            <button>Try It Out</button>
-          </a>
-          {userId === indivCocktail?.userId && (
-            <NavLink to={`/cocktails/${id}/edit`}>
-              <button>Edit</button>
-            </NavLink>
-          )}
-        </div>
-      </div>
-
-      <div className="review_container">{reviewRestriction}</div>
-
-      <div className="reviews_container">
-        {reviews.map(({ id, reviewRating, reviewBody, userId, User }) => {
-          return (
-            <ShowReviews
-              key={id}
-              id={id}
-              reviewRating={reviewRating}
-              reviewBody={reviewBody}
-              userId={userId}
-              user={User}
-              cocktailId={indivCocktail?.id}
-            />
-          );
-        })}
-      </div>
+        ) : (
+          reviewRestriction
+        )}
+      </main>
     </div>
   );
 };

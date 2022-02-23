@@ -76,7 +76,6 @@ const editCheckinPayload = (checkin) => ({
 export const updateCheckin =
   ({ checkinId: id, content, rating, cocktailId, userId, barId }) =>
   async (dispatch) => {
-    console.log(id, 'checkinId in thunk *******')
     const res = await csrfFetch(`/api/checkins`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -92,7 +91,6 @@ export const updateCheckin =
 
     if (res.ok) {
       const checkin = await res.json();
-      console.log(checkin, 'checkin in thunk &&&&&')
       dispatch(editCheckinPayload(checkin));
     }
   };
@@ -132,7 +130,7 @@ const checkinReducer = (state = initialState, action) => {
     case ADD_CHECKIN:
       return { ...state, [action.checkin.id]: action.checkin };
     case UPDATE_CHECKIN:
-      return {...state, [action.checkin.id]: action.checkin}
+      return { ...state, [action.checkin.id]: action.checkin };
     case DELETE_CHECKIN:
       newState = { ...state };
       delete newState[action.checkinId];

@@ -57,10 +57,6 @@ router.put(
   validateCheckin,
   asyncHandler(async (req, res, next) => {
     const { id, content, rating, cocktailId, userId, barId } = req.body;
-    console.log(cocktailId, "cocktailId ^^^^^");
-    // console.log(id, typeof(id), "ID *****")
-    // const selector = { where: { id: id } };
-    // const checkin = await Checkin.findOne(selector);
     const checkin = await Checkin.findByPk(id);
 
     if (checkin && Number(userId) === Number(checkin.userId)) {
@@ -72,7 +68,6 @@ router.put(
         userId,
         barId,
       });
-      console.log(updatedCheckin, '^^^^^^^^^')
       return res.json(updatedCheckin);
     } else {
       const err = new Error("Checkin not found.");
