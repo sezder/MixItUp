@@ -32,11 +32,6 @@ function Navigation({ isLoaded }) {
         <li>
           <Logo />
         </li>
-        <li id="home">
-          <NavLink className="text_large" exact to="/home">
-            HOME
-          </NavLink>
-        </li>
         <li id="explore_nav">
           <NavLink to="/cocktails" className="text_large">
             RECIPES
