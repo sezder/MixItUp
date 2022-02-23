@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { getCocktails } from "../../store/cocktail";
 import { getAllReviews } from "../../store/review"; //F
 import "./CocktailList.css";
@@ -20,6 +21,14 @@ const CocktailList = () => {
 
   return (
     <div className="cocktail_list_div">
+      <div className="submit_new_bar">
+        <h2>Want to add a new cocktail?</h2>
+        <NavLink to="/cocktails/new">
+          <button>
+            <i className="fas fa-plus"></i>
+          </button>
+        </NavLink>
+      </div>
       <section className="cards">
         {cocktails.map(({ id, name, description, imageUrl, recipeUrl }) => {
           let reviewRatings = [];

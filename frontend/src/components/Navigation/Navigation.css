@@ -3,7 +3,7 @@ nav {
   height: 60px;
 }
 
-nav ul {
+nav ul.horizontal_nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -22,6 +22,7 @@ li .text_large {
 
 #about_me_container {
   display: flex;
+  align-items: center;
 }
 
 #about_me_container div {
@@ -39,91 +40,144 @@ li .text_large {
   color: #232e2b;
 }
 
-#nav_plus_div {
-  background-color: #232e2b;
-  padding: 8px 10px;
-  border-radius: 30px;
+/* Desktop session links */
+.large_session {
+  background-color: #090c0b;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-right: 5px;
+  justify-content: space-evenly;
+  min-width: fit-content;
+  width: 20vw;
 }
 
-#nav_plus_li a:hover {
-  text-decoration: none;
+.large_session span {
+  background-color: #a38662;
+  display: flex;
+  align-items: center;
 }
-
-#nav_plus {
-  color: #a38662;
-}
-
+/* Tablet session links */
 #profile_button {
   padding: 8px 10px;
 }
 
-.profile-dropdown {
+.profile-dropdown,
+.menu_dropdown {
   background-color: #090c0b;
   color: #d1c1ae;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   z-index: 4;
   height: 120px;
   padding-bottom: 5px;
   position: absolute;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  width: 150px;
 }
 
-@media only screen and (min-width: 1000px) and (max-width: 3000px) {
-  #nav_plus_div {
-    display: none;
-  }
+/* Logged out session links */
+.logged_out_session_links {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: antiquewhite;
+  width: 26vw;
 }
 
-@media only screen and (min-width: 750px) and (max-width: 999px) {
-  #submit_cocktail {
-    display: none;
-  }
+/* Burger menu */
+.menu,
+.menu_dropdown {
+  display: none;
 }
 
-@media only screen and (min-width: 502px) and (max-width: 750px) {
-  #explore_nav {
-    display: none;
-  }
+@media only screen and (min-width: 800px) {
 
-  #submit_cocktail {
+  #profile_button {
     display: none;
-  }
-
-  #home {
-    display: none;
-  }
-
-  ul.logo_container {
-    padding: 0 5px 0 0;
   }
 }
 
-@media only screen and (max-width: 501px) {
-  nav {
+@media only screen and (max-width: 950px) {
+  .logged_out_session_links {
+    width: 31vw;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+  li .text_large {
+    font-size: 16px;
+    padding: 0 10px;
+  }
+
+  .logged_out_session_links {
+    width: 45vw;
+  }
+
+  .large_session {
+    display: none;
+  }
+
+  nav ul.horizontal_nav {
+    padding: 0 20px;
+  }
+}
+
+@media only screen and (max-width: 715px) {
+  nav ul.horizontal_nav {
+    justify-content: space-between;
     width: 100vw;
+    padding: 0 40px;
   }
 
-  ul.logo_container {
-    padding-right: 5px;
+  .large_session,
+  .med_session,
+  .logged_out_session_links,
+  .horizontal_nav li {
+    display: none;
+  }
+  .menu,
+  .menu_dropdown {
+    display: flex;
   }
 
-  #submit_cocktail {
-    display: none;
+  .menu_dropdown {
+    width: 60vw;
+    height: 100vh;
+    right: 0;
   }
 
-  #explore_nav {
-    display: none;
+  .menu_user_div {
+    background-color: rgba(163, 134, 98, 0.8);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 35vw;
+    height: 20vh;
+    border-radius: 20px;
   }
-  #home {
-    display: none;
+
+  .menu_user_div div#icon_name_container {
+    display: flex;
+    align-items: center;
   }
-  ul.logo_container {
-    display: none;
+
+  .menu_dropdown li .text_large {
+    font-size: 25px;
+  }
+
+  .menu_dropdown button,
+  .menu_dropdown a {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .menu_dropdown {
+    width: 100vw;
   }
 }
