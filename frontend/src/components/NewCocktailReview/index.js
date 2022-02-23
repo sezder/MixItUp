@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import StarRatingComponent from "react-star-rating-component";
 import { createReview } from "../../store/review";
 import "./NewCocktailReview.css";
 
-function NewCocktailReview() {
-  const paramsObj = useParams();
-  const cocktailId = Number(paramsObj?.id);
+function NewCocktailReview({setCocktailComponent, userId, cocktailId}) {
   const dispatch = useDispatch();
 
   let [reviewRating, setReviewRating] = useState(0);
   const [reviewBody, setReviewBody] = useState("");
   const [errors, setErrors] = useState([]);
-  const user = useSelector((state) => state.session.user);
-  const userId = user?.id;
 
   useEffect(() => {
     const errors = [];
@@ -43,6 +38,7 @@ function NewCocktailReview() {
 
     dispatch(createReview(newReview));
     resetFields();
+    setCocktailComponent("info")
   };
 
   const onStarClick = (nextValue, prevValue, name) => {
@@ -50,10 +46,8 @@ function NewCocktailReview() {
   };
 
   return (
-    <div className="add_review_div">
-      <h2 className="text_large">Leave a Review</h2>
-
-      <form onSubmit={handleSubmit} className="add_review_form">
+    <div className="checkin_div">
+      <form onSubmit={handleSubmit} className="checkin_form">
         {/* ERRORS */}
         {errors.length > 0 && (
           <ul className="errors">
@@ -88,7 +82,7 @@ function NewCocktailReview() {
           disabled={errors.length > 0}
           className="add_review_button"
         >
-          Add
+          <i className="fas fa-plus"></i>
         </button>
       </form>
     </div>

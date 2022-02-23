@@ -1,19 +1,37 @@
-import React, { useEffect } from "react";
-import {
-  useParams,
-  NavLink,
-  useHistory,
-} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneBar } from "../../store/bar";
 import "./IndivBar.css";
 import BarDetails from "./BarDetails";
 import { destroyBar } from "../../store/bar";
 import NewCheckin from "../NewCheckin";
+import { Modal } from "../../context/Modal";
+import LoginForm from "../LoginFormModal/LoginForm";
 
 const IndivBar = ({ setBarComponent, barComponent }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  let { barId } = useParams();
+  barId = Number(barId);
+  const [showModal, setShowModal] = useState(false);
+
   const userId = useSelector((state) => state.session.user)?.id;
+
+  let reviewRestriction = userId ? (
+    <NewCheckin barId={barId} setBarComponent={setBarComponent} />
+  ) : (
+    <>
+      <button onClick={() => setShowModal(true)}>
+        Log in to leave a review.
+      </button>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <LoginForm />
+        </Modal>
+      )}
+    </>
+  );
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -23,9 +41,6 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
       history.push("/bars");
     }
   };
-  const dispatch = useDispatch();
-  let { barId } = useParams();
-  barId = Number(barId);
 
   useEffect(() => {
     dispatch(getOneBar(parseInt(barId)));
@@ -44,10 +59,10 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
   }
 
   return (
-    <div className="indiv_bar_div">
+    <div className="indiv_div">
       {/* Banner with bar image */}
       <div
-        className="bar_banner_container"
+        className="indiv_banner_container"
         style={backgroundImageStyling}
       ></div>
       <h1>{bar?.name}</h1>
@@ -76,7 +91,7 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
             {barUserId === userId && (
               <>
                 <NavLink to={`/bars/${barId}/edit`}>
-                  <i className="fas fa-edit"></i>
+                  <i className="far fa-edit"></i>
                 </NavLink>
 
                 <i className="far fa-trash-alt" onClick={handleDelete}></i>
@@ -84,6 +99,7 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
             )}
           </div>
         </ul>
+
         {barComponent === "info" ? (
           <BarDetails
             description={bar?.description}
@@ -94,7 +110,7 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
             name={bar?.name}
           />
         ) : (
-          <NewCheckin barId={barId} setBarComponent={setBarComponent} />
+          reviewRestriction
         )}
       </main>
     </div>

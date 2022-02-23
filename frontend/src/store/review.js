@@ -3,9 +3,9 @@ import { csrfFetch } from "./csrf";
 // GET ALL REVIEWS:
 const GET_ALL_REVIEWS = "reviews/GET_ALL_REVIEWS";
 
-const loadAllReviews = (allReviews) => ({
+const loadAllReviews = (reviews) => ({
   type: GET_ALL_REVIEWS,
-  allReviews,
+  reviews,
 });
 
 export const getAllReviews = () => async (dispatch) => {
@@ -149,34 +149,31 @@ export const destroyReview =
 const initialState = {};
 
 const reviewReducer = (state = initialState, action) => {
+  let newState = {};
   switch (action.type) {
     case GET_REVIEWS:
-      const allReviewsByCocktail = {};
       action.reviews.forEach((review) => {
-        allReviewsByCocktail[review.id] = review;
+        newState[review.id] = review;
       });
-      return { ...state, ...allReviewsByCocktail };
+      return { ...state, ...newState };
     case GET_ALL_REVIEWS:
-      const allReviews = {};
-      action.allReviews.forEach((review) => {
-        allReviews[review.id] = review;
-      });
-      return { ...state, ...allReviews };
-    case GET_REVIEW:
-      const oneReview = {};
       action.reviews.forEach((review) => {
-        oneReview[review.id] = review;
+        newState[review.id] = review;
       });
-      // THIS NEEDS WORK:
-      return { ...state, ...allReviewsByCocktail };
+      return { ...state, ...newState };
+    case GET_REVIEW:
+      action.reviews.forEach((review) => {
+        newState[review.id] = review;
+      });
+      return { ...state, ...newState };
     case ADD_REVIEW:
       return { ...state, [action.review.id]: action.review };
     case UPDATE_REVIEW:
       return { ...state, [action.review.id]: action.review };
     case DELETE_REVIEW:
-      const postDeletionState = { ...state };
-      delete postDeletionState[action.reviewId];
-      return { ...postDeletionState };
+      newState = { ...state };
+      delete newState[action.reviewId];
+      return { ...newState };
     default:
       return state;
   }

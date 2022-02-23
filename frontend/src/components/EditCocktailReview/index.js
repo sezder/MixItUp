@@ -1,26 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams, Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import StarRatingComponent from 'react-star-rating-component';
-import { updateReview, getReviews } from "../../store/review";
+import { useDispatch} from "react-redux";
+import StarRatingComponent from "react-star-rating-component";
+import { destroyReview, getReviews, updateReview } from "../../store/review";
 
-function EditCocktailReview() {
-  const history = useHistory();
+function EditCocktailReview({ setShowEditReview, review, user, cocktailId }) {
   const dispatch = useDispatch();
-
-  let { cocktailId, reviewId } = useParams();
-  reviewId = Number(reviewId);
-  cocktailId = Number(cocktailId);
-
-  useEffect(() => {
-    dispatch(getReviews(cocktailId));
-  }, [dispatch, cocktailId]);
-
-  const review = useSelector((state) => state.review[reviewId]);
-  const user = useSelector((state) => state.session.user);
-  const userId = user?.id;
-
-  let [reviewRating, setReviewRating] = useState(review?.reviewRating || "");
+  let [reviewRating, setReviewRating] = useState(review?.reviewRating || 0);
   const [reviewBody, setReviewBody] = useState(review?.reviewBody || "");
   const [errors, setErrors] = useState([]);
 
@@ -32,36 +17,39 @@ function EditCocktailReview() {
     setErrors(errors);
   }, [reviewRating, reviewBody]);
 
-  if (user?.id !== review?.userId) return <Redirect to="/home" />;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (errors.length > 0) return;
 
     reviewRating = Number(reviewRating);
     const editedReview = {
-      reviewId,
+      reviewId: review?.id,
       reviewRating,
       reviewBody,
       cocktailId,
-      userId,
+      userId: user?.id,
     };
 
-    const response = dispatch(updateReview(editedReview));
-    if (response) {
-      history.push(`/cocktails/${cocktailId}`);
-    }
+    dispatch(updateReview(editedReview)).then(() => {
+      dispatch(getReviews(cocktailId));
+    });
+
+    setShowEditReview(null);
+  };
+
+  const handleDelete = () => {
+    const deleteReviewPayload = { userId: user?.id, reviewId: review?.id, cocktailId };
+    dispatch(destroyReview(deleteReviewPayload));
+    setShowEditReview(null);
   };
 
   const onStarClick = (nextValue, prevValue, name) => {
-    return setReviewRating(nextValue)
-  }
+    return setReviewRating(nextValue);
+  };
 
   return (
-    <div className="add_review_div">
-      <h2 className="text_large">Leave a Review</h2>
-
-      <form onSubmit={handleSubmit} className="add_review_form">
+    <div className="checkin_div">
+      <form onSubmit={handleSubmit} className="checkin_form">
         {/* ERRORS */}
         {errors.length > 0 && (
           <ul className="errors">
@@ -90,13 +78,19 @@ function EditCocktailReview() {
         />
 
         {/* SUBMIT */}
-        <button
-          type="submit"
-          disabled={errors.length > 0}
-          className="add_review_button"
-        >
-          Update
-        </button>
+        <div>
+          <button
+            type="submit"
+            disabled={errors.length > 0}
+            className="add_btn"
+          >
+            <i className="fas fa-check"></i>
+          </button>
+
+          <button onClick={handleDelete}>
+            <i className="fas fa-trash"></i>
+          </button>
+        </div>
       </form>
     </div>
   );

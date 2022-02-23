@@ -1,17 +1,17 @@
-.indiv_bar_div {
+.indiv_div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.bar_banner_container {
+.indiv_banner_container {
   width: 100vw;
   height: 320px;
   background-position: center;
   border-bottom: solid 25px rgba(137, 105, 67, 0.7);
 }
 
-.indiv_bar_div h1 {
+.indiv_div h1 {
   background-color: #232e2b;
   position: absolute;
   top: 320px;
@@ -20,7 +20,7 @@
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.indiv_bar_div main {
+.indiv_div main {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -32,17 +32,21 @@
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.indiv_bar_div ul {
+.indiv_div main .indivUneditableRating {
+  margin: 15px;
+}
+
+.indiv_div ul {
   display: flex;
   justify-content: center;
   align-items: center;
   border-top: solid 3px #608078;
   border-bottom: solid 3px #608078;
   width: 100vw;
-  margin-top: 30px;
+  
 }
 
-.indiv_bar_div ul div {
+.indiv_div ul div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,19 +55,19 @@
   max-width: 75vw;
 }
 
-.indiv_bar_div ul li,
-.indiv_bar_div ul a i,
-.indiv_bar_div ul i {
+.indiv_div ul li,
+.indiv_div ul a i,
+.indiv_div ul i {
   color: #090c0b;
   padding: 0 20px;
   font-size: 20px;
 }
 
-.indiv_bar_div ul i,
-.indiv_bar_div ul p {
+.indiv_div ul i,
+.indiv_div ul p {
   cursor: pointer;
 }
 
-.indiv_bar_div ul span {
+.indiv_div ul span {
   cursor: alias;
 }

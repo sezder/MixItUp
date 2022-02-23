@@ -72,6 +72,8 @@
   height: 35px;
   justify-content: center;
   margin-right: 10px;
+  background-color: rgba(10, 12, 11, 0.6);
+  border-radius: 20px;
 }
 
 .checkin_div #user_info div i.fa-edit {
