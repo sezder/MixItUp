@@ -52,7 +52,7 @@ li .text_large {
 
 .large_session span {
   padding: 5px 10px;
-  border-radius: 4px;
+  border-radius: 10px;
   background-color: #a38662;
   display: flex;
   align-items: center;
