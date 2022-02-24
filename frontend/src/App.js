@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import About from "./components/About";
 import CocktailList from "./components/CocktailList";
 import IndivCocktail from "./components/IndivCocktail";
 import NewCocktailForm from "./components/NewCocktailForm";
@@ -30,6 +31,9 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Splash />
+          </Route>
+          <Route path="/about">
+            <About />
           </Route>
           <Route path="/login">
             <LoginFormPage />

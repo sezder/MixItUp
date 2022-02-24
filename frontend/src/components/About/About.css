@@ -1,0 +1,17 @@
+.about_main {
+  background-color: aqua;
+}
+
+.about_main img#headshot {
+  height: 180px;
+  border-radius: 100px;
+}
+
+.cat_photos_div {
+}
+
+#cat_photos_div img {
+  width: 150px;
+  border-radius: 4px;
+  margin: 5px;
+}
