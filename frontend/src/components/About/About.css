@@ -1,17 +1,107 @@
 .about_main {
-  background-color: aqua;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  height: calc(100vh - 60px);
+}
+
+#right,
+#left {
+  background-color: #c2a684;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: space-evenly; */
+  height: 85vh;
+  border-radius: 20px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/*  Left section */
+#left {
+  /* background-color: green; */
+  width: 45vw;
+}
+
+.about_main header,
+.about_main #about-project,
+.about_main #general,
+.about_main #contact,
+#cat_story,
+#skills {
+  background-color: rgba(35, 46, 43, 0.7);
+  width: 42vw;
+  padding: 2vh 2vw;
+  border-radius: 20px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.about_main header {
+  display: flex;
+  align-items: center;
+  width: 35vw;
 }
 
 .about_main img#headshot {
-  height: 180px;
+  height: 10vw;
   border-radius: 100px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.cat_photos_div {
+.vl {
+  height: 9.5vw;
+  border-left: 3px solid #0a0c0b;
+  margin: 0 1.5vw;
+}
+.name_email h1 {
+  padding: 0 0 5px 0;
+}
+
+/* About this projet */
+
+.about_main #about-project {
+}
+
+/* A bit about me */
+.about_main #general {
+}
+
+/* Contact */
+.about_main #contact {
+  display: flex;
+}
+
+/* Right section */
+#right {
+  /* background-color: #232e2b; */
+  /* background-color: blueviolet; */
+  width: 50vw;
+}
+
+#cat_photos_div {
+  background-color: rgba(194, 166, 132, 0.6);
+  border-radius: 8px;
+  padding: 10px;
 }
 
 #cat_photos_div img {
-  width: 150px;
+  width: 250px;
   border-radius: 4px;
   margin: 5px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Skills */
+#skills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#skills img {
+  width: 50px;
+  margin: 3px;
 }
