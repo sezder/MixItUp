@@ -1,15 +1,12 @@
 import React from "react";
 import "./About.css";
 import headshot from "./headshot300x300.png";
-import cat1 from "./cat1.jpeg";
-import cat2 from "./cat2.jpeg";
-import cat3 from "./cat3.jpeg";
-import cat4 from "./cat4.jpeg";
+import cat from "./cat.jpeg";
 
 const About = () => {
   return (
     <main className="about_main">
-      <section id="left">
+      <div id="left">
         <header>
           <img
             src={headshot}
@@ -125,9 +122,9 @@ const About = () => {
             </li>
           </ul>
         </div>
-      </section>
+      </div>
 
-      <section id="right">
+      <div id="right">
         <div id="cat_story">
           <h2>How I First Discovered a Love of Programming</h2>
           <p>
@@ -141,7 +138,7 @@ const About = () => {
           </p>
 
           <div id="cat_photos_div">
-            <img src={cat4} alt="Black cat laying half off of a bed"></img>
+            <img src={cat} alt="Black cat laying half off of a bed"></img>
 
             <p>
               I was rewarded with a cat who hasn't quite figured out beds yet
@@ -300,7 +297,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </main>
   );
 };
