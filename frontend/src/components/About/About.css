@@ -242,6 +242,10 @@
   #skills_and_contact > div {
     width: 75vw;
   }
+
+  #cat_photos_div {
+    flex-direction: column;
+  }
 }
 
 @media only screen and (max-width: 600px) {
