@@ -1,0 +1,258 @@
+.about_main {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  height: calc(100vh - 60px);
+}
+
+#right,
+#left {
+  background-color: #c2a684;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 90vh;
+  border-radius: 20px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#right h2,
+#left h2 {
+  color: #dfdbd8;
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+.about_main header,
+#about-project,
+#general,
+#contact,
+#cat_story,
+#skills {
+  background-color: rgba(35, 46, 43, 0.9);
+  width: 42vw;
+  padding: 2vh 2vw;
+  border-radius: 20px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin: 0;
+}
+
+#skills_and_contact,
+#cat_story {
+  width: 47vw;
+}
+
+/*  Left section */
+#left {
+  width: 45vw;
+}
+
+.about_main header {
+  display: flex;
+  align-items: center;
+  width: 35vw;
+  min-width: fit-content;
+}
+
+.about_main img#headshot {
+  height: 10vw;
+  border-radius: 100px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.vl {
+  height: 9vw;
+  border-left: 3px solid #0a0c0b;
+  margin: 0 1.5vw;
+}
+.name_email h1 {
+  padding: 0 0 5px 0;
+}
+
+/* About this projet */
+#about-project div {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.about_main #general ul li {
+  color: #d1c1ae;
+}
+
+/* Right section */
+#right {
+  width: 50vw;
+}
+
+#cat_photos_div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#cat_photos_div img {
+  width: 220px;
+  border-radius: 4px;
+  margin: 5px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin-right: 15px;
+}
+
+#cat_photos_div p {
+  padding: 10px;
+  background-color: rgba(194, 166, 132, 0.9);
+  border-radius: 8px;
+  color: rgba(35, 46, 43, 1);
+  font-size: 18px;
+}
+
+#skills_and_contact {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Skills */
+#skills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 33vw;
+  justify-content: center;
+}
+
+#skills div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#skills img {
+  /* width: 50px; */
+  width: 3.5vw;
+  margin: 3px;
+}
+
+/* Contact */
+#contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 13vw;
+}
+
+#contact div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 31vh;
+}
+
+#contact div img {
+  width: 3.5vw;
+}
+
+@media only screen and (max-width: 1200px) {
+  #skills_and_contact {
+    display: flex;
+    flex-direction: column;
+  }
+  #skills,
+  #contact {
+    width: 47vw;
+    height: fit-content;
+  }
+
+  #skills {
+    margin-bottom: 10px;
+  }
+
+  #contact {
+    align-self: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30vw;
+  }
+
+  #contact div {
+    flex-direction: row;
+    height: fit-content;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1075px) {
+  .about_main {
+    margin: 20px 0;
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  #right,
+  #left {
+    width: 70vw;
+    justify-content: flex-start;
+    height: fit-content;
+  }
+
+  #right {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-bottom: 30px;
+  }
+
+  #left {
+    padding-top: 30px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  #right > div,
+  #left > div,
+  #skills_and_contact > div {
+    width: 65vw;
+    margin-top: 10px;
+  }
+
+  #skills img,
+  #contact div img {
+    width: 6vw;
+    margin: 3px;
+  }
+
+  #contact {
+    flex-direction: column;
+    width: 30vw;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  #left,
+  #right {
+    width: 80vw;
+  }
+
+  #right > div,
+  #left > div,
+  #skills_and_contact > div {
+    width: 75vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #left,
+  #right {
+    width: 90vw;
+  }
+
+  #right > div,
+  #left > div,
+  #skills_and_contact > div {
+    width: 78vw;
+  }
+}
