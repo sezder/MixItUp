@@ -1,4 +1,4 @@
-section {
+section.cards {
   display: grid;
   grid-template-columns: 1fr repeat(12, minmax(auto, 60px)) 1fr;
   grid-gap: 40px;
@@ -15,7 +15,7 @@ section {
 }
 
 .cocktail_list_div {
-  display: flex; 
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -28,7 +28,6 @@ section {
   section {
     grid-gap: 20px;
   }
-
 }
 
 @media only screen and (max-width: 500px) {
@@ -42,5 +41,4 @@ section {
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 20px;
   }
-
 }
