@@ -43,7 +43,6 @@
   border-top: solid 3px #608078;
   border-bottom: solid 3px #608078;
   width: 100vw;
-  
 }
 
 .indiv_div ul div {
@@ -70,4 +69,15 @@
 
 .indiv_div ul span {
   cursor: alias;
+}
+
+#review_restric {
+  background-color: #354641;
+  color: rgba(194, 162, 124, 1);
+  margin-top: 20px;
+}
+@media only screen and (max-width: 700px) {
+  .indiv_div h1 {
+    font-size: 28px;
+  }
 }
