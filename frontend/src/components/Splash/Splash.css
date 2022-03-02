@@ -137,9 +137,6 @@
 }
 
 @media only screen and (max-width: 1199px) {
-  .splash_main {
-    /* background-color: lightblue; */
-  }
   .splash_nav {
     width: 30vw;
     margin-right: calc(50% - 15vw);
@@ -157,9 +154,6 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .splash_main {
-    /* background-color: hotpink; */
-  }
 
   .splash_nav {
     width: 40vw;
@@ -204,9 +198,6 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .splash_main {
-    /* background-color: yellow; */
-  }
 
   .splash_nav {
     width: 50vw;
@@ -278,9 +269,6 @@
 }
 
 @media only screen and (max-width: 650px) {
-  .splash_main {
-    /* background-color: green; */
-  }
   .splash_nav {
     width: 60vw;
     margin-right: calc(50% - 30vw);
