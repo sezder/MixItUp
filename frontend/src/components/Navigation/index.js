@@ -52,10 +52,10 @@ function Navigation({ isLoaded }) {
             <div className="profile_circle">
               <p>{sessionUser?.username.slice(0, 1)}</p>
             </div>
-            <p>{sessionUser?.username}</p>
+            <p id="username">{sessionUser?.username}</p>
           </span>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button onClick={logout} className="nav_btn">Log Out</button>
           </li>
         </div>
       </>
@@ -109,7 +109,7 @@ function Navigation({ isLoaded }) {
               <i className="fab fa-linkedin-in fa-sm"></i>
             </a>
           </div>
-          <button className="menu" onClick={openMenu}>
+          <button className="menu nav_btn" onClick={openMenu}>
             {!showMenu ? (
               <i className="fas fa-bars"></i>
             ) : (
@@ -181,7 +181,7 @@ function Navigation({ isLoaded }) {
                 animate="visible"
                 variants={variants}
               >
-                <button onClick={logout}>Log Out</button>
+                <button onClick={logout} className="nav_btn">Log Out</button>
               </motion.li>
             </motion.li>
           ) : (

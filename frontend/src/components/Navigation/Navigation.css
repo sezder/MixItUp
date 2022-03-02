@@ -40,6 +40,15 @@ li .text_large {
   color: #232e2b;
 }
 
+.nav_btn {
+  background-color: #465d57;
+  color: #dccbb8;
+}
+
+.nav_btn:hover {
+  background-color: rgba(70, 93, 87, 0.7);
+}
+
 /* Desktop session links */
 .large_session {
   background-color: #090c0b;
@@ -52,11 +61,16 @@ li .text_large {
 
 .large_session span {
   padding: 5px 10px;
-  border-radius: 10px;
+  border-radius: 30px;
   background-color: #a38662;
   display: flex;
   align-items: center;
 }
+
+.large_session span #username {
+  color: #232e2b;
+}
+
 /* Tablet session links */
 #profile_button {
   padding: 8px 10px;

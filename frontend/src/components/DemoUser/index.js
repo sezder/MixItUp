@@ -14,7 +14,7 @@ const DemoUser = () => {
     );
   };
 
-  return <button onClick={demoLogin}>Demo</button>;
+  return <button onClick={demoLogin} className="nav_btn">Demo</button>;
 };
 
 export default DemoUser;
