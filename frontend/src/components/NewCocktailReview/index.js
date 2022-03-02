@@ -63,7 +63,7 @@ function NewCocktailReview({setCocktailComponent, userId, cocktailId}) {
           starCount={5}
           value={reviewRating}
           onStarClick={onStarClick}
-          starColor="#465d57"
+          starColor="#232E2B"
           emptyStarColor="#d1c1ae"
         />
 

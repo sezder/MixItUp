@@ -113,4 +113,11 @@
     height: 100%;
     padding: 30px 60px 25px 60px;
   }
+
+  .bg_text {
+    width: 80vw;
+    top: 20%;
+    left: 0;
+    transform: translate(10%, 10%);
+  }
 }

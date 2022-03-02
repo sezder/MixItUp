@@ -20,7 +20,7 @@ const BarList = ({ setBarComponent }) => {
       <div className="submit_new_bar">
         <h2>Bar you've visited not already listed?</h2>
         <NavLink to="/bars/new">
-          <button>Submit a Bar</button>
+          <button><i className="fas fa-plus"></i></button>
         </NavLink>
       </div>
       {bars.map(
@@ -32,7 +32,6 @@ const BarList = ({ setBarComponent }) => {
           imageUrl,
           menuUrl,
           reservationUrl,
-          userId,
         }) => {
           return (
             <BarDetail

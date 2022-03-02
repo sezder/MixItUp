@@ -36,8 +36,19 @@ li .text_large {
   background-color: #836540;
 }
 
-#about_me_container div a i {
+#about_me_container div i {
   color: #232e2b;
+}
+#about_me_container div li {
+  cursor: pointer;
+}
+.nav_btn {
+  background-color: #465d57;
+  color: #dccbb8;
+}
+
+.nav_btn:hover {
+  background-color: rgba(70, 93, 87, 0.7);
 }
 
 /* Desktop session links */
@@ -52,11 +63,16 @@ li .text_large {
 
 .large_session span {
   padding: 5px 10px;
-  border-radius: 10px;
+  border-radius: 30px;
   background-color: #a38662;
   display: flex;
   align-items: center;
 }
+
+.large_session span #username {
+  color: #232e2b;
+}
+
 /* Tablet session links */
 #profile_button {
   padding: 8px 10px;

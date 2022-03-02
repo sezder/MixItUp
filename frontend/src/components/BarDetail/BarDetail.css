@@ -69,18 +69,19 @@
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   .bar_container {
     flex-direction: column;
   }
 
   .bar_img_container {
-    margin-bottom: 10px; 
-    width: 70vw;
+    margin-bottom: 10px;
+    width: 60vw;
   }
 
   .bar_content {
     width: 100%;
+    align-items: center;
   }
 
   .bar_card_button_container {

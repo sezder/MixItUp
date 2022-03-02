@@ -29,6 +29,7 @@ const IndivCocktail = () => {
 
   const reviewsObj = useSelector((state) => state.review);
   const reviews = Object.values(reviewsObj);
+  const numReviews = reviews.length;
 
   const findAvg = () => {
     let sum = 0;
@@ -46,7 +47,7 @@ const IndivCocktail = () => {
     />
   ) : (
     <>
-      <button onClick={() => setShowModal(true)}>
+      <button id="review_restric" onClick={() => setShowModal(true)}>
         Log in to leave a review.
       </button>
       {showModal && (
@@ -86,15 +87,20 @@ const IndivCocktail = () => {
       <h1>{cocktail?.name}</h1>
 
       <main>
-        <StarRatingComponent
-          name="uneditableRatingAvg"
-          starCount={5}
-          value={findAvg()}
-          starColor="#d1c1ae"
-          emptyStarColor="#090C0B"
-          editable={false}
-          className="indivUneditableRating"
-        />
+        {numReviews > 0 ? (
+          <StarRatingComponent
+            name="uneditableRatingAvg"
+            starCount={5}
+            value={findAvg()}
+            starColor="#d1c1ae"
+            emptyStarColor="#090C0B"
+            editable={false}
+            className="indivUneditableRating"
+          />
+        ) : (
+          <br></br>
+        )}
+
         <ul>
           <div>
             <p onClick={() => setCocktailComponent("info")}>
@@ -128,6 +134,8 @@ const IndivCocktail = () => {
             user={user}
             userId={userId}
             cocktailId={cocktailId}
+            numReviews={numReviews}
+            reviewRestriction={reviewRestriction}
           />
         ) : (
           reviewRestriction

@@ -57,6 +57,7 @@ const CocktailList = () => {
               imageUrl={imageUrl}
               recipeUrl={recipeUrl}
               avgRating={avgRating}
+              numReviews={reviewRatings.length}
             />
           );
         })}

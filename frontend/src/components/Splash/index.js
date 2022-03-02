@@ -75,7 +75,6 @@ const Splash = () => {
     opacityAnimation: {
       opacity: [
         0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.9, 0.8, 0.7, 0.6, 0.5,
         0.4, 0.3, 0.3, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       ],
@@ -99,7 +98,7 @@ const Splash = () => {
                 duration: 6,
                 repeat: Infinity,
                 repeatDelay: 12,
-                delay: i * 6 + 0.5,
+                delay: i * 6 + 0.4,
               }}
             ></motion.img>
           ))}
@@ -116,7 +115,7 @@ const Splash = () => {
                 duration: 6,
                 repeat: Infinity,
                 repeatDelay: 12,
-                delay: i * 6 + 0.2,
+                delay: i * 6 + 1.4,
               }}
             ></motion.img>
           ))}
@@ -133,7 +132,7 @@ const Splash = () => {
                 duration: 6,
                 repeat: Infinity,
                 repeatDelay: 12,
-                delay: i * 6 + 0.3,
+                delay: i * 6 + 0.8,
               }}
             ></motion.img>
           ))}
@@ -149,7 +148,7 @@ const Splash = () => {
                 duration: 6,
                 repeat: Infinity,
                 repeatDelay: 12,
-                delay: i * 6 + 0.7,
+                delay: i * 6 + 1.6,
               }}
             ></motion.img>
           ))}
@@ -168,7 +167,7 @@ const Splash = () => {
                 duration: 6,
                 repeat: Infinity,
                 repeatDelay: 12,
-                delay: i * 6 + 0.3,
+                delay: i * 6 + 0.6,
               }}
             ></motion.img>
           ))}
@@ -184,7 +183,7 @@ const Splash = () => {
                 duration: 6,
                 repeat: Infinity,
                 repeatDelay: 12,
-                delay: i * 6,
+                delay: i * 6 + 1,
               }}
             ></motion.img>
           ))}
@@ -200,7 +199,7 @@ const Splash = () => {
                 duration: 6,
                 repeat: Infinity,
                 repeatDelay: 12,
-                delay: i * 6 + 0.5,
+                delay: i * 6 + 1.2,
               }}
             ></motion.img>
           ))}
@@ -216,7 +215,7 @@ const Splash = () => {
                 duration: 6,
                 repeat: Infinity,
                 repeatDelay: 12,
-                delay: i * 6,
+                delay: i * 6 + 0.2,
               }}
             ></motion.img>
           ))}
