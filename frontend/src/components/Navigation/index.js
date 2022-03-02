@@ -55,7 +55,9 @@ function Navigation({ isLoaded }) {
             <p id="username">{sessionUser?.username}</p>
           </span>
           <li>
-            <button onClick={logout} className="nav_btn">Log Out</button>
+            <button onClick={logout} className="nav_btn">
+              Log Out
+            </button>
           </li>
         </div>
       </>
@@ -100,14 +102,18 @@ function Navigation({ isLoaded }) {
 
         <div id="about_me_container">
           <div>
-            <a href="https://github.com/sezder">
+            <li onClick={() => window.open("https://github.com/sezder")}>
               <i className="fab fa-github fa-sm"></i>
-            </a>
+            </li>
           </div>
           <div>
-            <a href="https://www.linkedin.com/in/shannon-e-zander/">
+            <li
+              onClick={() =>
+                window.open("https://www.linkedin.com/in/shannon-e-zander/")
+              }
+            >
               <i className="fab fa-linkedin-in fa-sm"></i>
-            </a>
+            </li>
           </div>
           <button className="menu nav_btn" onClick={openMenu}>
             {!showMenu ? (
@@ -181,7 +187,9 @@ function Navigation({ isLoaded }) {
                 animate="visible"
                 variants={variants}
               >
-                <button onClick={logout} className="nav_btn">Log Out</button>
+                <button onClick={logout} className="nav_btn">
+                  Log Out
+                </button>
               </motion.li>
             </motion.li>
           ) : (

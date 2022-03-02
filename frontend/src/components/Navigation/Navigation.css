@@ -36,10 +36,12 @@ li .text_large {
   background-color: #836540;
 }
 
-#about_me_container div a i {
+#about_me_container div i {
   color: #232e2b;
 }
-
+#about_me_container div li {
+  cursor: pointer;
+}
 .nav_btn {
   background-color: #465d57;
   color: #dccbb8;
