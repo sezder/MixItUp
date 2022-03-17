@@ -96,6 +96,7 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
         ) : (
           <br></br>
         )}
+        
         <ul>
           <div>
             <p onClick={() => setBarComponent("info")}>
