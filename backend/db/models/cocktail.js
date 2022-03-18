@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
   const Cocktail = sequelize.define(
     "Cocktail",
     {
-      // id: { type: DataTypes.INTEGER, primaryKey: true },
       name: DataTypes.STRING,
       description: DataTypes.TEXT,
       imageUrl: DataTypes.TEXT,
