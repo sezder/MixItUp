@@ -104,7 +104,7 @@ const BarDetails = ({ description, id: barId, location, name, setBarComponent })
                         </div>
 
                         <div id="cocktail_preview_div">
-                          <p id="what_have">What'd you have?</p>
+                          <p id="what_have">What did you have?</p>
                           <p id="checkin_cocktail_name">{cocktail?.name}</p>
                           <p id="checkin_cocktail_descrip">
                             {cocktail?.description.length > 100

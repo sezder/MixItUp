@@ -109,7 +109,7 @@ function NewCocktailForm() {
             disabled={errors.length > 0}
             className="add_btn"
           >
-            Add Cocktail
+            <i className="fas fa-plus"></i>
           </button>
         </form>
       </div>

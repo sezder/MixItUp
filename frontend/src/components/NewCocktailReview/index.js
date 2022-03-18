@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import StarRatingComponent from "react-star-rating-component";
-import { createReview } from "../../store/review";
+import { createReview, getReviews } from "../../store/review";
 import "./NewCocktailReview.css";
 
-function NewCocktailReview({setCocktailComponent, userId, cocktailId}) {
+function NewCocktailReview({ setCocktailComponent, userId, cocktailId }) {
   const dispatch = useDispatch();
 
   let [reviewRating, setReviewRating] = useState(0);
@@ -37,8 +37,9 @@ function NewCocktailReview({setCocktailComponent, userId, cocktailId}) {
     };
 
     dispatch(createReview(newReview));
+    dispatch(getReviews(cocktailId));
     resetFields();
-    setCocktailComponent("info")
+    setCocktailComponent("info");
   };
 
   const onStarClick = (nextValue, prevValue, name) => {

@@ -5,7 +5,6 @@ import EditCocktailReview from "../../EditCocktailReview";
 import { useDispatch, useSelector } from "react-redux";
 import { getReviews } from "../../../store/review";
 import "../../IndivBar/BarDetails/BarDetails.css";
-import NewCocktailReview from "../../NewCocktailReview";
 
 const BarDetails = ({ cocktail, userId, cocktailId, numReviews, reviewRestriction }) => {
   const dispatch = useDispatch();
@@ -21,6 +20,7 @@ const BarDetails = ({ cocktail, userId, cocktailId, numReviews, reviewRestrictio
 
   return (
     <div className="bar_details">
+      <br/>
       <p id="bar_descrip">{cocktail?.description}</p>
 
       {numReviews > 0 ? (
