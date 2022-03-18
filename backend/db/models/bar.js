@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Bar.associate = function (models) {
-    Bar.hasMany(models.Checkin, { foreignKey: "barId" });
+    Bar.hasMany(models.Checkin, {
+      foreignKey: "barId",
+      onDelete: "CASCADE",
+      hooks: true,
+    });
 
     const columnMapping = {
       through: "Bar_Cocktails",
