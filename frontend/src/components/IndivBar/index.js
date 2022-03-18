@@ -48,10 +48,11 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
     dispatch(getOneBar(parseInt(barId)));
     dispatch(getAllCheckinsByBarId(barId));
   }, [dispatch, barId]);
-  
+
   const bar = useSelector((state) => state.bar[barId]);
   const barUserId = bar?.userId;
-  const checkins = useSelector((state) => state.checkins);
+  let checkins = useSelector((state) => state.checkin);
+  checkins = Object.values(checkins);
   const numCheckins = checkins?.length;
 
   const backgroundImageStyling = {
@@ -88,15 +89,15 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
             name="uneditableRatingAvg"
             starCount={5}
             value={findAvg()}
-            starColor="#d1c1ae"
-            emptyStarColor="#090C0B"
+            starColor="#090C0B"
+            emptyStarColor="#d1c1ae"
             editable={false}
             className="indivUneditableRating"
           />
         ) : (
           <br></br>
         )}
-        
+
         <ul>
           <div>
             <p onClick={() => setBarComponent("info")}>

@@ -76,11 +76,11 @@ function SignupFormPage() {
             required
           />
 
-          <button type="submit">
+          <button type="submit" className="nav_btn">
             Sign Up
           </button>
           <DemoUser/>
-          <NavLink to="/login" className="text_large">
+          <NavLink to="/login" className="text_large" id="need_acct">
             Already have an account?
           </NavLink>
         </form>
