@@ -137,6 +137,7 @@ const IndivBar = ({ setBarComponent, barComponent }) => {
             id={barId}
             checkins={checkins}
             name={bar?.name}
+            setBarComponent={setBarComponent}
           />
         ) : (
           reviewRestriction
