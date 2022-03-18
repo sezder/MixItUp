@@ -46,7 +46,7 @@ function LoginForm() {
         required
       />
 
-      <button type="submit">Log In</button>
+      <button type="submit" className="nav_btn">Log In</button>
       <DemoUser />
       <NavLink to="/signup" className="text_large" id="need_account_modal">
         Need an account?

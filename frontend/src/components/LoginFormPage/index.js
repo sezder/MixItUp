@@ -50,11 +50,11 @@ function LoginFormPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit" className="login_button">
+          <button type="submit" className="nav_btn">
             Log In
           </button>
           <DemoUser />
-          <NavLink to="/signup" className="text_large">
+          <NavLink to="/signup" className="text_large" id="need_acct">
             Need an account?
           </NavLink>
         </form>

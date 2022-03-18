@@ -18,14 +18,14 @@ export const getAllCheckinsByBarId = (barId) => async (dispatch) => {
 };
 
 // Get all checkins
-export const getAllCheckins = (checkinId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/checkins/${checkinId}`);
-  if (res.ok) {
-    const checkin = await res.json();
-    dispatch(loadCheckins(checkin));
-    return checkin;
-  }
-};
+// export const getAllCheckins = (checkinId) => async (dispatch) => {
+//   const res = await csrfFetch(`/api/checkins/${checkinId}`);
+//   if (res.ok) {
+//     const checkin = await res.json();
+//     dispatch(loadCheckins(checkin));
+//     return checkin;
+//   }
+// };
 
 // Get checkin by id
 const GET_CHECKIN = "checkins/GET_CHECKINS";
@@ -123,7 +123,7 @@ const checkinReducer = (state = initialState, action) => {
       action.checkins.forEach((checkin) => {
         newState[checkin.id] = checkin;
       });
-      return { ...state, ...newState };
+      return { ...newState };
     case GET_CHECKIN:
       newState[action.checkin.id] = action.checkin;
       return { ...state, ...newState };

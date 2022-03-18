@@ -51,6 +51,7 @@
   align-items: center;
   list-style: none;
   padding: 10px 0;
+  min-width: fit-content;
   max-width: 75vw;
 }
 

@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
   const Cocktail = sequelize.define(
     "Cocktail",
     {
-      // id: { type: DataTypes.INTEGER, primaryKey: true },
       name: DataTypes.STRING,
       description: DataTypes.TEXT,
       imageUrl: DataTypes.TEXT,
@@ -18,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true,
     });
-    Cocktail.hasMany(models.Checkin, { foreignKey: "cocktailId" });
+    Cocktail.hasMany(models.Checkin, {
+      foreignKey: "cocktailId",
+      onDelete: "CASCADE",
+      hooks: true,
+    });
     Cocktail.belongsTo(models.User, { foreignKey: "userId" });
     const columnMapping = {
       through: "Bar_Cocktails",

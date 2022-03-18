@@ -101,12 +101,12 @@ function Navigation({ isLoaded }) {
         {/* Desktop size session info */}
 
         <div id="about_me_container">
-          <div>
+          <div id="about_div">
             <li onClick={() => window.open("https://github.com/sezder")}>
               <i className="fab fa-github fa-sm"></i>
             </li>
           </div>
-          <div>
+          <div id="about_div">
             <li
               onClick={() =>
                 window.open("https://www.linkedin.com/in/shannon-e-zander/")

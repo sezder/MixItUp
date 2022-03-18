@@ -150,7 +150,8 @@ li .text_large {
   .large_session,
   .med_session,
   .logged_out_session_links,
-  .horizontal_nav li {
+  .horizontal_nav li,
+  #about_div {
     display: none;
   }
   .menu,

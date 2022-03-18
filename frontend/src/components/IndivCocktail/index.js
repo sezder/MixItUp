@@ -92,9 +92,9 @@ const IndivCocktail = () => {
             name="uneditableRatingAvg"
             starCount={5}
             value={findAvg()}
-            starColor="#d1c1ae"
-            emptyStarColor="#090C0B"
-            editable={false}
+            starColor="#090C0B"
+            emptyStarColor="#d1c1ae"
+            editable={false} 
             className="indivUneditableRating"
           />
         ) : (

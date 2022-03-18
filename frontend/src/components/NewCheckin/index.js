@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
 import { getCocktails } from "../../store/cocktail";
-import { createCheckin } from "../../store/checkin";
+import { createCheckin, getAllCheckinsByBarId } from "../../store/checkin";
 import "./NewCheckin.css";
 import { getOneBar } from "../../store/bar";
 
@@ -43,6 +43,7 @@ const NewCheckin = ({ barId, setBarComponent }) => {
     if (checkin) {
       setBarComponent("info");
       dispatch(getOneBar(barId));
+      dispatch(getAllCheckinsByBarId(barId));
       history.push(`/bars/${barId}`);
     }
   };

@@ -8,14 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       barId: DataTypes.INTEGER,
       userId: DataTypes.INTEGER,
       cocktailId: DataTypes.INTEGER,
-    },
-    // {
-    //   defaultScope: {
-    //     attributes: {
-    //       include: ["id", "content", "rating", "barId", "userId", "cocktailId"],
-    //     },
-    //   },
-    // }
+    }
   );
   Checkin.associate = function (models) {
     Checkin.belongsTo(models.Bar, { foreignKey: "barId" });
