@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
-import DemoUser from "../DemoUser";
+import DemoUser from "../Auth/DemoUser";
 
 function SignupFormPage() {
   const dispatch = useDispatch();

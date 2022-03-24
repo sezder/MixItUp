@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./LoginFormModal.css";
-import DemoUser from "../DemoUser";
+import DemoUser from "../Auth/DemoUser";
 import { NavLink } from "react-router-dom";
 
 function LoginForm() {

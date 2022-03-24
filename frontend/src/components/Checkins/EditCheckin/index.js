@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
-import { getCocktails } from "../../store/cocktail";
-import { getOneBar } from "../../store/bar";
+import { getCocktails } from "../../../store/cocktail";
+import { getOneBar } from "../../../store/bar";
 import {
   updateCheckin,
   destroyCheckin,
   getAllCheckinsByBarId,
-} from "../../store/checkin";
+} from "../../../store/checkin";
 import "./EditCheckin.css";
 
 const EditCheckin = ({ barId, id: checkinId, setShowEditCheckin, checkin }) => {

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneBar } from "../../store/bar";
+import { getOneBar } from "../../../store/bar";
 import "./IndivBar.css";
 import BarDetails from "./BarDetails";
-import { destroyBar } from "../../store/bar";
-import NewCheckin from "../NewCheckin";
-import { Modal } from "../../context/Modal";
-import LoginForm from "../LoginFormModal/LoginForm";
+import { destroyBar } from "../../../store/bar";
+import NewCheckin from "../../NewCheckin";
+import { Modal } from "../../../context/Modal";
+import LoginForm from "../../LoginFormModal/LoginForm";
 import StarRatingComponent from "react-star-rating-component";
-import { getAllCheckinsByBarId } from "../../store/checkin";
+import { getAllCheckinsByBarId } from "../../../store/checkin";
 
 const IndivBar = ({ setBarComponent, barComponent }) => {
   const history = useHistory();

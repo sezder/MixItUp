@@ -4,9 +4,15 @@ import StarRatingComponent from "react-star-rating-component";
 import EditCocktailReview from "../../EditCocktailReview";
 import { useDispatch, useSelector } from "react-redux";
 import { getReviews } from "../../../store/review";
-import "../../IndivBar/BarDetails/BarDetails.css";
+import "../../Bars/IndivBar/BarDetails/BarDetails.css";
 
-const BarDetails = ({ cocktail, userId, cocktailId, numReviews, reviewRestriction }) => {
+const BarDetails = ({
+  cocktail,
+  userId,
+  cocktailId,
+  numReviews,
+  reviewRestriction,
+}) => {
   const dispatch = useDispatch();
   const [showEditReview, setShowEditReview] = useState(null);
 
@@ -16,11 +22,10 @@ const BarDetails = ({ cocktail, userId, cocktailId, numReviews, reviewRestrictio
   useEffect(() => {
     dispatch(getReviews(cocktailId));
   }, [dispatch, cocktailId]);
-  
 
   return (
     <div className="bar_details">
-      <br/>
+      <br />
       <p id="bar_descrip">{cocktail?.description}</p>
 
       {numReviews > 0 ? (

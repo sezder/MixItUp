@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
+
+// Auth
+import LoginFormPage from "./components/Auth/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
+
+// Layout/Other
 import Navigation from "./components/Navigation";
+import Splash from "./components/Splash";
 import About from "./components/About";
+
+// Cocktails
 import CocktailList from "./components/CocktailList";
 import IndivCocktail from "./components/IndivCocktail";
 import NewCocktailForm from "./components/NewCocktailForm";
 import EditCocktailForm from "./components/EditCocktailForm";
-import Splash from "./components/Splash";
-import BarList from "./components/BarList";
-import IndivBar from "./components/IndivBar";
-import NewBarForm from "./components/NewBarForm";
-import EditBarForm from "./components/EditBarForm";
+
+// Bars
+import BarList from "./components/Bars/BarList";
+import IndivBar from "./components/Bars/IndivBar";
+import NewBarForm from "./components/Bars/NewBarForm";
+import EditBarForm from "./components/Bars/EditBarForm";
 
 function App() {
   const dispatch = useDispatch();

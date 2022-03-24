@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { getCocktails } from "../../store/cocktail";
 import { getAllReviews } from "../../store/review"; //F
 import "./CocktailList.css";
-import CocktailDetail from "../CocktailDetail/index";
+import CocktailDetail from "../Cocktails/CocktailDetail/index";
 
 const CocktailList = () => {
   const dispatch = useDispatch();

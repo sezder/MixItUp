@@ -2,14 +2,16 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
+
+
 import EditCheckin from "../../EditCheckin";
 import "./BarDetails.css";
 import "../../EditCheckin/EditCheckin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCheckinsByBarId } from "../../../store/checkin";
 import NewCheckin from "../../NewCheckin";
-import LoginForm from "../../LoginFormModal/LoginForm";
-import { Modal } from "../../../context/Modal";
+import LoginForm from "../../../LoginFormModal/LoginForm";
+import { Modal } from "../../../../context/Modal";
 
 const BarDetails = ({ description, id: barId, location, name, setBarComponent }) => {
   const dispatch = useDispatch();

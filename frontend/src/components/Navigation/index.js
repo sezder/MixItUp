@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
-import DemoUser from "../DemoUser";
+import DemoUser from "../Auth/DemoUser";
 import Logo from "../Logo/index";
 import "./Navigation.css";
 import * as sessionActions from "../../store/session";
