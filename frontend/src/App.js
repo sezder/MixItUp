@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 // Auth
 import LoginFormPage from "./components/Auth/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
+import SignupFormPage from "./components/Auth/SignupFormPage";
 import * as sessionActions from "./store/session";
 
 // Layout/Other
@@ -13,10 +13,10 @@ import Splash from "./components/Splash";
 import About from "./components/About";
 
 // Cocktails
-import CocktailList from "./components/CocktailList";
-import IndivCocktail from "./components/IndivCocktail";
-import NewCocktailForm from "./components/NewCocktailForm";
-import EditCocktailForm from "./components/EditCocktailForm";
+import CocktailList from "./components/Cocktails/CocktailList";
+import IndivCocktail from "./components/Cocktails/IndivCocktail";
+import NewCocktailForm from "./components/Cocktails/NewCocktailForm";
+import EditCocktailForm from "./components/Cocktails/EditCocktailForm";
 
 // Bars
 import BarList from "./components/Bars/BarList";
