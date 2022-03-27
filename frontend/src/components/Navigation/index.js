@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
+
+import * as sessionActions from "../../store/session";
 import ProfileButton from "./ProfileButton";
-import LoginFormModal from "../LoginFormModal";
-import DemoUser from "../DemoUser";
+import LoginFormModal from "../Auth/LoginFormModal";
+import DemoUser from "../Auth/DemoUser";
 import Logo from "../Logo/index";
 import "./Navigation.css";
-import * as sessionActions from "../../store/session";
+
 
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();

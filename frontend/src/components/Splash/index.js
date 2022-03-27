@@ -1,26 +1,9 @@
 import React from "react";
-import "./Splash.css";
-import Logo from "../Logo";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 
-//img group (pos)
-// https://source.unsplash.com/0eNtGDz8Ols/1920x1080 2(1) 6(2)
-// https://source.unsplash.com/3BGiFpQibTQ 2(2)
-// https://source.unsplash.com/3syTDiVAc7w 2(3)
-// https://source.unsplash.com/3x2cFCoBeEQ/1920x1080 3(1) 8(3)
-// https://source.unsplash.com/F7HkGy4U0fo 3(2) 7(3)
-// https://source.unsplash.com/JjGLEN7T8xI/1920x1080 3(3) 8(2)
-// https://source.unsplash.com/VXIpXxpZ5ms/1920x1080 5(3)
-// https://source.unsplash.com/W9bDbSuqW8k 5(2)
-// https://source.unsplash.com/Y7za9e40Luk 5(1) 6(3)
-// https://source.unsplash.com/YNMjGIPgD_c/1920x1080 1(2)
-// https://source.unsplash.com/_xeoL8CqRvE 4(2)
-// https://source.unsplash.com/bxT82IUY_H8/1920x1080 4(3) 8(1)
-// https://source.unsplash.com/fsI-_MRsic0/1920x1080 6(1)
-// https://source.unsplash.com/hXg4gGjIfhw/ 1(1) 7(2)
-// https://source.unsplash.com/t7wg7BJU2-s/1920x1080 1(3)
-// https://source.unsplash.com/z1qlqPj80qQ 4(3) 7(1)
+import Logo from "../Logo";
+import "./Splash.css";
 
 const Splash = () => {
   const imageSet1 = [

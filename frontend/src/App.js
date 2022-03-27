@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
+
+// Auth
+import LoginFormPage from "./components/Auth/LoginFormPage";
+import SignupFormPage from "./components/Auth/SignupFormPage";
 import * as sessionActions from "./store/session";
+
+// Layout/Other
 import Navigation from "./components/Navigation";
-import About from "./components/About";
-import CocktailList from "./components/CocktailList";
-import IndivCocktail from "./components/IndivCocktail";
-import NewCocktailForm from "./components/NewCocktailForm";
-import EditCocktailForm from "./components/EditCocktailForm";
 import Splash from "./components/Splash";
-import BarList from "./components/BarList";
-import IndivBar from "./components/IndivBar";
-import NewBarForm from "./components/NewBarForm";
-import EditBarForm from "./components/EditBarForm";
+import About from "./components/About";
+
+// Cocktails
+import CocktailList from "./components/Cocktails/CocktailList";
+import IndivCocktail from "./components/Cocktails/IndivCocktail";
+import NewCocktailForm from "./components/Cocktails/NewCocktailForm";
+import EditCocktailForm from "./components/Cocktails/EditCocktailForm";
+
+// Bars
+import BarList from "./components/Bars/BarList";
+import IndivBar from "./components/Bars/IndivBar";
+import NewBarForm from "./components/Bars/NewBarForm";
+import EditBarForm from "./components/Bars/EditBarForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +40,8 @@ function App() {
           <Route path="/" exact>
             <Splash />
           </Route>
+
+          {/* Auth */}
           <Route path="/about">
             <About />
           </Route>
@@ -41,6 +51,8 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+
+          {/* Cocktails */}
           <Route path="/cocktails" exact>
             <CocktailList />
           </Route>
@@ -53,6 +65,8 @@ function App() {
           <Route path="/cocktails/:id">
             <IndivCocktail />
           </Route>
+
+          {/* Bars */}
           <Route path="/bars/new">
             <NewBarForm />
           </Route>

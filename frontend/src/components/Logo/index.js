@@ -1,7 +1,6 @@
-// frontend/src/components/Navigation/index.js
 import React from "react";
-import "./Logo.css";
 import { NavLink } from "react-router-dom";
+import "./Logo.css";
 
 function Logo() {
   return (
