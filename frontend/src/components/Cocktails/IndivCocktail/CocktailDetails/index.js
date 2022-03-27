@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import StarRatingComponent from "react-star-rating-component";
-import EditCocktailReview from "../../EditCocktailReview";
 import { useDispatch, useSelector } from "react-redux";
-import { getReviews } from "../../../store/review";
-import "../../Bars/IndivBar/BarDetails/BarDetails.css";
+import StarRatingComponent from "react-star-rating-component";
+
+import { getReviews } from "../../../../store/review";
+import EditCocktailReview from "../../../CocktailReviews/EditCocktailReview";
+import "../../../Bars/IndivBar/BarDetails/BarDetails.css";
 
 const BarDetails = ({
   cocktail,

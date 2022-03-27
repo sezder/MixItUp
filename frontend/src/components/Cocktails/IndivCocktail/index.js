@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import StarRatingComponent from "react-star-rating-component";
-import { getCocktails } from "../../store/cocktail";
+
+import { getCocktails, destroyCocktail } from "../../../store/cocktail";
+import { Modal } from "../../../context/Modal";
 import CocktailDetails from "./CocktailDetails";
-import NewCocktailReview from "../NewCocktailReview";
-import { Modal } from "../../context/Modal";
-import LoginForm from "../LoginFormModal/LoginForm.js";
-import { destroyCocktail } from "../../store/cocktail";
+import NewCocktailReview from "../../CocktailReviews/NewCocktailReview";
+import LoginForm from "../../Auth/LoginFormModal/LoginForm";
 
 const IndivCocktail = () => {
   const history = useHistory();
@@ -94,7 +94,7 @@ const IndivCocktail = () => {
             value={findAvg()}
             starColor="#090C0B"
             emptyStarColor="#d1c1ae"
-            editable={false} 
+            editable={false}
             className="indivUneditableRating"
           />
         ) : (

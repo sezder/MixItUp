@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { Redirect } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getOneBar, updateBar, destroyBar } from "../../../store/bar";
 import "./EditBarForm.css";
 
-/* {name, description, location, imageUrl, menuUrl, reservationUrl,userId} */
 
 const EditBarForm = () => {
   const history = useHistory();

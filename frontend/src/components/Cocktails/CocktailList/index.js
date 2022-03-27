@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getCocktails } from "../../store/cocktail";
-import { getAllReviews } from "../../store/review"; //F
+
+import { getCocktails } from "../../../store/cocktail";
+import { getAllReviews } from "../../../store/review";
+import CocktailDetail from "../CocktailDetail";
 import "./CocktailList.css";
-import CocktailDetail from "../Cocktails/CocktailDetail/index";
 
 const CocktailList = () => {
   const dispatch = useDispatch();

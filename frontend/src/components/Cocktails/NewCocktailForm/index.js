@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createCocktail } from "../../store/cocktail";
-import "../../Form.css";
+import { createCocktail } from "../../../store/cocktail";
+import "../../../Form.css";
 
 function NewCocktailForm() {
   const history = useHistory();

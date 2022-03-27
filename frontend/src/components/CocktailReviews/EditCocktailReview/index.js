@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch} from "react-redux";
 import StarRatingComponent from "react-star-rating-component";
-import { destroyReview, getReviews, updateReview } from "../../../store/review";
+import {destroyReview, getReviews, updateReview} from "../../../store/review";
 
 function EditCocktailReview({ setShowEditReview, review, user, cocktailId }) {
   const dispatch = useDispatch();

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createBar } from "../../store/bar";
-// import "./NewBarForm.css";
+
+import { createBar } from "../../../store/bar";
 
 const NewBarForm = () => {
   const history = useHistory();

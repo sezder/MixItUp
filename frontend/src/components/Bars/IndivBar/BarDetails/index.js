@@ -1,17 +1,15 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
 
-
-import EditCheckin from "../../EditCheckin";
-import "./BarDetails.css";
-import "../../EditCheckin/EditCheckin.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCheckinsByBarId } from "../../../store/checkin";
-import NewCheckin from "../../NewCheckin";
-import LoginForm from "../../../LoginFormModal/LoginForm";
+import EditCheckin from "../../../Checkins/EditCheckin";
+import { getAllCheckinsByBarId } from "../../../../store/checkin";
+import NewCheckin from "../../../Checkins/NewCheckin";
+import LoginForm from "../../../Auth/LoginFormModal/LoginForm";
 import { Modal } from "../../../../context/Modal";
+import "./BarDetails.css";
+import "../../../Checkins/EditCheckin/EditCheckin.css";
 
 const BarDetails = ({ description, id: barId, location, name, setBarComponent }) => {
   const dispatch = useDispatch();

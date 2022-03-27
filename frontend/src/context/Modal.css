@@ -26,24 +26,12 @@
   border-radius: 30px;
 }
 
-@media only screen and (min-width: 750px) and (max-width: 999px) {
-  /* #modal_content {
-    background-color: pink;
-  } */
-}
-
-@media only screen and (min-width: 502px) and (max-width: 750px) {
-  /* #modal_content {
-    background-color: blue;
-  } */
-}
 
 @media only screen and (max-width: 501px) {
   #modal {
     align-items: flex-end;
   }
   #modal_content {
-    /* background-color: green; */
     border-radius: 0;
   }
 }

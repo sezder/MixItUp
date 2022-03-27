@@ -40,6 +40,8 @@ function App() {
           <Route path="/" exact>
             <Splash />
           </Route>
+
+          {/* Auth */}
           <Route path="/about">
             <About />
           </Route>
@@ -49,6 +51,8 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+
+          {/* Cocktails */}
           <Route path="/cocktails" exact>
             <CocktailList />
           </Route>
@@ -61,6 +65,8 @@ function App() {
           <Route path="/cocktails/:id">
             <IndivCocktail />
           </Route>
+
+          {/* Bars */}
           <Route path="/bars/new">
             <NewBarForm />
           </Route>

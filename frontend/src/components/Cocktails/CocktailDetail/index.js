@@ -1,7 +1,8 @@
 import React from "react";
 import StarRatingComponent from "react-star-rating-component";
+
+import "../../../index.css";
 import "./CocktailDetail.css";
-import "../../index.css";
 
 const CocktailDetail = ({
   id,

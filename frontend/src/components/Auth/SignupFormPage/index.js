@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
-import * as sessionActions from "../../store/session";
+import * as sessionActions from "../../../store/session";
 import "./SignupForm.css";
-import DemoUser from "../Auth/DemoUser";
+import DemoUser from "../DemoUser";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
- 
+
   if (sessionUser) return <Redirect to="/bars" />;
 
   const handleSubmit = (e) => {
@@ -79,7 +79,7 @@ function SignupFormPage() {
           <button type="submit" className="nav_btn">
             Sign Up
           </button>
-          <DemoUser/>
+          <DemoUser />
           <NavLink to="/login" className="text_large" id="need_acct">
             Already have an account?
           </NavLink>

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   updateCocktail,
   destroyCocktail,
   getCocktails,
-} from "../../store/cocktail";
+} from "../../../store/cocktail";
 
 function EditCocktailForm() {
   const history = useHistory();
